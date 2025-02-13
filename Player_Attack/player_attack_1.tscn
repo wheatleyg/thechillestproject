@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://canis8lb32gex"]
+
+[ext_resource type="Script" path="res://Player_Attack/player_attack_1.gd" id="1_fktoo"]
+[ext_resource type="Texture2D" uid="uid://5v6o14dvhr8c" path="res://Player_Attack/Player_Attack_Sprites/Player-attack_1.png" id="2_sdg6d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6fgq"]
+radius = 11.0
+height = 48.0
+
+[node name="Player_attack_1" type="Area2D"]
+script = ExtResource("1_fktoo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_v6fgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6, 10)
+texture = ExtResource("2_sdg6d")
