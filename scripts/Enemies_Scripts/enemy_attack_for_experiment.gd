@@ -12,7 +12,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 # detecting what our bullet collide with
 #func _on_area_2d_body_entered(body):
-	#if body.name != player:
+	#if body.name == "player":
 		# changing our bullet image into exposion
 		#tecture = load("image")
 		# stoping the process function so that, it doesn't move.
