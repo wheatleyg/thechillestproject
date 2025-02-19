@@ -10,8 +10,7 @@ config_version=5
 
 [application]
 
-config/name="ArcadeTemplate"
-run/main_scene="res://TestScene/DeleateMe.tscn"
+config/name="Chill Invaders"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
