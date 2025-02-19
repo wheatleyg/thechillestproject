@@ -19,7 +19,20 @@ func _physics_process(delta):
 		# crating tween
 		var tween = get_tree().create_tween()
 		# moving enemy down or close to he player
-		tween.tween_property(self, "position:y". position.y + 100, 1.0)
+		tween.tween_property(self, "position:y", position.y + 100, 1.0)
+	
+	# when we reach the left side of the screen
+	elif position.x < 52:
+		# setting direction to right
+		direction = 1
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "position:y", position.y + 100,1.0)
+		
+	
+	
+	# moving left or right
+	velocity.x = direction * 20000 * delta
+	move_and_slide()
 
 
 
