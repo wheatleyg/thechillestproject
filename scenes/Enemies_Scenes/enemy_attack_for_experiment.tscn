@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://chd628pfjct7"]
+[gd_scene load_steps=3 format=3 uid="uid://t10y2yj6v35i"]
 
 [ext_resource type="Texture2D" uid="uid://dmtwkpnvjyos1" path="res://assets/PNG images/Enemy-attack_1.png" id="1_sdwoj"]
-[ext_resource type="Script" path="res://scripts/Enemies_Scripts/enemy_attack_for_experiment.gd" id="2_ghqnn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4es7h"]
 radius = 7.0
@@ -10,7 +9,6 @@ height = 36.0
 [node name="Enemy-attack_for_enemy" type="Sprite2D"]
 position = Vector2(7, 26)
 texture = ExtResource("1_sdwoj")
-script = ExtResource("2_ghqnn")
 
 [node name="Area2D" type="Area2D" parent="."]
 
