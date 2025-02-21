@@ -1,20 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm34pb8r8frsm"]
+[gd_scene load_steps=5 format=3 uid="uid://bm34pb8r8frsm"]
 
 [ext_resource type="Script" path="res://scenes/Characters/chill_wizard.gd" id="1_6i2s2"]
+[ext_resource type="PackedScene" uid="uid://canis8lb32gex" path="res://Player_Attack/player_attack_1.tscn" id="2_jpo3v"]
 [ext_resource type="Texture2D" uid="uid://b54g648603bjy" path="res://assets/sprites/player (1).png" id="2_qfc1j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo577"]
-size = Vector2(89.5, 33)
+size = Vector2(173, 30)
 
 [node name="ChillWizard" type="CharacterBody2D"]
-position = Vector2(917, 503)
+position = Vector2(929, 971)
 script = ExtResource("1_6i2s2")
+projectile = ExtResource("2_jpo3v")
 
 [node name="Player(1)" type="Sprite2D" parent="."]
-position = Vector2(35, 428)
+position = Vector2(0, 2)
 scale = Vector2(2, 2)
 texture = ExtResource("2_qfc1j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(34.75, 439.5)
+position = Vector2(2, 12)
 shape = SubResource("RectangleShape2D_vo577")

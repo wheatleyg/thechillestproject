@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw3brvlq56vqk"]
+
+[ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="1_frras"]
+
+[node name="main" type="Node2D"]
+
+[node name="ChillWizard" parent="." instance=ExtResource("1_frras")]
+position = Vector2(935, 949)

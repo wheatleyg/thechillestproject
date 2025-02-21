@@ -1,8 +1,10 @@
-extends Node2D
+extends CharacterBody2D
 class_name Player_attack
 
-# Called when the node enters the scene tree for the first time.
+@export var SPEED = 100
+
 func _ready() -> void:
+	
 	pass # Replace with function body.
 
 
