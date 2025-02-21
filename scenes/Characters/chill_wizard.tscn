@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm34pb8r8frsm"]
+
+[ext_resource type="Script" path="res://scenes/Characters/chill_wizard.gd" id="1_6i2s2"]
+[ext_resource type="Texture2D" uid="uid://b54g648603bjy" path="res://assets/sprites/player (1).png" id="2_qfc1j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo577"]
+size = Vector2(89.5, 33)
+
+[node name="ChillWizard" type="CharacterBody2D"]
+position = Vector2(917, 503)
+script = ExtResource("1_6i2s2")
+
+[node name="Player(1)" type="Sprite2D" parent="."]
+position = Vector2(35, 428)
+scale = Vector2(2, 2)
+texture = ExtResource("2_qfc1j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(34.75, 439.5)
+shape = SubResource("RectangleShape2D_vo577")
