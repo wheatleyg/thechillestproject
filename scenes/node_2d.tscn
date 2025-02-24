@@ -7,6 +7,7 @@ radius = 6.0
 height = 20.0
 
 [node name="Gems" type="Node2D"]
+scale = Vector2(0.992977, 1.00423)
 
 [node name="Crystal" type="Sprite2D" parent="."]
 texture = ExtResource("1_2yo1e")
