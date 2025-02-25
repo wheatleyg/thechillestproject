@@ -1,13 +1,7 @@
 extends Player_attack
 
-
-var dir : float
-var spawnPos : Vector2
-var spawnRot : float
-
 func _ready() -> void:
-	global_position = spawnPos
-	global_rotation = spawnRot
+	velocity.y = -SPEED
 	pass # Replace with function body.
 
 
@@ -17,5 +11,4 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta):
-	velocity = Vector2(0,-SPEED).rotated(dir)
 	move_and_slide()

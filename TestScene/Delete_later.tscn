@@ -5,4 +5,4 @@
 [node name="main" type="Node2D"]
 
 [node name="ChillWizard" parent="." instance=ExtResource("1_frras")]
-position = Vector2(935, 949)
+position = Vector2(955, 989)

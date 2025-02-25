@@ -1,8 +1,7 @@
 extends CharacterBody2D
 class_name Player_attack
 
-@export var SPEED = 100
-
+@export var SPEED = 1000
 func _ready() -> void:
 	
 	pass # Replace with function body.
