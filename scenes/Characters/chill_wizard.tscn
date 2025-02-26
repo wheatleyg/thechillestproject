@@ -5,18 +5,18 @@
 [ext_resource type="Texture2D" uid="uid://b54g648603bjy" path="res://assets/sprites/player (1).png" id="2_qfc1j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo577"]
-size = Vector2(160, 40)
+size = Vector2(124, 40)
 
 [node name="ChillWizard" type="CharacterBody2D"]
-position = Vector2(968, 960)
+position = Vector2(3, 0)
 script = ExtResource("1_6i2s2")
 projectile = ExtResource("2_jpo3v")
 
 [node name="Player(1)" type="Sprite2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 1)
 scale = Vector2(2, 2)
 texture = ExtResource("2_qfc1j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 20)
+position = Vector2(1, 22)
 shape = SubResource("RectangleShape2D_vo577")

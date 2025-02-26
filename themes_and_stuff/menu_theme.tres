@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://b36arowifsrqg"]
+
+[ext_resource type="FontFile" uid="uid://1dp8b37lh1bt" path="res://assets/fonts/Jersey25-Regular.ttf" id="1_qkpp5"]
+[ext_resource type="Texture2D" uid="uid://phnvf86xlnwd" path="res://space_placeholder.jpg" id="2_0x1jq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_32pqj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xyaou"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxw0v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2fucw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lpmev"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g77sv"]
+texture = ExtResource("2_0x1jq")
+
+[resource]
+default_font = ExtResource("1_qkpp5")
+default_font_size = 120
+Button/colors/font_color = Color(0.685542, 0.554837, 0.987354, 1)
+Button/colors/font_hover_color = Color(0.437079, 0.0060588, 0.402007, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 22
+Button/styles/focus = SubResource("StyleBoxEmpty_32pqj")
+Button/styles/hover = SubResource("StyleBoxEmpty_xyaou")
+Button/styles/hover_pressed = SubResource("StyleBoxEmpty_uxw0v")
+Button/styles/normal = SubResource("StyleBoxEmpty_2fucw")
+Button/styles/pressed = SubResource("StyleBoxEmpty_lpmev")
+Label/colors/font_color = Color(0.174912, 0.844695, 0.859001, 1)
+Label/colors/font_outline_color = Color(0.86228, 0.196383, 0.698091, 1)
+Label/constants/outline_size = 46
+Label/fonts/font = ExtResource("1_qkpp5")
+Panel/styles/panel = SubResource("StyleBoxTexture_g77sv")
+VBoxContainer/constants/separation = 4
