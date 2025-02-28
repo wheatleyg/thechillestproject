@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddibjoh26w7x0"]
+
+[ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/pixil-frame-0.png" id="1_gh3v1"]
+[ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_ek1go"]
+[ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="3_otcjk"]
+
+[node name="Pixil-frame-0" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(966, 516)
+scale = Vector2(19.32, 10.32)
+texture = ExtResource("1_gh3v1")
+
+[node name="Base-ground" type="Sprite2D" parent="."]
+position = Vector2(-0.418414, 5.43479)
+scale = Vector2(0.995816, 0.978261)
+texture = ExtResource("2_ek1go")
+
+[node name="ChillWizard" parent="." instance=ExtResource("3_otcjk")]
+position = Vector2(1.32636, 39.1304)
+scale = Vector2(0.75, 1)
