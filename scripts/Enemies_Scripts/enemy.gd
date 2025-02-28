@@ -32,7 +32,7 @@ func _physics_process(delta):
 	
 	# moving left or right
 	velocity.x = direction * 20000 * delta
-	move_and_slide()
+	#move_and_slide()
 
 
 
