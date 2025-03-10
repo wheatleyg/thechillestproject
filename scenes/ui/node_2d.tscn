@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bndhydhd7roo6"]
+
+[ext_resource type="Texture2D" uid="uid://5gvenn0nlqkv" path="res://assets/sprites/Level_2.png" id="1_nx736"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Level2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(964, 596)
+scale = Vector2(19.12, 11.92)
+texture = ExtResource("1_nx736")
