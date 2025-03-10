@@ -8,7 +8,8 @@
 size = Vector2(26, 11)
 
 [node name="ChillWizard" type="CharacterBody2D"]
-position = Vector2(3, 0)
+position = Vector2(48, -48)
+scale = Vector2(4.925, 4.925)
 script = ExtResource("1_6i2s2")
 projectile = ExtResource("2_jpo3v")
 
@@ -20,3 +21,6 @@ texture = ExtResource("2_qfc1j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 3.5)
 shape = SubResource("RectangleShape2D_vo577")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-3.24873, -6.49746)

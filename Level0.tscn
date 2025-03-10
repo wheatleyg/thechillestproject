@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://bajvfne4dc6aj"]
+
+[ext_resource type="Script" path="res://level_0.gd" id="1_c720d"]
+[ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/pixil-frame-0.png" id="1_m047c"]
+[ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_i1edy"]
+[ext_resource type="PackedScene" uid="uid://bjfcae2o748ut" path="res://scenes/Enemies_Scenes/enemy.tscn" id="3_8ypxu"]
+[ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="4_ifqki"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ha32p"]
+distance = 48.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryggg"]
+size = Vector2(2048, 64)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tacpu"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-1, 0)
+script = ExtResource("1_c720d")
+
+[node name="Enviroment" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Enviroment"]
+texture_filter = 1
+position = Vector2(776, 496)
+scale = Vector2(46.5425, 27.6525)
+texture = ExtResource("1_m047c")
+
+[node name="Base-ground" type="Sprite2D" parent="Enviroment"]
+texture_filter = 1
+position = Vector2(959.105, 539.543)
+scale = Vector2(19.2179, 10.8091)
+texture = ExtResource("2_i1edy")
+
+[node name="ChillWizard" parent="." instance=ExtResource("4_ifqki")]
+position = Vector2(1040, 944)
+
+[node name="World_Boundary_Left" type="StaticBody2D" parent="."]
+position = Vector2(1, 88)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World_Boundary_Left"]
+position = Vector2(0.000175623, 48)
+shape = SubResource("WorldBoundaryShape2D_ha32p")
+
+[node name="cleanup" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cleanup"]
+position = Vector2(961, -40)
+shape = SubResource("RectangleShape2D_ryggg")
+
+[node name="World_Boundary_Right" type="StaticBody2D" parent="."]
+position = Vector2(1377, 248)
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World_Boundary_Right"]
+position = Vector2(544, 8)
+rotation = -1.56413
+shape = SubResource("WorldBoundaryShape2D_tacpu")
+
+[node name="Enemy_Manager" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(328, 288)
+
+[node name="Enemy2" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(440, 288)
+
+[node name="Enemy3" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(1000, 288)
+
+[node name="Enemy4" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(888, 288)
+
+[node name="Enemy5" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(552, 288)
+
+[node name="Enemy6" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(776, 288)
+
+[node name="Enemy7" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(664, 288)
+
+[node name="Enemy8" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(328, 360)
+
+[node name="Enemy9" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(440, 360)
+
+[node name="Enemy10" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(1000, 360)
+
+[node name="Enemy11" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(888, 360)
+
+[node name="Enemy12" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(552, 360)
+
+[node name="Enemy13" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(776, 360)
+
+[node name="Enemy14" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
+position = Vector2(664, 360)
+
+[connection signal="body_entered" from="cleanup" to="." method="_on_cleanup_body_entered"]

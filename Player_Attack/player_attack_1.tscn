@@ -7,6 +7,7 @@
 radius = 8.0
 
 [node name="Player_attack_1" type="CharacterBody2D"]
+position = Vector2(0, -40)
 script = ExtResource("1_ehi84")
 
 [node name="Player-attack1" type="Sprite2D" parent="."]
