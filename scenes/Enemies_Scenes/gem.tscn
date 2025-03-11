@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dapujaowemxd8"]
 
-[ext_resource type="Texture2D" uid="uid://c0xutxafm6wq" path="res://assets/sprites/Crystal.png" id="1_dj7d6"]
+[ext_resource type="Texture2D" uid="uid://c0xutxafm6wq" path="res://assets/sprites/Crystal.png" id="1_2yo1e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3a6mj"]
 radius = 6.0
@@ -10,7 +10,7 @@ height = 20.0
 scale = Vector2(0.992977, 1.00423)
 
 [node name="Crystal" type="Sprite2D" parent="."]
-texture = ExtResource("1_dj7d6")
+texture = ExtResource("1_2yo1e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3a6mj")
