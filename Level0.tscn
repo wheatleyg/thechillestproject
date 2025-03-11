@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://level_0.gd" id="1_c720d"]
 [ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/pixil-frame-0.png" id="1_m047c"]
 [ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_i1edy"]
-[ext_resource type="PackedScene" uid="uid://bjfcae2o748ut" path="res://scenes/Enemies_Scenes/enemy.tscn" id="3_8ypxu"]
 [ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="4_ifqki"]
+[ext_resource type="PackedScene" uid="uid://ug0jvf711563" path="res://enemy_manager.tscn" id="5_8wp3h"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ha32p"]
 distance = 48.0
@@ -38,7 +38,7 @@ position = Vector2(1040, 944)
 [node name="World_Boundary_Left" type="StaticBody2D" parent="."]
 position = Vector2(1, 88)
 rotation = 1.5708
-collision_layer = 2
+collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="World_Boundary_Left"]
@@ -53,7 +53,7 @@ shape = SubResource("RectangleShape2D_ryggg")
 
 [node name="World_Boundary_Right" type="StaticBody2D" parent="."]
 position = Vector2(1377, 248)
-collision_layer = 2
+collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World_Boundary_Right"]
@@ -61,48 +61,7 @@ position = Vector2(544, 8)
 rotation = -1.56413
 shape = SubResource("WorldBoundaryShape2D_tacpu")
 
-[node name="Enemy_Manager" type="Node" parent="."]
-
-[node name="Enemy" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(328, 288)
-
-[node name="Enemy2" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(440, 288)
-
-[node name="Enemy3" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(1000, 288)
-
-[node name="Enemy4" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(888, 288)
-
-[node name="Enemy5" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(552, 288)
-
-[node name="Enemy6" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(776, 288)
-
-[node name="Enemy7" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(664, 288)
-
-[node name="Enemy8" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(328, 360)
-
-[node name="Enemy9" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(440, 360)
-
-[node name="Enemy10" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(1000, 360)
-
-[node name="Enemy11" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(888, 360)
-
-[node name="Enemy12" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(552, 360)
-
-[node name="Enemy13" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(776, 360)
-
-[node name="Enemy14" parent="Enemy_Manager" instance=ExtResource("3_8ypxu")]
-position = Vector2(664, 360)
+[node name="CharacterBody2D" parent="." instance=ExtResource("5_8wp3h")]
+position = Vector2(769, 368)
 
 [connection signal="body_entered" from="cleanup" to="." method="_on_cleanup_body_entered"]

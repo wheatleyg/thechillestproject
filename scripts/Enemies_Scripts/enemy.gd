@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+"""
 # Speed of the enemy
 @export var speed = 500
 # Amount to move downwards when bouncing
@@ -23,3 +23,4 @@ func _physics_process(delta):
 
 func _on_area_entered(area):
     pass
+"""

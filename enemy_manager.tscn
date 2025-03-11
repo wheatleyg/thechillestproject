@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ug0jvf711563"]
+
+[ext_resource type="Script" path="res://enemy_manager.gd" id="1_lowx5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkes3"]
+size = Vector2(336, 128)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_lowx5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(168, 64)
+shape = SubResource("RectangleShape2D_kkes3")
