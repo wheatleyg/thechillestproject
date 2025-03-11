@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm6fehldbiws1"]
+
+[ext_resource type="Texture2D" uid="uid://dds2dspcl3c64" path="res://assets/sprites/Level_4.png" id="1_fddlb"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Level4" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(960, 592)
+scale = Vector2(19.2, 11.84)
+texture = ExtResource("1_fddlb")

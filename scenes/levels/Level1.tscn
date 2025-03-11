@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddibjoh26w7x0"]
 
-[ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/pixil-frame-0.png" id="1_8knj6"]
+[ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/level_1.png" id="1_8knj6"]
 [ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_gaxsq"]
 [ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="3_lcrvh"]
 
