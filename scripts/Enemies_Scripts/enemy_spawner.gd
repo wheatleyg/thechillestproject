@@ -15,7 +15,7 @@ const ENEMY_POSITION_Y_INCREMENT = 20
 
 var movement_direction = 1
 
-var invader_scene = preload("res://scenes/Enemies_Scenes/enemy_scene.tscn")
+var enemy_scene = preload("res://scenes/Enemies_Scenes/enemy_scene.tscn")
 
 #node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,7 +39,16 @@ func _ready() -> void:
 		
 		for col in COLUMNS:
 			var x = start_x + (col * enemy_config.width * 3) + (col * HORIZONTAL_SPACING)
+			var y = START_Y_POSITION + (row * ENEMY_HEIGHT) + (row * VERTICAL_SPACING)
+			var spawn_position = Vector2(x, y)
+			
+			spawn_enemy(enemy_config, spawn_position)
 	
+
+
+
+func spawn_enemy(enemy_config, spawn_position: Vector2):
+	var enemy = enemy_scene.instantiate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
