@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/pixil-frame-0.png" id="1_4l7wh"]
 [ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_01nam"]
-[ext_resource type="PackedScene" uid="uid://bjfcae2o748ut" path="res://scenes/Enemies_Scenes/enemy.tscn" id="4_myp3k"]
+[ext_resource type="PackedScene" uid="uid://bjfcae2o748ut" path="res://scenes/Enemies_Scenes/enemy_scene.tscn" id="4_myp3k"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4nj7k"]
 

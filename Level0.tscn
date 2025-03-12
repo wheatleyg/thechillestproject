@@ -62,6 +62,6 @@ rotation = -1.56413
 shape = SubResource("WorldBoundaryShape2D_tacpu")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_8wp3h")]
-position = Vector2(769, 368)
+position = Vector2(225, 384)
 
 [connection signal="body_entered" from="cleanup" to="." method="_on_cleanup_body_entered"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bm34pb8r8frsm"]
 
 [ext_resource type="Script" path="res://scenes/Characters/chill_wizard.gd" id="1_6i2s2"]
-[ext_resource type="PackedScene" uid="uid://canis8lb32gex" path="res://Player_Attack/player_attack_1.tscn" id="2_jpo3v"]
+[ext_resource type="PackedScene" uid="uid://canis8lb32gex" path="res://scenes/Player_Attack/player_attack_1.tscn" id="2_jpo3v"]
 [ext_resource type="Texture2D" uid="uid://b54g648603bjy" path="res://assets/sprites/player (1).png" id="2_qfc1j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo577"]
