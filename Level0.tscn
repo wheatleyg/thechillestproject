@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/pixil-frame-0.png" id="1_m047c"]
 [ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_i1edy"]
 [ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="4_ifqki"]
-[ext_resource type="PackedScene" uid="uid://ug0jvf711563" path="res://enemy_manager.tscn" id="5_8wp3h"]
+[ext_resource type="PackedScene" uid="uid://ug0jvf711563" path="res://scenes/Enemies_Scenes/enemy_spawner.tscn" id="5_8wp3h"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ha32p"]
 distance = 48.0
