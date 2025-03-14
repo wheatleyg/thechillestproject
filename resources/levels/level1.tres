@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://b54yt6vqmukml"]
+
+[ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/level_1.png" id="1_6yuri"]
+[ext_resource type="Script" uid="uid://h7fem4r1axt2" path="res://resources/levels/level_config.gd" id="1_fvcan"]
+[ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_a2ghr"]
+
+[resource]
+script = ExtResource("1_fvcan")
+background = ExtResource("1_6yuri")
+foregroud = ExtResource("2_a2ghr")
+scale = Vector2(1, 1)

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="level_resource" load_steps=2 format=3 uid="uid://brp6ifuylk151"]
+
+[ext_resource type="Script" uid="uid://h7fem4r1axt2" path="res://resources/levels/level_config.gd" id="1_ipwfv"]
+
+[resource]
+script = ExtResource("1_ipwfv")
+scale = Vector2(0, 0)

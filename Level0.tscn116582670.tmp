@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bajvfne4dc6aj"]
 
-[ext_resource type="Script" path="res://level_0.gd" id="1_c720d"]
+[ext_resource type="Script" uid="uid://p4vtwfppakvn" path="res://level_0.gd" id="1_c720d"]
 [ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/level_1.png" id="1_m047c"]
 [ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_i1edy"]
 [ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="4_ifqki"]
@@ -23,11 +23,11 @@ script = ExtResource("1_c720d")
 
 [node name="Background" type="Sprite2D" parent="Enviroment"]
 texture_filter = 1
-position = Vector2(961, 540)
-scale = Vector2(19.2, 10.8)
+position = Vector2(913, 512)
+scale = Vector2(46.5425, 27.6525)
 texture = ExtResource("1_m047c")
 
-[node name="Foreground" type="Sprite2D" parent="Enviroment"]
+[node name="Base-ground" type="Sprite2D" parent="Enviroment"]
 texture_filter = 1
 position = Vector2(959.105, 539.543)
 scale = Vector2(19.2179, 10.8091)
