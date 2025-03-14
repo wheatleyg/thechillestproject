@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw3brvlq56vqk"]
+[gd_scene load_steps=3 format=3 uid="uid://4tfpou4c6cis"]
 
 [ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="1_frras"]
+[ext_resource type="PackedScene" uid="uid://bjfcae2o748ut" path="res://scenes/Enemies_Scenes/enemy.tscn" id="2_7y6dl"]
 
 [node name="main" type="Node2D"]
 
 [node name="ChillWizard" parent="." instance=ExtResource("1_frras")]
 position = Vector2(955, 989)
+
+[node name="Enemy" parent="." instance=ExtResource("2_7y6dl")]
+position = Vector2(95, 75)
