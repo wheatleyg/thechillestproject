@@ -1,6 +1,6 @@
 extends Node2D
 var updated = false
-var level = 2
+var curLevel = 2
 var levelres = {
 	1: preload("uid://b54yt6vqmukml"),
 	2: preload("uid://beum8s8xne2v1"),
@@ -13,22 +13,22 @@ var levelres = {
 
 
 # Called when the node enters the scene tree for the first time.
-func _onready() -> void:
+func _ready() -> void:
 	updated = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not updated:
-		if levelres.has(level):
-			var resource = levelres[level]
+		if levelres.has(curLevel):
+			var resource = levelres[curLevel]
 			background.texture = resource.background
 			background.scale = resource.scale
-			if resource.position_x == 0:
+			if resource.positions.x and resource.positions.y == 0:
 				pass
 			else:
-				background.position.x = resource.position_x
-				background.position.y = resource.position_y
+				background.position = resource.positions
+				
 			updated = true
 	else:
 		pass

@@ -37,11 +37,11 @@ func _ready() -> void:
 	
 	for row in ROWS:
 		if row == 0:
-			enemy_config = enemy_1_res
+			enemy_config = enemy_3_res
 		elif row == 1 || row == 2:
 			enemy_config = enemy_2_res
 		elif row == 3 || row == 4:
-			enemy_config = enemy_3_res
+			enemy_config = enemy_1_res
 		
 		
 		var row_width = (COLUMNS * enemy_config.width * 3) + ((COLUMNS -1) * HORIZONTAL_SPACING)
