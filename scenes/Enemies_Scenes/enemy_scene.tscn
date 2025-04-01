@@ -1,10 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjfcae2o748ut"]
+[gd_scene load_steps=8 format=3 uid="uid://bjfcae2o748ut"]
 
 [ext_resource type="Script" uid="uid://d4bmq2jqjwg1f" path="res://scripts/Enemies_Scripts/enemy_scene.gd" id="1_bokw4"]
 [ext_resource type="Texture2D" uid="uid://dsq0qsyo7rjy5" path="res://assets/sprites/enemies/Enemy_1 (1).png" id="1_rvutw"]
+[ext_resource type="Texture2D" uid="uid://btyk3ng53ucm6" path="res://assets/sprites/enemies/Enemy_1(animation)-1.png.png" id="3_o3t1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkq2e"]
 size = Vector2(112, 52.5)
+
+[sub_resource type="Animation" id="Animation_y8m4f"]
+resource_name = "enemy_1_move"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("1_rvutw"), ExtResource("3_o3t1t")]
+}
+
+[sub_resource type="Animation" id="Animation_s05uc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_rvutw")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wpeej"]
+_data = {
+&"RESET": SubResource("Animation_s05uc"),
+&"enemy_1_move": SubResource("Animation_y8m4f")
+}
 
 [node name="enemy_1" type="Area2D"]
 script = ExtResource("1_bokw4")
@@ -16,3 +54,8 @@ shape = SubResource("RectangleShape2D_kkq2e")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 8)
 texture = ExtResource("1_rvutw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wpeej")
+}

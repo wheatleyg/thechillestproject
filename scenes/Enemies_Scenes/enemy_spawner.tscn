@@ -6,5 +6,5 @@
 script = ExtResource("1_t1r1j")
 
 [node name="MovementTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.5
 autostart = true
