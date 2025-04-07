@@ -1,6 +1,10 @@
 extends Node2D
+
+
+
 var updated = false
 var curLevel = 1
+var difficulty = 1
 
 var levelres = { #dictionary for each level .tres file
 	1: preload("uid://b54yt6vqmukml"),
@@ -12,6 +16,7 @@ var levelres = { #dictionary for each level .tres file
 	}
 @onready var background: Sprite2D = $Enviroment/Background
 @onready var foreground: Sprite2D = $Enviroment/Foreground
+@onready var control: Control = $Control
 
 
 
@@ -19,6 +24,10 @@ var levelres = { #dictionary for each level .tres file
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updated = false
+	
+	var viewport_size = get_viewport().get_visible_rect().size
+	control.size = viewport_size
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
