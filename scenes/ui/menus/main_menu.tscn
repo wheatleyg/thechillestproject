@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://nq418tpdh88a"]
 
 [ext_resource type="Theme" uid="uid://b36arowifsrqg" path="res://scenes/themes_and_stuff/menu_theme.tres" id="1_eyv1o"]
-[ext_resource type="Script" uid="uid://bqghc0i4gvkov" path="res://scripts/ui_scripts/main_menu.gd" id="3_vfd6c"]
+[ext_resource type="Script" uid="uid://cq7yyi4ueecax" path="res://scripts/ui_scripts/main_menu.gd" id="3_vfd6c"]
 [ext_resource type="AudioStream" uid="uid://cgfvtamd1ybis" path="res://assets/audio/sound_effects/mixkit-modern-technology-select-3124.wav" id="4_8hxtk"]
 
 [sub_resource type="Animation" id="Animation_ttpl8"]

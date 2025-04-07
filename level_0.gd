@@ -16,7 +16,6 @@ var levelres = { #dictionary for each level .tres file
 	}
 @onready var background: Sprite2D = $Enviroment/Background
 @onready var foreground: Sprite2D = $Enviroment/Foreground
-@onready var control: Control = $Control
 
 
 
@@ -25,8 +24,6 @@ var levelres = { #dictionary for each level .tres file
 func _ready() -> void:
 	updated = false
 	
-	var viewport_size = get_viewport().get_visible_rect().size
-	control.size = viewport_size
 
 
 

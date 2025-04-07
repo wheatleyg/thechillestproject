@@ -70,27 +70,21 @@ position = Vector2(1921, 64)
 position = Vector2(8, 476)
 shape = SubResource("RectangleShape2D_4evq6")
 
-[node name="ChillWizard" parent="." instance=ExtResource("4_ifqki")]
-position = Vector2(1040, 944)
-
 [node name="cleanup" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cleanup"]
 position = Vector2(961, -40)
 shape = SubResource("RectangleShape2D_ryggg")
 
+[node name="PlayerManager" type="Node2D" parent="."]
+
+[node name="ChillWizard" parent="PlayerManager" instance=ExtResource("4_ifqki")]
+position = Vector2(1040, 944)
+
 [node name="enemy_spawner" parent="." instance=ExtResource("5_8wp3h")]
 position = Vector2(673, 256)
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PauseMenu" parent="Control" instance=ExtResource("6_5j4ii")]
-layout_mode = 1
-scale = Vector2(1, 0.948878)
+[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
 
 [connection signal="area_entered" from="Enviroment/Walls/RightWall" to="enemy_spawner" method="_on_right_wall_area_entered"]
 [connection signal="area_entered" from="Enviroment/Walls/LeftWall" to="enemy_spawner" method="_on_left_wall_area_entered"]
