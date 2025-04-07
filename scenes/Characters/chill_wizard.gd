@@ -20,10 +20,10 @@ func get_input():
 
 
 func _physics_process(delta):
+	move_and_slide()
 	if rapid == true:
 		shoot()
 	get_input()
-	move_and_slide()
 
 
 func shoot():

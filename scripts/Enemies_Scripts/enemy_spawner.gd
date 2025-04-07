@@ -29,19 +29,19 @@ func _ready() -> void:
 	movement_timer.timeout.connect(move_enemies)
 	
 	
-	var enemy_1_res = preload("res://resources/enemy_1.tres")
-	var enemy_2_res = preload("res://resources/enemy_2.tres")
-	var enemy_3_res = preload("res://resources/enemy_3.tres")
+	var enemy_1_res = preload("uid://eswdgxaofm4g")
+	var enemy_2_res = preload("uid://cvb1x5l5grhq7")
+	var enemy_3_res = preload("uid://b7tjv2ly54mcr")
 	
 	var enemy_config
 	
 	for row in ROWS:
 		if row == 0:
-			enemy_config = enemy_1_res
+			enemy_config = enemy_3_res
 		elif row == 1 || row == 2:
 			enemy_config = enemy_2_res
 		elif row == 3 || row == 4:
-			enemy_config = enemy_3_res
+			enemy_config = enemy_1_res
 		
 		
 		var row_width = (COLUMNS * enemy_config.width * 3) + ((COLUMNS -1) * HORIZONTAL_SPACING)
