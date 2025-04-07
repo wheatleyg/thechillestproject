@@ -7,6 +7,6 @@
 [resource]
 script = ExtResource("1_fvcan")
 background = ExtResource("1_6yuri")
-foregroud = ExtResource("2_a2ghr")
+foreground = ExtResource("2_a2ghr")
 positions = Vector2(961, 540)
 scale = Vector2(19.2, 10.8)

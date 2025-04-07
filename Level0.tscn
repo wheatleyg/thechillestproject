@@ -1,10 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://bajvfne4dc6aj"]
+[gd_scene load_steps=11 format=3 uid="uid://bajvfne4dc6aj"]
 
 [ext_resource type="Script" uid="uid://p4vtwfppakvn" path="res://level_0.gd" id="1_c720d"]
 [ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/level_1.png" id="1_m047c"]
 [ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_i1edy"]
 [ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="4_ifqki"]
 [ext_resource type="PackedScene" uid="uid://ug0jvf711563" path="res://scenes/Enemies_Scenes/enemy_spawner.tscn" id="5_8wp3h"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_58xi3"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5j4ii"]
+normal = Vector2(1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lt2j"]
 size = Vector2(24, 1104)
@@ -34,6 +40,21 @@ scale = Vector2(19.2179, 10.8091)
 texture = ExtResource("2_i1edy")
 
 [node name="Walls" type="Node2D" parent="Enviroment"]
+
+[node name="CollisionRightWall" type="StaticBody2D" parent="Enviroment/Walls"]
+position = Vector2(1921, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Walls/CollisionRightWall"]
+shape = SubResource("WorldBoundaryShape2D_58xi3")
+
+[node name="CollisionLeftWall" type="StaticBody2D" parent="Enviroment/Walls"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Walls/CollisionLeftWall"]
+shape = SubResource("WorldBoundaryShape2D_5j4ii")
 
 [node name="RightWall" type="Area2D" parent="Enviroment/Walls"]
 position = Vector2(-5, 0)

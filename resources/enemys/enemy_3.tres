@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1_fb26w")
+speed = 0
 sprite = ExtResource("2_2yhvd")
 width = 8
-crystals = 0
+crystals = 500
+animation_name = "enemy_3_move"

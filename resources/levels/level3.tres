@@ -3,12 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://0nuun7u1c6v7" path="res://assets/sprites/Level_3.png" id="1_3t06t"]
 [ext_resource type="Script" uid="uid://h7fem4r1axt2" path="res://resources/levels/level_config.gd" id="1_p3psj"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2hrbm"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3t06t"]
 
 [resource]
 script = ExtResource("1_p3psj")
 background = ExtResource("1_3t06t")
-foregroud = SubResource("PlaceholderTexture2D_2hrbm")
+foreground = SubResource("PlaceholderTexture2D_3t06t")
+positions = Vector2(960, 600)
 scale = Vector2(19.2, 11.84)
-position_x = 960
-position_y = 600

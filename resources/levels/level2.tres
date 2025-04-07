@@ -8,6 +8,6 @@
 [resource]
 script = ExtResource("2_k7ewe")
 background = ExtResource("1_cs0ij")
-foregroud = SubResource("PlaceholderTexture2D_cs0ij")
+foreground = SubResource("PlaceholderTexture2D_cs0ij")
 positions = Vector2(960, 540)
 scale = Vector2(19.2, 10.8)

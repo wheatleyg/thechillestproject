@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dm6fehldbiws1"]
+[gd_scene load_steps=3 format=3 uid="uid://dm6fehldbiws1"]
 
 [ext_resource type="Texture2D" uid="uid://dds2dspcl3c64" path="res://assets/sprites/Level_4.png" id="1_fddlb"]
+[ext_resource type="Texture2D" uid="uid://p8im0x2cdxw8" path="res://assets/sprites/Base-ground(Lv4).png" id="2_eh8f3"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,3 +10,8 @@ texture_filter = 1
 position = Vector2(960, 592)
 scale = Vector2(19.2, 11.84)
 texture = ExtResource("1_fddlb")
+
+[node name="Base-ground(lv4)" type="Sprite2D" parent="."]
+position = Vector2(960, 112)
+scale = Vector2(19.28, 23.44)
+texture = ExtResource("2_eh8f3")
