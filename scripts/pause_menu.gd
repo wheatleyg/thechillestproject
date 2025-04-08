@@ -11,7 +11,10 @@ var transitioning := false
 var tween
 
 func _ready():
-
+	if visible == false:
+		show()
+	
+	
 	set_anchors_preset(Control.LayoutPreset.PRESET_TOP_LEFT) #this line is only to stop 1 warning
 	
 	var viewport_size = get_viewport().get_visible_rect().size
