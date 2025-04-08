@@ -1,6 +1,10 @@
 extends Node2D
+
+
+
 var updated = false
 var curLevel = 1
+var difficulty = 1
 
 var levelres = { #dictionary for each level .tres file
 	1: preload("uid://b54yt6vqmukml"),
@@ -19,10 +23,12 @@ var levelres = { #dictionary for each level .tres file
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updated = false
+	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#get_input()
 	
 	

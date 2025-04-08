@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bajvfne4dc6aj"]
+[gd_scene load_steps=12 format=3 uid="uid://bajvfne4dc6aj"]
 
 [ext_resource type="Script" uid="uid://p4vtwfppakvn" path="res://level_0.gd" id="1_c720d"]
 [ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/level_1.png" id="1_m047c"]
 [ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_i1edy"]
 [ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="4_ifqki"]
 [ext_resource type="PackedScene" uid="uid://ug0jvf711563" path="res://scenes/Enemies_Scenes/enemy_spawner.tscn" id="5_8wp3h"]
+[ext_resource type="PackedScene" uid="uid://b0fu38y8bfp40" path="res://scenes/ui/menus/pause_menu.tscn" id="6_5j4ii"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_58xi3"]
 normal = Vector2(-1, 0)
@@ -22,8 +23,10 @@ size = Vector2(32, 1080)
 size = Vector2(2048, 64)
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(-1, 0)
 script = ExtResource("1_c720d")
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
+visible = false
 
 [node name="Enviroment" type="Node2D" parent="."]
 
@@ -70,14 +73,16 @@ position = Vector2(1921, 64)
 position = Vector2(8, 476)
 shape = SubResource("RectangleShape2D_4evq6")
 
-[node name="ChillWizard" parent="." instance=ExtResource("4_ifqki")]
-position = Vector2(1040, 944)
-
 [node name="cleanup" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cleanup"]
 position = Vector2(961, -40)
 shape = SubResource("RectangleShape2D_ryggg")
+
+[node name="PlayerManager" type="Node2D" parent="."]
+
+[node name="ChillWizard" parent="PlayerManager" instance=ExtResource("4_ifqki")]
+position = Vector2(1040, 944)
 
 [node name="enemy_spawner" parent="." instance=ExtResource("5_8wp3h")]
 position = Vector2(673, 256)

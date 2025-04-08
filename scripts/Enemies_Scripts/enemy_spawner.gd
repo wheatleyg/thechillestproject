@@ -67,17 +67,17 @@ func move_enemies():
 	position.x += ENEMY_POSITION_X_INCREMENT * movement_direction
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
-func _on_right_wall_area_entered(area: Area2D) -> void:
+func _on_right_wall_area_entered(_area: Area2D) -> void:
 	if (movement_direction == -1):
 		position.y += ENEMY_POSITION_Y_INCREMENT
 		movement_direction *= -1
 
 
-func _on_left_wall_area_entered(area: Area2D) -> void:
+func _on_left_wall_area_entered(_area: Area2D) -> void:
 	if (movement_direction == 1):
 		position.y += ENEMY_POSITION_Y_INCREMENT
 		movement_direction *= -1
