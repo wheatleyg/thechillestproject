@@ -1,19 +1,21 @@
 extends Control
 
-@onready var label: Label = $Panel/Label
 @onready var timer: Timer = $Timer
 @onready var flashing_labels: Control = $Panel/FlashingLabels
 
 
 var time := 0.0
-var speed := 0.5 # Controls how fast the fade happens
+var speed := 0.7 # Controls how fast the fade happens
 var is_showing := false
 var transitioning := false
-@onready var tween := create_tween()
+var tween
 
 func _ready():
+
+	set_anchors_preset(Control.LayoutPreset.PRESET_TOP_LEFT) #this line is only to stop 1 warning
+	
 	var viewport_size = get_viewport().get_visible_rect().size
-	size = viewport_size
+	set_deferred("size", viewport_size)
 	modulate.a = 0.0
 
 func _process(delta):
