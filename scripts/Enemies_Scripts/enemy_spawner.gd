@@ -29,19 +29,19 @@ func _ready() -> void:
 	movement_timer.timeout.connect(move_enemies)
 	
 	
-	var enemy_1_res = preload("res://resources/enemy_1.tres")
-	var enemy_2_res = preload("res://resources/enemy_2.tres")
-	var enemy_3_res = preload("res://resources/enemy_3.tres")
+	var enemy_1_res = preload("uid://eswdgxaofm4g")
+	var enemy_2_res = preload("uid://cvb1x5l5grhq7")
+	var enemy_3_res = preload("uid://b7tjv2ly54mcr")
 	
 	var enemy_config
 	
 	for row in ROWS:
 		if row == 0:
-			enemy_config = enemy_1_res
+			enemy_config = enemy_3_res
 		elif row == 1 || row == 2:
 			enemy_config = enemy_2_res
 		elif row == 3 || row == 4:
-			enemy_config = enemy_3_res
+			enemy_config = enemy_1_res
 		
 		
 		var row_width = (COLUMNS * enemy_config.width * 3) + ((COLUMNS -1) * HORIZONTAL_SPACING)
@@ -67,17 +67,17 @@ func move_enemies():
 	position.x += ENEMY_POSITION_X_INCREMENT * movement_direction
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
-func _on_right_wall_area_entered(area: Area2D) -> void:
+func _on_right_wall_area_entered(_area: Area2D) -> void:
 	if (movement_direction == -1):
 		position.y += ENEMY_POSITION_Y_INCREMENT
 		movement_direction *= -1
 
 
-func _on_left_wall_area_entered(area: Area2D) -> void:
+func _on_left_wall_area_entered(_area: Area2D) -> void:
 	if (movement_direction == 1):
 		position.y += ENEMY_POSITION_Y_INCREMENT
 		movement_direction *= -1

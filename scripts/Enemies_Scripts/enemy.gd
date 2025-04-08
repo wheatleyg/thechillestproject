@@ -12,15 +12,15 @@ var direction = Vector2(1,0)
 @onready var collision_shape_2d = $Area2D/CollisionShape2D
 
 func _ready():
-    area_2d.connect("area_entered", self._on_area_entered)
+	area_2d.connect("area_entered", self._on_area_entered)
 
 func _physics_process(delta):
-    var collision = move_and_collide(direction * speed * delta)
-    if collision:
-        if collision.get_collider().collision_layer & (1 << bounce_collision_layer):
-            direction.x = -direction.x
-            position.y += move_down_amount
+	var collision = move_and_collide(direction * speed * delta)
+	if collision:
+		if collision.get_collider().collision_layer & (1 << bounce_collision_layer):
+			direction.x = -direction.x
+			position.y += move_down_amount
 
 func _on_area_entered(area):
-    pass
+	pass
 """

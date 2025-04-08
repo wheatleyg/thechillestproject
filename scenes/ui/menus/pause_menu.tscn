@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0fu38y8bfp40"]
+
+[ext_resource type="Script" uid="uid://bwpy1fpt6fb5a" path="res://scripts/pause_menu.gd" id="1_dd7lr"]
+[ext_resource type="Theme" uid="uid://b36arowifsrqg" path="res://scenes/themes_and_stuff/menu_theme.tres" id="2_idy5m"]
+[ext_resource type="FontFile" uid="uid://1dp8b37lh1bt" path="res://assets/fonts/Jersey25-Regular.ttf" id="2_n4ldv"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dd7lr")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.383333
+anchor_top = 0.328241
+anchor_right = 0.616667
+anchor_bottom = 0.671759
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_idy5m")
+
+[node name="Button2" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "RETURN"
+
+[node name="Return" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="Button3" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "QUIT"
+
+[node name="FlashingLabels" type="Control" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_idy5m")
+
+[node name="PausedLabel" type="Label" parent="Panel/FlashingLabels"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.390885
+anchor_top = 0.0685185
+anchor_right = 0.609115
+anchor_bottom = 0.190741
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_n4ldv")
+theme_override_font_sizes/font_size = 131
+text = "PAUSED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
