@@ -31,3 +31,13 @@ func shoot():
 	bullet.global_position = marker_2d.global_position
 	bullet.rotation = global_rotation
 	get_parent().add_child(bullet)
+	audio_stream_player.stream = gun1
+	audio_stream_player.playing = true
+	
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+	
+var gun1 = preload("res://assets/audio/SFX/mixkit-game-gun-shot-1662.mp3")
+	
+func ready() -> void:
+	pass
+	
