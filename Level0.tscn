@@ -25,9 +25,6 @@ size = Vector2(2048, 64)
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_c720d")
 
-[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
-visible = false
-
 [node name="Enviroment" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Enviroment"]
@@ -86,6 +83,9 @@ position = Vector2(1040, 944)
 
 [node name="enemy_spawner" parent="." instance=ExtResource("5_8wp3h")]
 position = Vector2(673, 256)
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
+visible = false
 
 [connection signal="area_entered" from="Enviroment/Walls/RightWall" to="enemy_spawner" method="_on_right_wall_area_entered"]
 [connection signal="area_entered" from="Enviroment/Walls/LeftWall" to="enemy_spawner" method="_on_left_wall_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c423n2bdel6cx"]
+[gd_scene load_steps=11 format=3 uid="uid://c423n2bdel6cx"]
 
 [ext_resource type="Theme" uid="uid://b36arowifsrqg" path="res://scenes/themes_and_stuff/menu_theme.tres" id="1_osn0t"]
 [ext_resource type="Script" uid="uid://bg2n4y3p7agf7" path="res://scripts/ui_scripts/settings_menu.gd" id="2_150yb"]
@@ -32,7 +32,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.7)]
 }
 
 [sub_resource type="Animation" id="Animation_gi8t6"]
@@ -48,7 +48,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+"values": [Color(0, 0, 0, 0.7), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_si1ym"]
@@ -58,9 +58,45 @@ _data = {
 &"fade_out": SubResource("Animation_gi8t6")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xr3j4"]
-expand_margin_top = 30.0
-expand_margin_bottom = 30.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slider"]
+bg_color = Color(0.1, 0.1, 0.15, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.8, 1, 0.2)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grab"]
+bg_color = Color(0, 0.8, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 1, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0.8, 1, 0.3)
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grabber"]
+bg_color = Color(0, 0.8, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 1, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0.8, 1, 0.3)
+shadow_size = 2
 
 [node name="settings_menu" type="Control"]
 layout_mode = 3
@@ -95,41 +131,154 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
 
-[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer"]
-layout_direction = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
-columns = 2
+theme_override_constants/separation = 40
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/GridContainer"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Volume"
+theme_override_font_sizes/font_size = 64
+text = "SETTINGS"
+horizontal_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="Panel/MarginContainer/GridContainer"]
-layout_direction = 1
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+columns = 3
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "Master Volume"
+
+[node name="HSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(400, 40)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_styles/slider = SubResource("StyleBoxFlat_xr3j4")
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxFlat_slider")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_grab")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_grabber")
+value = 100.0
 
-[node name="back button" type="Button" parent="Panel"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -232.0
-offset_top = -168.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Back"
+[node name="MasterValue" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "100%"
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "Music Volume"
+
+[node name="HSlider2" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxFlat_slider")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_grab")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_grabber")
+value = 100.0
+
+[node name="MusicValue" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "100%"
+
+[node name="Label3" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "SFX Volume"
+
+[node name="HSlider3" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxFlat_slider")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_grab")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_grabber")
+value = 100.0
+
+[node name="SFXValue" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "100%"
+
+[node name="Label4" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "Fullscreen"
+
+[node name="CheckBox" type="CheckBox" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/h_separation = 12
+theme_override_font_sizes/font_size = 24
+text = "Enabled"
+
+[node name="Spacer1" type="Control" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "VSync"
+
+[node name="CheckBox2" type="CheckBox" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/h_separation = 12
+theme_override_font_sizes/font_size = 24
+text = "Enabled"
+
+[node name="Spacer2" type="Control" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="back_button" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "BACK"
+
+[node name="Label6" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Made by the soft dev team"
+horizontal_alignment = 1
 
 [node name="shadow" type="ColorRect" parent="Panel"]
 layout_mode = 1
@@ -141,4 +290,9 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[connection signal="pressed" from="Panel/back button" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/GridContainer/HSlider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/GridContainer/HSlider2" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/GridContainer/HSlider3" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="toggled" from="Panel/MarginContainer/VBoxContainer/GridContainer/CheckBox" to="." method="_on_fullscreen_checkbox_toggled"]
+[connection signal="toggled" from="Panel/MarginContainer/VBoxContainer/GridContainer/CheckBox2" to="." method="_on_vsync_checkbox_toggled"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/back_button" to="." method="_on_back_button_pressed"]
