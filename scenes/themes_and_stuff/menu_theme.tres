@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://b36arowifsrqg"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://b36arowifsrqg"]
 
 [ext_resource type="FontFile" uid="uid://1dp8b37lh1bt" path="res://assets/fonts/Jersey25-Regular.ttf" id="1_qkpp5"]
 
@@ -125,6 +125,21 @@ expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_confirmation"]
+bg_color = Color(0.1, 0.1, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.8, 1, 0.5)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0.8, 1, 0.3)
+shadow_size = 4
+shadow_offset = Vector2(2, 2)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g77sv"]
 bg_color = Color(0.05, 0.05, 0.1, 0.95)
 
@@ -160,5 +175,6 @@ Label/colors/font_color = Color(0, 0.8, 1, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 0.8)
 Label/constants/outline_size = 2
 Label/fonts/font = ExtResource("1_qkpp5")
+Panel/styles/confirmation = SubResource("StyleBoxFlat_confirmation")
 Panel/styles/panel = SubResource("StyleBoxFlat_g77sv")
 VBoxContainer/constants/separation = 20

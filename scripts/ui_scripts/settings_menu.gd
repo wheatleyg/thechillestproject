@@ -11,11 +11,14 @@ extends Control
 @onready var sfx_value_label: Label = $Panel/MarginContainer/VBoxContainer/GridContainer/SFXValue
 @onready var fullscreen_checkbox: CheckBox = $Panel/MarginContainer/VBoxContainer/GridContainer/CheckBox
 @onready var vsync_checkbox: CheckBox = $Panel/MarginContainer/VBoxContainer/GridContainer/CheckBox2
+@onready var panel: Panel = $Panel
 
 var is_transitioning = false
 var master_bus_idx
 var music_bus_idx
 var sfx_bus_idx
+
+var opened_from_pause := false
 
 func _ready():
 	# Get audio bus indices
@@ -28,6 +31,8 @@ func _ready():
 		music_bus_idx = AudioServer.bus_count
 		AudioServer.add_bus()
 		AudioServer.set_bus_name(music_bus_idx, "Music")
+	else:
+		print("Busses existed already, you sigma")
 
 	if sfx_bus_idx == -1:
 		sfx_bus_idx = AudioServer.bus_count
@@ -45,9 +50,20 @@ func _ready():
 	# Load saved settings
 	load_settings()
 
-	# Play fade in animation
-	animation.play("fade_out")
-	await $AnimationPlayer.animation_finished
+	# Set panel background opacity based on how menu was opened
+	if opened_from_pause:
+		var style = StyleBoxFlat.new()
+		style.bg_color = Color(0.05, 0.05, 0.1, 1.0)  # Same color as theme but fully opaque
+		panel.add_theme_stylebox_override("panel", style)
+
+	# Play fade in animation, or set panel to non-seethrough.
+	if opened_from_pause:
+		var style = StyleBoxFlat.new()
+		style.bg_color = Color(0.05, 0.05, 0.1, 1.0)  # Same color as theme but fully opaque
+		panel.add_theme_stylebox_override("panel", style)
+	else:
+		animation.play("fade_out")
+		await $AnimationPlayer.animation_finished
 
 func load_settings():
 	# Load volume settings (convert from dB to slider value)
@@ -153,11 +169,16 @@ func _on_vsync_checkbox_toggled(button_pressed: bool):
 	click_effect.play()
 
 func _on_back_button_pressed() -> void:
-	if is_transitioning:
-		return
+	if opened_from_pause:
+		click_effect.play()
 
-	is_transitioning = true
-	click_effect.play()
-	animation.play("fade_in")
-	await $AudioStreamPlayer.finished
-	get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu.tscn")
+		queue_free()
+	else:
+		if is_transitioning:
+			return
+
+		is_transitioning = true
+		click_effect.play()
+		animation.play("fade_in")
+		await $AudioStreamPlayer.finished
+		get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu.tscn")

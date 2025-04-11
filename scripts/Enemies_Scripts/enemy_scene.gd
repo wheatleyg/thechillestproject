@@ -4,6 +4,7 @@ class_name Enemy
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var config: Resource
 
@@ -24,5 +25,10 @@ func _process(_delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is player_attack_1:
+		
+		animation_player.play("explosion")
+		collision_shape_2d.disabled = true
+	
+	
 		body.queue_free()
 		queue_free()
