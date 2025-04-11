@@ -27,8 +27,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is player_attack_1:
 		
 		animation_player.play("explosion")
-		collision_shape_2d.disabled = true
-	
 	
 		body.queue_free()
+		await animation_player.animation_finished
+	
+	
 		queue_free()
