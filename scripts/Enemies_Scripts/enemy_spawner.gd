@@ -17,6 +17,7 @@ var movement_direction = 1
 
 var enemy_scene = preload("res://scenes/Enemies_Scenes/enemy_scene.tscn")
 
+signal enemy_destroyed(crystals: int)
 
 #node stuffs
 @onready var movement_timer: Timer = $MovementTimer
