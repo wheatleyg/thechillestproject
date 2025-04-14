@@ -16,20 +16,19 @@ script = ExtResource("1_el006")
 
 [node name="Score" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_right = 0.0208333
+anchor_bottom = 0.037037
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Score"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -2.57073
-anchor_top = -3.50191
-anchor_right = 0.231058
-anchor_bottom = 2.98156
-offset_left = 1522.83
-offset_top = -29.9236
-offset_right = 1510.76
-offset_bottom = -189.262
+anchor_left = 35.5
+anchor_top = -4.25
+anchor_right = 47.3127
+anchor_bottom = 7.56255
+offset_right = -372.506
+offset_bottom = -372.501
 scale = Vector2(4.725, 4.725)
 texture = ExtResource("2_el006")
 metadata/_edit_use_anchors_ = true
@@ -41,7 +40,7 @@ anchor_top = 1.0
 anchor_right = 46.745
 anchor_bottom = 2.61838
 offset_right = 130.2
-offset_bottom = 56.265
+offset_bottom = 56.2651
 scale = Vector2(0.535, 0.535)
 theme = ExtResource("1_fnxle")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
