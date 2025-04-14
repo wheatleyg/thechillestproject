@@ -1,10 +1,16 @@
 extends CharacterBody2D
 class_name player
+
 @export var speed = 400
 @onready var main = get_tree().get_root()
 @export var projectile : PackedScene
 @onready var marker_2d: Marker2D = $Marker2D
+
+@onready var GAME_HUD = $"../../game_hud"
+
 var rapid = false
+var health = 3
+
 
 
 
@@ -27,17 +33,14 @@ func _physics_process(_delta):
 
 
 func shoot():
+	health_manager(-1)
+
 	var bullet = projectile.instantiate()
 	bullet.global_position = marker_2d.global_position
 	bullet.rotation = global_rotation
 	get_parent().add_child(bullet)
-	audio_stream_player.stream = gun1
-	audio_stream_player.playing = true
-	
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-	
-var gun1 = preload("res://assets/audio/SFX/mixkit-game-gun-shot-1662.mp3")
-	
-func ready() -> void:
-	pass
-	
+
+func health_manager(change: int):
+	health = health + change
+	health = max(0, health)
+	GAME_HUD.set_health(health)

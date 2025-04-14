@@ -7,5 +7,5 @@ class_name enemy_resource
 @export var speed : int #speed for each enemy
 @export var sprite : Texture2D #the sprite for the enemy	
 @export var width: int #spacing between each enemy
-@export var crystals: int #how many crystals/points each enemy rewards
+@export var crystals_worth: int #how many crystals/points each enemy rewards
 @export var animation_name: String #the animation the enemy uses 

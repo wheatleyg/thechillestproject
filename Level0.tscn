@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bajvfne4dc6aj"]
+[gd_scene load_steps=14 format=3 uid="uid://bajvfne4dc6aj"]
 
 [ext_resource type="Script" uid="uid://p4vtwfppakvn" path="res://level_0.gd" id="1_c720d"]
 [ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/level_1.png" id="1_m047c"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="4_ifqki"]
 [ext_resource type="PackedScene" uid="uid://ug0jvf711563" path="res://scenes/Enemies_Scenes/enemy_spawner.tscn" id="5_8wp3h"]
 [ext_resource type="PackedScene" uid="uid://b0fu38y8bfp40" path="res://scenes/ui/menus/pause_menu.tscn" id="6_5j4ii"]
+[ext_resource type="PackedScene" uid="uid://ctfk2cy55npka" path="res://scenes/ui/game_hud.tscn" id="6_e6li3"]
+[ext_resource type="PackedScene" uid="uid://dq533a4qahcpo" path="res://scenes/game_manager.tscn" id="8_8r63q"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_58xi3"]
 normal = Vector2(-1, 0)
@@ -24,9 +26,6 @@ size = Vector2(2048, 64)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_c720d")
-
-[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
-visible = false
 
 [node name="Enviroment" type="Node2D" parent="."]
 
@@ -86,6 +85,14 @@ position = Vector2(1040, 944)
 
 [node name="enemy_spawner" parent="." instance=ExtResource("5_8wp3h")]
 position = Vector2(673, 256)
+
+[node name="game_hud" parent="." instance=ExtResource("6_e6li3")]
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
+visible = false
+
+[node name="GameManager" parent="." instance=ExtResource("8_8r63q")]
 
 [connection signal="area_entered" from="Enviroment/Walls/RightWall" to="enemy_spawner" method="_on_right_wall_area_entered"]
 [connection signal="area_entered" from="Enviroment/Walls/LeftWall" to="enemy_spawner" method="_on_left_wall_area_entered"]
