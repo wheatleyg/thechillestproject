@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm34pb8r8frsm"]
+[gd_scene load_steps=6 format=3 uid="uid://bm34pb8r8frsm"]
 
 [ext_resource type="Script" uid="uid://51jj212us6vk" path="res://scenes/Characters/chill_wizard.gd" id="1_6i2s2"]
 [ext_resource type="PackedScene" uid="uid://canis8lb32gex" path="res://scenes/Player_Attack/player_attack_1.tscn" id="2_jpo3v"]
 [ext_resource type="Texture2D" uid="uid://b54g648603bjy" path="res://assets/sprites/player (1).png" id="2_qfc1j"]
+[ext_resource type="AudioStream" uid="uid://lq088uvjrlrj" path="res://assets/audio/SFX/mixkit-game-gun-shot-1662.mp3" id="4_2gijv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo577"]
 size = Vector2(26, 11)
@@ -25,3 +26,6 @@ position = Vector2(-7.15256e-07, -8.12183)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vo577")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2gijv")
