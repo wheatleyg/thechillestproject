@@ -112,18 +112,22 @@ theme_override_constants/separation = 30
 [node name="start_button" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../setttings_button")
 theme_override_font_sizes/font_size = 32
 text = "START"
 
 [node name="setttings_button" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
+focus_neighbor_top = NodePath("../start_button")
+focus_neighbor_bottom = NodePath("../exit_button")
 theme_override_font_sizes/font_size = 32
 text = "SETTINGS"
 
 [node name="exit_button" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
+focus_neighbor_top = NodePath("../setttings_button")
 theme_override_font_sizes/font_size = 32
 text = "EXIT"
 

@@ -4,6 +4,8 @@ extends Player_attack
 class_name player_attack_1
 
 
+
+
 func _ready() -> void:
 	velocity.y = -SPEED
 	pass # Replace with function body.
