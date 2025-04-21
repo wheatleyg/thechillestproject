@@ -12,6 +12,7 @@ extends Control
 @onready var fullscreen_checkbox: CheckBox = $Panel/MarginContainer/VBoxContainer/GridContainer/CheckBox
 @onready var vsync_checkbox: CheckBox = $Panel/MarginContainer/VBoxContainer/GridContainer/CheckBox2
 @onready var panel: Panel = $Panel
+@onready var back_button: Button = $Panel/MarginContainer/VBoxContainer/HBoxContainer/back_button
 
 var is_transitioning = false
 var master_bus_idx
@@ -20,7 +21,11 @@ var sfx_bus_idx
 
 var opened_from_pause := false
 
+
 func _ready():
+	#set ui focus
+	back_button.grab_focus()
+	
 	# Get audio bus indices
 	master_bus_idx = AudioServer.get_bus_index("Master")
 	music_bus_idx = AudioServer.get_bus_index("Music")
