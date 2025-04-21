@@ -1,8 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy4cuw2rrorgu"]
+[gd_scene load_steps=8 format=3 uid="uid://cy4cuw2rrorgu"]
 
 [ext_resource type="Texture2D" uid="uid://b2edq812blfpa" path="res://Sprites/Shop-background.png" id="1_viryw"]
+[ext_resource type="Texture2D" uid="uid://cqomcvirfxr1s" path="res://Sprites/Shop.png" id="2_8kdgp"]
+[ext_resource type="Texture2D" uid="uid://bb3f8hr5bed73" path="res://Sprites/ShopKeeper.png" id="3_myf4l"]
+[ext_resource type="Texture2D" uid="uid://d5yhwcjtll6n" path="res://Sprites/Item-Health_up.png" id="4_p5a0g"]
+[ext_resource type="Texture2D" uid="uid://vgc14c24q5h5" path="res://Sprites/Item-Defence_up.png" id="5_xqmyw"]
+[ext_resource type="Texture2D" uid="uid://7x8l66k03fnu" path="res://Sprites/Item-dash.png" id="6_sw5c6"]
+[ext_resource type="Texture2D" uid="uid://dbqxmhrw4lxls" path="res://Sprites/Item-Attack_up.png" id="7_msgp6"]
 
 [node name="Shop-background" type="Sprite2D"]
-position = Vector2(90.25, 80.5)
-scale = Vector2(1.935, 1.73)
+position = Vector2(958, 541)
+scale = Vector2(20.8, 11.7)
 texture = ExtResource("1_viryw")
+
+[node name="Shop" type="Sprite2D" parent="."]
+position = Vector2(-13.4615, -18.3761)
+scale = Vector2(0.477885, 0.632479)
+texture = ExtResource("2_8kdgp")
+
+[node name="ShopKeeper" type="Sprite2D" parent="."]
+position = Vector2(27.5962, 18.8889)
+scale = Vector2(0.484135, 0.747863)
+texture = ExtResource("3_myf4l")
+
+[node name="Item-healthUp" type="Sprite2D" parent="."]
+position = Vector2(5.42452, -4.64945)
+scale = Vector2(0.157529, 0.180169)
+texture = ExtResource("4_p5a0g")
+
+[node name="Item-defenceUp" type="Sprite2D" parent="."]
+position = Vector2(-14.9279, -4.98931)
+scale = Vector2(0.182212, 0.190385)
+texture = ExtResource("5_xqmyw")
+
+[node name="Item-dash" type="Sprite2D" parent="."]
+position = Vector2(-19.4712, 14.188)
+scale = Vector2(0.109736, 0.141026)
+texture = ExtResource("6_sw5c6")
+
+[node name="Item-attackUp" type="Sprite2D" parent="."]
+position = Vector2(9.75961, 15.1282)
+scale = Vector2(0.107212, 0.145513)
+texture = ExtResource("7_msgp6")
