@@ -29,16 +29,16 @@ scale = Vector2(0.157529, 0.180169)
 texture = ExtResource("4_p5a0g")
 
 [node name="Item-defenceUp" type="Sprite2D" parent="."]
-position = Vector2(-14.9279, -4.98931)
-scale = Vector2(0.182212, 0.190385)
+position = Vector2(-13.8462, -4.61539)
+scale = Vector2(0.158654, 0.190385)
 texture = ExtResource("5_xqmyw")
 
 [node name="Item-dash" type="Sprite2D" parent="."]
-position = Vector2(-19.4712, 14.188)
-scale = Vector2(0.109736, 0.141026)
+position = Vector2(-13.5231, 12.4466)
+scale = Vector2(0.166617, 0.202778)
 texture = ExtResource("6_sw5c6")
 
 [node name="Item-attackUp" type="Sprite2D" parent="."]
-position = Vector2(9.75961, 15.1282)
-scale = Vector2(0.107212, 0.145513)
+position = Vector2(5.84135, 12.2703)
+scale = Vector2(0.15625, 0.202671)
 texture = ExtResource("7_msgp6")
