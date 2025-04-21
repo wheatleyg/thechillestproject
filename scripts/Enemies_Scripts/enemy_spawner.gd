@@ -110,12 +110,12 @@ func on_enemy_shoot():
 
 		if weighted_enemies.size() > 0:
 			var selected_enemy = weighted_enemies.pick_random()
-			print("Selected enemy type: ", selected_enemy.config.animation_name)
+			#print("Selected enemy type: ", selected_enemy.config.animation_name)
 			var enemy_shoot = selected_enemy.config.attack_scene.instantiate()
 			if enemy_shoot is Enemy_attack:
 				enemy_bullets.add_child(enemy_shoot)
 				enemy_shoot.global_position = selected_enemy.global_position
-				print("Spawned attack from: ", selected_enemy.config.animation_name)
+				#print("Spawned attack from: ", selected_enemy.config.animation_name)
 
 
 
