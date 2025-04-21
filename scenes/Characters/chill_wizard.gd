@@ -28,7 +28,7 @@ func get_input():
 	velocity = Vector2(input_direction * speed,0)  # no vert movement
 
 	if Input.is_action_just_pressed("p1_a"):
-		shoot()
+		shoot(false)
 	if Input.is_action_just_pressed("p2_b"):
 		rapid = true
 
@@ -36,14 +36,22 @@ func get_input():
 func _physics_process(_delta):
 	move_and_slide()
 	if rapid == true:
-		shoot()
+		shoot(true)
 	get_input()
 
 
-func shoot():
+func shoot(bypass: bool):
 	#health_manager(-1)
-	if timer.is_stopped():
+	if timer.is_stopped() and not bypass:
 		timer.start()
+		var bullet = projectile.instantiate()
+		bullet.global_position = marker_2d.global_position
+		bullet.rotation = global_rotation
+		player_bullets.add_child(bullet)
+	
+		bullet_sound_effect_player.stream = shoot_effect_one
+		bullet_sound_effect_player.play()
+	elif bypass:
 		var bullet = projectile.instantiate()
 		bullet.global_position = marker_2d.global_position
 		bullet.rotation = global_rotation

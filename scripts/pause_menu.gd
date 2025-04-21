@@ -4,6 +4,7 @@ extends Control
 @onready var flashing_labels: Control = $Panel/FlashingLabels
 @onready var settings_menu = preload("uid://c423n2bdel6cx")
 @onready var quit_confirmation: Panel = $QuitConfirmation
+@onready var return_button: Button = $Panel/VBoxContainer2/return_button
 
 var time := 0.0
 var speed := 0.7 # Controls how fast the fade happens
@@ -14,6 +15,8 @@ var tween
 #signal opened_through_pause # for settings menu to disable it's transition and panel.
 
 func _ready():
+	
+	
 	if visible == false:
 		show()
 
@@ -38,6 +41,7 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("quit"):
 		toggle_transition()
+		return_button.grab_focus()
 
 
 func toggle_transition():
