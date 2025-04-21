@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy4cuw2rrorgu"]
+
+[ext_resource type="Texture2D" uid="uid://b2edq812blfpa" path="res://Sprites/Shop-background.png" id="1_viryw"]
+
+[node name="Shop-background" type="Sprite2D"]
+position = Vector2(90.25, 80.5)
+scale = Vector2(1.935, 1.73)
+texture = ExtResource("1_viryw")
