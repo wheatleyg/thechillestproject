@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="enemy_resource" load_steps=3 format=3 uid="uid://cvb1x5l5grhq7"]
+[gd_resource type="Resource" script_class="enemy_resource" load_steps=4 format=3 uid="uid://cvb1x5l5grhq7"]
 
 [ext_resource type="Script" uid="uid://cv6xvoomvnert" path="res://resources/enemys/enemy_config.gd" id="1_h1yg4"]
+[ext_resource type="PackedScene" uid="uid://pp0eixoyuvtu" path="res://scenes/Enemy_Attack/enemy_attack_2.tscn" id="1_nvx8e"]
 [ext_resource type="Texture2D" uid="uid://brrkbp8tyebal" path="res://assets/sprites/enemies/Enemy_2.png" id="2_ft36r"]
 
 [resource]
@@ -10,3 +11,5 @@ sprite = ExtResource("2_ft36r")
 width = 8
 crystals_worth = 250
 animation_name = "enemy_2_move"
+attack_scene = ExtResource("1_nvx8e")
+shoot_probability = 0.5

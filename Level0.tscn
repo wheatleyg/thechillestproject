@@ -86,6 +86,12 @@ position = Vector2(1040, 944)
 [node name="enemy_spawner" parent="." instance=ExtResource("5_8wp3h")]
 position = Vector2(673, 256)
 
+[node name="BulletManager" type="Node2D" parent="."]
+
+[node name="PlayerBullets" type="Node2D" parent="BulletManager"]
+
+[node name="EnemyBullets" type="Node2D" parent="BulletManager"]
+
 [node name="game_hud" parent="." instance=ExtResource("6_e6li3")]
 visible = false
 
