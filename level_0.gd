@@ -16,6 +16,7 @@ var levelres = { #dictionary for each level .tres file
 	}
 @onready var background: Sprite2D = $Enviroment/Background
 @onready var foreground: Sprite2D = $Enviroment/Foreground
+@onready var chill_wizard: player = $PlayerManager/ChillWizard
 
 
 
@@ -23,6 +24,8 @@ var levelres = { #dictionary for each level .tres file
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updated = false
+	
+	chill_wizard.player1_died.connect(_death)
 	
 
 
@@ -70,3 +73,6 @@ func get_input():
 """
 func _on_cleanup_body_entered(body: Node2D) -> void:
 	body.queue_free()
+	
+func _death():
+	get_tree().paused = true

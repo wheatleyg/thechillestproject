@@ -66,7 +66,8 @@ func health_manager(change: int):
 	health = max(0, health)
 	GAME_HUD.set_health(health)
 	if health <= 0:
-		player1_died.emit
+		print("player died")
+		player1_died.emit()
 		
 
 
