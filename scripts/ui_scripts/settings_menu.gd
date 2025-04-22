@@ -21,6 +21,7 @@ var sfx_bus_idx
 
 var opened_from_pause := false
 
+signal closed_in_pause 
 
 func _ready():
 	#set ui focus
@@ -176,7 +177,8 @@ func _on_vsync_checkbox_toggled(button_pressed: bool):
 func _on_back_button_pressed() -> void:
 	if opened_from_pause:
 		click_effect.play()
-
+		emit_signal("closed_in_pause")
+		hide() #fixes flashing effect
 		queue_free()
 	else:
 		if is_transitioning:

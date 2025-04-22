@@ -137,12 +137,14 @@ alignment = 1
 [node name="quit_confirm" type="Button" parent="QuitConfirmation/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
+focus_neighbor_right = NodePath("../quit_cancel")
 theme_override_font_sizes/font_size = 24
 text = "Yes"
 
 [node name="quit_cancel" type="Button" parent="QuitConfirmation/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
+focus_neighbor_left = NodePath("../quit_confirm")
 theme_override_font_sizes/font_size = 24
 text = "No"
 

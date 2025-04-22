@@ -4,7 +4,13 @@ extends Control
 @onready var flashing_labels: Control = $Panel/FlashingLabels
 @onready var settings_menu = preload("uid://c423n2bdel6cx")
 @onready var quit_confirmation: Panel = $QuitConfirmation
+
+
 @onready var return_button: Button = $Panel/VBoxContainer2/return_button
+@onready var settings_button = $Panel/VBoxContainer2/settings_button
+@onready var quit_button = $Panel/VBoxContainer2/quit_button
+
+@onready var quit_cancel = $QuitConfirmation/VBoxContainer/HBoxContainer/quit_cancel
 
 var time := 0.0
 var speed := 0.7 # Controls how fast the fade happens
@@ -83,7 +89,7 @@ func _on_settings_button_pressed() -> void:
 	var settings_instance = settings_menu.instantiate()
 	settings_instance.opened_from_pause = true
 	add_child(settings_instance)
-
+	settings_instance.closed_in_pause.connect(switch_focus_when_settings_closed)
 
 func _on_return_button_pressed() -> void:
 	toggle_transition()
@@ -91,9 +97,14 @@ func _on_return_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	quit_confirmation.show()
+	quit_cancel.grab_focus()
 
 func _on_quit_confirm_pressed() -> void:
 	get_tree().quit()
 
 func _on_quit_cancel_pressed() -> void:
 	quit_confirmation.hide()
+	quit_button.grab_focus()
+	
+func switch_focus_when_settings_closed():
+	settings_button.grab_focus()
