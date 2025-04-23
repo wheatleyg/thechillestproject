@@ -22,14 +22,16 @@ var movement_direction = 1
 
 var enemy_scene = preload("res://scenes/Enemies_Scenes/enemy_scene.tscn")
 
-
-
 var total_enemy_destroyed = 0
 var enemy_total_count = ROWS * COLUMNS
 
 
 #node stuffs
 @onready var movement_timer: Timer = $MovementTimer
+@onready var shoot_timer: Timer = $ShootTimer
+@onready var enemy_bullets: Node2D = $"../BulletManager/EnemyBullets"
+
+
 
 
 
@@ -37,6 +39,7 @@ var enemy_total_count = ROWS * COLUMNS
 #node enters the scene tree for the first time.
 func _ready() -> void:
 	movement_timer.timeout.connect(move_enemies)
+	shoot_timer.timeout.connect(on_enemy_shoot)
 
 
 	var enemy_1_res = preload("uid://eswdgxaofm4g")
@@ -92,6 +95,30 @@ func _on_left_wall_area_entered(_area: Area2D) -> void:
 	if (movement_direction == 1):
 		position.y += ENEMY_POSITION_Y_INCREMENT
 		movement_direction *= -1
+
+
+func on_enemy_shoot():
+	var enemies = get_children().filter(func (child): return child is Enemy)
+	if enemies.size() > 0:
+		# Create a weighted list of enemies based on their shoot probabilities
+		var weighted_enemies = []
+		for enemy in enemies:
+			# Add the enemy multiple times based on its probability
+			var weight = int(enemy.config.shoot_probability * 10)  # Convert probability to a weight (0-10)
+			for i in range(weight):
+				weighted_enemies.append(enemy)
+
+		if weighted_enemies.size() > 0:
+			var selected_enemy = weighted_enemies.pick_random()
+			#print("Selected enemy type: ", selected_enemy.config.animation_name)
+			var enemy_shoot = selected_enemy.config.attack_scene.instantiate()
+			if enemy_shoot is Enemy_attack:
+				enemy_bullets.add_child(enemy_shoot)
+				enemy_shoot.global_position = selected_enemy.global_position
+				#print("Spawned attack from: ", selected_enemy.config.animation_name)
+
+
+
 
 
 

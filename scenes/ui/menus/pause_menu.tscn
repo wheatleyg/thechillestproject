@@ -77,14 +77,18 @@ theme = ExtResource("2_idy5m")
 
 [node name="return_button" type="Button" parent="Panel/VBoxContainer2"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../settings_button")
 text = "RETURN"
 
 [node name="settings_button" type="Button" parent="Panel/VBoxContainer2"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../return_button")
+focus_neighbor_bottom = NodePath("../quit_button")
 text = "SETTINGS"
 
 [node name="quit_button" type="Button" parent="Panel/VBoxContainer2"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../settings_button")
 text = "QUIT"
 
 [node name="QuitConfirmation" type="Panel" parent="."]

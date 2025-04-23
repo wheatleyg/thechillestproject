@@ -2,11 +2,13 @@ extends Control
 
 @onready var click_effect: AudioStreamPlayer = $AudioStreamPlayer
 @onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var start_button: Button = $Panel/VBoxContainer/start_button
 
 var is_transitioning = false
 
 
 func _ready():
+	start_button.grab_focus()
 	animation.play("fade_out")
 
 func _on_start_button_pressed() -> void:

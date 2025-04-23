@@ -1,21 +1,6 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://b36arowifsrqg"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://b36arowifsrqg"]
 
 [ext_resource type="FontFile" uid="uid://1dp8b37lh1bt" path="res://assets/fonts/Jersey25-Regular.ttf" id="1_qkpp5"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32pqj"]
-bg_color = Color(0.1, 0.1, 0.2, 0.8)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0.8, 1, 0.5)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_color = Color(0, 0.8, 1, 0.3)
-shadow_size = 4
-shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyaou"]
 bg_color = Color(0.15, 0.15, 0.25, 0.9)
@@ -153,7 +138,7 @@ Button/colors/font_hover_color = Color(0, 1, 1, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 0.8)
 Button/colors/font_pressed_color = Color(0, 1, 1, 1)
 Button/constants/outline_size = 2
-Button/styles/focus = SubResource("StyleBoxFlat_32pqj")
+Button/styles/focus = SubResource("StyleBoxFlat_xyaou")
 Button/styles/hover = SubResource("StyleBoxFlat_xyaou")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_uxw0v")
 Button/styles/normal = SubResource("StyleBoxFlat_2fucw")

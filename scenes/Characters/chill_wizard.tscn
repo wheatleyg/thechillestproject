@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bm34pb8r8frsm"]
+[gd_scene load_steps=10 format=3 uid="uid://bm34pb8r8frsm"]
 
 [ext_resource type="Script" path="res://scenes/Characters/chill_wizard.gd" id="1_6i2s2"]
 [ext_resource type="PackedScene" uid="uid://canis8lb32gex" path="res://scenes/Player_Attack/player_attack_1.tscn" id="2_jpo3v"]
@@ -6,7 +6,48 @@
 [ext_resource type="AudioStream" uid="uid://lq088uvjrlrj" path="res://assets/audio/SFX/mixkit-game-gun-shot-1662.mp3" id="4_2gijv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo577"]
-size = Vector2(26, 11)
+size = Vector2(29.2386, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gijv"]
+size = Vector2(26.802, 10.9645)
+
+[sub_resource type="Animation" id="Animation_e75vt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player(1):modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2gijv"]
+resource_name = "on_hit"
+length = 3.0
+step = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player(1):modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e75vt"]
+_data = {
+&"RESET": SubResource("Animation_e75vt"),
+&"on_hit": SubResource("Animation_2gijv")
+}
 
 [node name="ChillWizard" type="CharacterBody2D"]
 position = Vector2(3.8147e-06, -3.8147e-06)
@@ -25,7 +66,31 @@ texture = ExtResource("2_qfc1j")
 position = Vector2(-7.15256e-07, -8.12183)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+editor_description = "for collision with walls
+"
+position = Vector2(-3.87279e-07, 0)
 shape = SubResource("RectangleShape2D_vo577")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BulletSoundEffectPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_2gijv")
+bus = &"SFX"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.16184e-06, -0.609136)
+shape = SubResource("RectangleShape2D_2gijv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e75vt")
+}
+speed_scale = 1.2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
