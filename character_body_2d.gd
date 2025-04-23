@@ -1,12 +1,22 @@
 extends CharacterBody2D
 class_name sheld
 
-func _physics_process(delta: float) -> void:
+@export var speed = 400
+func _ready() -> void:
 	visible = false
+func _physics_process(delta: float) -> void:
+	
 	if Input.is_action_just_pressed("p1_b"):
 		visible = true
-	if visible == true:
-		if body(Enemy_attack)
+	if Input.is_action_just_released("p1_b"):
+		visible = false
+	
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+	if visible == true:
+		if area.is_in_group("enemy_attacks"):
+			area.queue_free()
+ # Replace with function body.
+func get_input():
+	var input_direction = Input.get_action_strength("p1_right") - Input.get_action_strength("p1_left") #left and Right movement
+	velocity = Vector2(input_direction * speed,0)  # no vert movement
