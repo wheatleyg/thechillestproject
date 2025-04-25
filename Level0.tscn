@@ -28,6 +28,9 @@ size = Vector2(2048, 64)
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_c720d")
 
+[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
+visible = false
+
 [node name="Enviroment" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Enviroment"]
@@ -84,6 +87,10 @@ shape = SubResource("RectangleShape2D_ryggg")
 [node name="ChillWizard" parent="PlayerManager" instance=ExtResource("4_ifqki")]
 position = Vector2(1040, 944)
 
+[node name="CharacterBody2D" parent="PlayerManager/ChillWizard" instance=ExtResource("9_fnyiw")]
+position = Vector2(0, -4.87309)
+scale = Vector2(0.203046, 0.203046)
+
 [node name="enemy_spawner" parent="." instance=ExtResource("5_8wp3h")]
 position = Vector2(673, 256)
 
@@ -96,13 +103,7 @@ position = Vector2(673, 256)
 [node name="game_hud" parent="." instance=ExtResource("6_e6li3")]
 visible = false
 
-[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
-visible = false
-
 [node name="GameManager" parent="." instance=ExtResource("8_8r63q")]
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("9_fnyiw")]
-position = Vector2(1040, 920)
 
 [connection signal="area_entered" from="Enviroment/Walls/RightWall" to="enemy_spawner" method="_on_right_wall_area_entered"]
 [connection signal="area_entered" from="Enviroment/Walls/LeftWall" to="enemy_spawner" method="_on_left_wall_area_entered"]

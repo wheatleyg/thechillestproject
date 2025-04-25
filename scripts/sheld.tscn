@@ -6,13 +6,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6r7c0"]
 size = Vector2(144, 22)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sho38"]
-radius = 112.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1gkdq"]
+radius = 17.0
+height = 145.583
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_mask = 4
 script = ExtResource("1_8budo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 48)
 shape = SubResource("RectangleShape2D_6r7c0")
 
@@ -22,7 +25,23 @@ scale = Vector2(6.44, 5.76)
 texture = ExtResource("2_rp8vn")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 32)
-shape = SubResource("CircleShape2D_sho38")
+position = Vector2(-81, 0)
+rotation = 0.261799
+shape = SubResource("CapsuleShape2D_1gkdq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(83, -1.90735e-06)
+rotation = -0.261799
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_1gkdq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.52588e-05, -66)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_1gkdq")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

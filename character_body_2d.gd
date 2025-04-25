@@ -6,14 +6,17 @@ func _ready() -> void:
 	visible = false
 func _physics_process(delta: float) -> void:
 	
+	visible = Input.is_action_pressed("p1_b")
+	
+	"""
 	if Input.is_action_just_pressed("p1_b"):
 		visible = true
 	if Input.is_action_just_released("p1_b"):
 		visible = false
-	
+"""
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if visible == true:
+	if visible:
 		if area.is_in_group("enemy_attacks"):
 			area.queue_free()
  # Replace with function body.
