@@ -7,8 +7,8 @@
 size = Vector2(144, 22)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1gkdq"]
-radius = 17.0
-height = 145.583
+radius = 16.0
+height = 136.062
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_mask = 4
@@ -29,19 +29,22 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-81, 0)
+position = Vector2(-80, 0)
 rotation = 0.261799
 shape = SubResource("CapsuleShape2D_1gkdq")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(83, -1.90735e-06)
+position = Vector2(80, -1.36424e-12)
 rotation = -0.261799
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_1gkdq")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.52588e-05, -66)
+position = Vector2(-1.09139e-11, -56)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_1gkdq")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
