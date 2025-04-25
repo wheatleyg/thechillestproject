@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bm34pb8r8frsm"]
 
-[ext_resource type="Script" path="res://scenes/Characters/chill_wizard.gd" id="1_6i2s2"]
+[ext_resource type="Script" uid="uid://51jj212us6vk" path="res://scenes/Characters/chill_wizard.gd" id="1_6i2s2"]
 [ext_resource type="PackedScene" uid="uid://canis8lb32gex" path="res://scenes/Player_Attack/player_attack_1.tscn" id="2_jpo3v"]
 [ext_resource type="Texture2D" uid="uid://b54g648603bjy" path="res://assets/sprites/player (1).png" id="2_qfc1j"]
 [ext_resource type="AudioStream" uid="uid://lq088uvjrlrj" path="res://assets/audio/SFX/mixkit-game-gun-shot-1662.mp3" id="4_2gijv"]
@@ -45,8 +45,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e75vt"]
 _data = {
-"RESET": SubResource("Animation_e75vt"),
-"on_hit": SubResource("Animation_2gijv")
+&"RESET": SubResource("Animation_e75vt"),
+&"on_hit": SubResource("Animation_2gijv")
 }
 
 [node name="ChillWizard" type="CharacterBody2D"]
@@ -85,7 +85,7 @@ shape = SubResource("RectangleShape2D_2gijv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_e75vt")
+&"": SubResource("AnimationLibrary_e75vt")
 }
 speed_scale = 1.2
 
