@@ -14,6 +14,13 @@ extends Control
 @onready var panel: Panel = $Panel
 @onready var back_button: Button = $Panel/MarginContainer/VBoxContainer/HBoxContainer/back_button
 
+# Labels that need to be highlighted when controls are focused
+@onready var master_volume_label: Label = $Panel/MarginContainer/VBoxContainer/GridContainer/Label
+@onready var music_volume_label: Label = $Panel/MarginContainer/VBoxContainer/GridContainer/Label2
+@onready var sfx_volume_label: Label = $Panel/MarginContainer/VBoxContainer/GridContainer/Label3
+@onready var fullscreen_label: Label = $Panel/MarginContainer/VBoxContainer/GridContainer/Label4
+@onready var vsync_label: Label = $Panel/MarginContainer/VBoxContainer/GridContainer/Label5
+
 var is_transitioning = false
 var master_bus_idx
 var music_bus_idx
@@ -21,12 +28,12 @@ var sfx_bus_idx
 
 var opened_from_pause := false
 
-signal closed_in_pause 
+signal closed_in_pause
 
 func _ready():
 	#set ui focus
 	back_button.grab_focus()
-	
+
 	# Get audio bus indices
 	master_bus_idx = AudioServer.get_bus_index("Master")
 	music_bus_idx = AudioServer.get_bus_index("Music")
@@ -53,6 +60,22 @@ func _ready():
 	music_volume_slider.drag_ended.connect(_on_music_volume_drag_ended)
 	sfx_volume_slider.drag_ended.connect(_on_sfx_volume_drag_ended)
 
+	# Connect focus signals for label highlighting
+	master_volume_slider.focus_entered.connect(func(): _highlight_row_labels("master", true))
+	master_volume_slider.focus_exited.connect(func(): _highlight_row_labels("master", false))
+
+	music_volume_slider.focus_entered.connect(func(): _highlight_row_labels("music", true))
+	music_volume_slider.focus_exited.connect(func(): _highlight_row_labels("music", false))
+
+	sfx_volume_slider.focus_entered.connect(func(): _highlight_row_labels("sfx", true))
+	sfx_volume_slider.focus_exited.connect(func(): _highlight_row_labels("sfx", false))
+
+	fullscreen_checkbox.focus_entered.connect(func(): _highlight_row_labels("fullscreen", true))
+	fullscreen_checkbox.focus_exited.connect(func(): _highlight_row_labels("fullscreen", false))
+
+	vsync_checkbox.focus_entered.connect(func(): _highlight_row_labels("vsync", true))
+	vsync_checkbox.focus_exited.connect(func(): _highlight_row_labels("vsync", false))
+
 	# Load saved settings
 	load_settings()
 
@@ -70,6 +93,31 @@ func _ready():
 	else:
 		animation.play("fade_out")
 		await $AnimationPlayer.animation_finished
+
+func _highlight_row_labels(row_name: String, highlight: bool):
+	match row_name:
+		"master":
+			_highlight_label(master_volume_label, highlight)
+			_highlight_label(master_value_label, highlight)
+		"music":
+			_highlight_label(music_volume_label, highlight)
+			_highlight_label(music_value_label, highlight)
+		"sfx":
+			_highlight_label(sfx_volume_label, highlight)
+			_highlight_label(sfx_value_label, highlight)
+		"fullscreen":
+			_highlight_label(fullscreen_label, highlight)
+		"vsync":
+			_highlight_label(vsync_label, highlight)
+
+# Function to highlight/unhighlight a single label
+func _highlight_label(label: Label, highlight: bool):
+	if highlight:
+		# Apply focus style to label
+		label.add_theme_color_override("font_color", get_theme_color("font_focus_color", "Label"))
+	else:
+		# Remove focus style from label
+		label.remove_theme_color_override("font_color")
 
 func load_settings():
 	# Load volume settings (convert from dB to slider value)

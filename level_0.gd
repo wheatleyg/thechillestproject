@@ -2,8 +2,15 @@ extends Node2D
 
 
 
+#TODO:  gfghdfhdfh
+#HACK 
+#FIXME 
+
+
+
+
 var updated = false
-var curLevel = 1
+var curLevel = 2
 var difficulty = 1
 
 var levelres = { #dictionary for each level .tres file

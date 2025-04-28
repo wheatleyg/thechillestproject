@@ -166,6 +166,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 focus_neighbor_bottom = NodePath("../HSlider2")
+theme = ExtResource("1_osn0t")
 theme_override_styles/slider = SubResource("StyleBoxFlat_slider")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_grab")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_grabber")

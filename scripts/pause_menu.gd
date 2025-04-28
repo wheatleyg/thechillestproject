@@ -107,6 +107,7 @@ func _on_return_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
+	pause_panel.hide()
 	quit_confirmation.show()
 	quit_cancel.grab_focus()
 
@@ -114,6 +115,7 @@ func _on_quit_confirm_pressed() -> void:
 	get_tree().quit()
 
 func _on_quit_cancel_pressed() -> void:
+	pause_panel.show()
 	quit_confirmation.hide()
 	quit_button.grab_focus()
 
