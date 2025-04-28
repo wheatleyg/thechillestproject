@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbqni5jfm0e1l"]
+
+[ext_resource type="Script" uid="uid://co2frf0awd3vn" path="res://character_body_2d.gd" id="1_8budo"]
+[ext_resource type="Texture2D" uid="uid://bu73xgmkrik0t" path="res://assets/sprites/Sheld.png" id="2_rp8vn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6r7c0"]
+size = Vector2(144, 22)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1gkdq"]
+radius = 16.0
+height = 136.062
+
+[node name="Sheld" type="CharacterBody2D"]
+collision_mask = 4
+script = ExtResource("1_8budo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 48)
+shape = SubResource("RectangleShape2D_6r7c0")
+
+[node name="Sheld" type="Sprite2D" parent="."]
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(6.44, 5.76)
+texture = ExtResource("2_rp8vn")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-80, 0)
+rotation = 0.261799
+shape = SubResource("CapsuleShape2D_1gkdq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(80, -1.36424e-12)
+rotation = -0.261799
+shape = SubResource("CapsuleShape2D_1gkdq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.09139e-11, -56)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_1gkdq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

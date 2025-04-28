@@ -12,4 +12,4 @@ width = 8
 crystals_worth = 250
 animation_name = "enemy_2_move"
 attack_scene = ExtResource("1_nvx8e")
-shoot_probability = 0.5
+shoot_probability = 0.4
