@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b0fu38y8bfp40" path="res://scenes/ui/menus/pause_menu.tscn" id="6_5j4ii"]
 [ext_resource type="PackedScene" uid="uid://ctfk2cy55npka" path="res://scenes/ui/game_hud.tscn" id="6_e6li3"]
 [ext_resource type="PackedScene" uid="uid://dq533a4qahcpo" path="res://scenes/game_manager.tscn" id="8_8r63q"]
-[ext_resource type="PackedScene" uid="uid://cbqni5jfm0e1l" path="res://scripts/sheld.tscn" id="9_fnyiw"]
+[ext_resource type="PackedScene" path="res://scripts/sheld.tscn" id="9_fnyiw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_58xi3"]
 normal = Vector2(-1, 0)
