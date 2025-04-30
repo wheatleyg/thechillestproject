@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4fmox2x0nyeg"]
+[gd_scene load_steps=4 format=3 uid="uid://c4fmox2x0nyeg"]
 
 [ext_resource type="Texture2D" uid="uid://co0jsjdgwrqmj" path="res://assets/PNG images/Player-attack_2.png" id="1_sij8l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sij8l"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3ttq"]
+radius = 8.0
+height = 26.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_mask = 2
@@ -9,3 +17,13 @@ collision_mask = 2
 position = Vector2(1, -10)
 scale = Vector2(2.24, 1.83)
 texture = ExtResource("1_sij8l")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_sij8l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("CapsuleShape2D_w3ttq")
