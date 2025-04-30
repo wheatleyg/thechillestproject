@@ -8,7 +8,7 @@
 script = ExtResource("1_fb26w")
 speed = 0
 sprite = ExtResource("2_2yhvd")
-width = 8
+width = 12
 crystals_worth = 500
 animation_name = "enemy_3_move"
 attack_scene = ExtResource("1_yu4t1")

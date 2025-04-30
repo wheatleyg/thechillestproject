@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://bajvfne4dc6aj"]
+
+[ext_resource type="Script" uid="uid://p4vtwfppakvn" path="res://level_0.gd" id="1_c720d"]
+[ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/level_1.png" id="1_m047c"]
+[ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_i1edy"]
+[ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="4_ifqki"]
+[ext_resource type="PackedScene" uid="uid://ug0jvf711563" path="res://scenes/Enemies_Scenes/enemy_spawner.tscn" id="5_8wp3h"]
+[ext_resource type="PackedScene" uid="uid://b0fu38y8bfp40" path="res://scenes/ui/menus/pause_menu.tscn" id="6_5j4ii"]
+[ext_resource type="PackedScene" uid="uid://ctfk2cy55npka" path="res://scenes/ui/game_hud.tscn" id="6_e6li3"]
+[ext_resource type="PackedScene" uid="uid://dq533a4qahcpo" path="res://scenes/game_manager.tscn" id="8_8r63q"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_58xi3"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5j4ii"]
+normal = Vector2(1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lt2j"]
+size = Vector2(24, 1104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4evq6"]
+size = Vector2(32, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryggg"]
+size = Vector2(2048, 64)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_c720d")
+
+[node name="Enviroment" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Enviroment"]
+texture_filter = 1
+position = Vector2(961, 540)
+scale = Vector2(19.2, 10.8)
+texture = ExtResource("1_m047c")
+
+[node name="Foreground" type="Sprite2D" parent="Enviroment"]
+texture_filter = 1
+position = Vector2(959.105, 539.543)
+scale = Vector2(19.2179, 10.8091)
+texture = ExtResource("2_i1edy")
+
+[node name="Walls" type="Node2D" parent="Enviroment"]
+
+[node name="CollisionRightWall" type="StaticBody2D" parent="Enviroment/Walls"]
+position = Vector2(1921, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Walls/CollisionRightWall"]
+shape = SubResource("WorldBoundaryShape2D_58xi3")
+
+[node name="CollisionLeftWall" type="StaticBody2D" parent="Enviroment/Walls"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Walls/CollisionLeftWall"]
+shape = SubResource("WorldBoundaryShape2D_5j4ii")
+
+[node name="RightWall" type="Area2D" parent="Enviroment/Walls"]
+position = Vector2(-5, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Walls/RightWall"]
+position = Vector2(1, 536)
+shape = SubResource("RectangleShape2D_1lt2j")
+
+[node name="LeftWall" type="Area2D" parent="Enviroment/Walls"]
+position = Vector2(1921, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Walls/LeftWall"]
+position = Vector2(8, 476)
+shape = SubResource("RectangleShape2D_4evq6")
+
+[node name="cleanup" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cleanup"]
+position = Vector2(961, -40)
+shape = SubResource("RectangleShape2D_ryggg")
+
+[node name="PlayerManager" type="Node2D" parent="."]
+
+[node name="ChillWizard" parent="PlayerManager" instance=ExtResource("4_ifqki")]
+position = Vector2(1040, 944)
+
+[node name="enemy_spawner" parent="." instance=ExtResource("5_8wp3h")]
+position = Vector2(673, 256)
+
+[node name="BulletManager" type="Node2D" parent="."]
+
+[node name="PlayerBullets" type="Node2D" parent="BulletManager"]
+
+[node name="EnemyBullets" type="Node2D" parent="BulletManager"]
+
+[node name="game_hud" parent="." instance=ExtResource("6_e6li3")]
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
+visible = false
+
+[node name="GameManager" parent="." instance=ExtResource("8_8r63q")]
+
+[connection signal="area_entered" from="Enviroment/Walls/RightWall" to="enemy_spawner" method="_on_right_wall_area_entered"]
+[connection signal="area_entered" from="Enviroment/Walls/LeftWall" to="enemy_spawner" method="_on_left_wall_area_entered"]
+[connection signal="body_entered" from="cleanup" to="." method="_on_cleanup_body_entered"]
