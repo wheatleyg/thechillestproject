@@ -3,7 +3,11 @@ class_name player
 
 @export var speed = 400
 @onready var main = get_tree().get_root()
+
 @export var projectile : PackedScene
+@export var projectile_2 : PackedScene 
+var current_projectile = 0
+
 @onready var marker_2d: Marker2D = $Marker2D
 
 @onready var GAME_HUD = $"../../game_hud"
@@ -29,8 +33,10 @@ func get_input():
 
 	if Input.is_action_just_pressed("p1_a"):
 		shoot()
-	if Input.is_action_just_pressed("p2_b"):
+	elif Input.is_action_just_pressed("p2_b"):
 		rapid = true
+	elif 
+		current_projectile
 
 
 func _physics_process(_delta):
@@ -40,7 +46,7 @@ func _physics_process(_delta):
 	get_input()
 
 
-func shoot():
+func shoot(shot: ):
 	#health_manager(-1)
 	if timer.is_stopped():
 		timer.start()
