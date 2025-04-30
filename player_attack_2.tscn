@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4fmox2x0nyeg"]
+
+[ext_resource type="Texture2D" uid="uid://co0jsjdgwrqmj" path="res://assets/PNG images/Player-attack_2.png" id="1_sij8l"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_mask = 2
+
+[node name="Player-attack2" type="Sprite2D" parent="."]
+position = Vector2(1, -10)
+scale = Vector2(2.24, 1.83)
+texture = ExtResource("1_sij8l")
