@@ -2,8 +2,15 @@ extends Node2D
 
 
 
+#TODO:  gfghdfhdfh
+#HACK 
+#FIXME 
+
+
+
+
 var updated = false
-var curLevel = 1
+var curLevel = 2
 var difficulty = 1
 
 var levelres = { #dictionary for each level .tres file
@@ -20,9 +27,12 @@ var levelres = { #dictionary for each level .tres file
 
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updated = false
+	
+
 	
 
 
@@ -70,3 +80,5 @@ func get_input():
 """
 func _on_cleanup_body_entered(body: Node2D) -> void:
 	body.queue_free()
+	
+ 
