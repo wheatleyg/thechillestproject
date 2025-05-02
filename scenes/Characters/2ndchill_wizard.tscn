@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5ygvkf7gbnyh"]
+[gd_scene load_steps=9 format=3 uid="uid://b5ygvkf7gbnyh"]
 
 [ext_resource type="Script" uid="uid://chy0xu1v4tnhd" path="res://2_ndchill_wizard.gd" id="1_d7y2x"]
 [ext_resource type="Texture2D" uid="uid://blco7jnp86eh7" path="res://assets/sprites/Player_2.png" id="2_wejso"]
@@ -10,8 +10,46 @@ size = Vector2(86, 31)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2regi"]
 size = Vector2(86, 31)
 
+[sub_resource type="Animation" id="Animation_d7y2x"]
+resource_name = "On_Hit2"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1), Color(1, 1, 1, 0.364706), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wejso"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kep6k"]
+_data = {
+&"On_Hit2": SubResource("Animation_d7y2x"),
+&"RESET": SubResource("Animation_wejso")
+}
+
 [node name="2ndchill_wizard" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_d7y2x")
 
 [node name="Player2" type="Sprite2D" parent="."]
@@ -31,12 +69,18 @@ bus = &"SFX"
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-3, -6)
+collision_layer = 128
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(3, 11.5)
 shape = SubResource("RectangleShape2D_2regi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kep6k")
+}
+speed_scale = 1.2
 
 [node name="Timer" type="Timer" parent="."]
 

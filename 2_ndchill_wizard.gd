@@ -83,7 +83,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if animation_player.is_playing():
 			pass
 		else:
-			animation_player.play("on_hit")
+			animation_player.play("On_Hit2")
 			health_manager(-1)
 		#sigma
 		area.queue_free()
