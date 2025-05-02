@@ -85,7 +85,6 @@ shape = SubResource("RectangleShape2D_ryggg")
 
 [node name="ChillWizard" parent="PlayerManager" instance=ExtResource("4_ifqki")]
 position = Vector2(1040, 944)
-speed = null
 
 [node name="enemy_spawner" parent="." instance=ExtResource("5_8wp3h")]
 position = Vector2(673, 256)

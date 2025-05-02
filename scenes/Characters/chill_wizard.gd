@@ -35,7 +35,6 @@ func get_input():
 		shoot()
 	elif Input.is_action_just_pressed("p2_b"):
 		rapid = true
-	elif 
 		current_projectile
 
 
@@ -46,7 +45,7 @@ func _physics_process(_delta):
 	get_input()
 
 
-func shoot(shot: ):
+func shoot():
 	#health_manager(-1)
 	if timer.is_stopped():
 		timer.start()
