@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5ygvkf7gbnyh"]
+
+[ext_resource type="Script" uid="uid://chy0xu1v4tnhd" path="res://2_ndchill_wizard.gd" id="1_d7y2x"]
+[ext_resource type="Texture2D" uid="uid://blco7jnp86eh7" path="res://assets/sprites/Player_2.png" id="2_wejso"]
+[ext_resource type="AudioStream" uid="uid://lq088uvjrlrj" path="res://assets/audio/SFX/mixkit-game-gun-shot-1662.mp3" id="3_kep6k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_503bk"]
+size = Vector2(86, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2regi"]
+size = Vector2(86, 31)
+
+[node name="2ndchill_wizard" type="CharacterBody2D"]
+script = ExtResource("1_d7y2x")
+
+[node name="Player2" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_wejso")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_503bk")
+
+[node name="BulletSoundEffectPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kep6k")
+bus = &"SFX"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-3, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, 11.5)
+shape = SubResource("RectangleShape2D_2regi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
