@@ -15,7 +15,7 @@ var current_letter = 0
 var curr_spot = 0
 var flash = false
 var curr_name = []
-
+var to_be_filtered_name = []
 
 
 var curr_name_index =  [0, 0, 0]
@@ -41,7 +41,7 @@ const nono_words = ['ass', 'fuc', 'fuk', 'fuq', 'fux', 'fck', 'coc', 'cok', 'coq
  'wck', 'pot', 'thc', 'vaj', 'vjn', 'nut', 'std', 'lsd', 'poo', 'azn', 'pcp', 'dmn',
  'orl', 'anl', 'ans', 'muf', 'mff', 'phk', 'phc', 'phq', 'xtc', 'tok', 'toc', 'toq',
  'mlf', 'rac', 'rak', 'raq', 'rck', 'sac', 'sak', 'saq', 'pms', 'nad', 'ndz', 'nds',
- 'wtf', 'sol', 'sob', 'fob', 'sfu' , 'aaa' # for testing
+ 'wtf', 'sol', 'sob', 'fob', 'sfu' ,  # for testing
 ]
 func _ready() -> void:
 	spot_array = [
@@ -108,7 +108,9 @@ func save_name():
 func filter_names():
 	for i in range(len(spot_array)):
 		curr_name.append(spot_array[i].text)
-	var to_be_filtered_name  =''.join(curr_name)
+		to_be_filtered_name  =''.join(curr_name)
+		
+	curr_name.clear()
 	print('To be iltered name is: ' + to_be_filtered_name.to_lower())
 	
 	if "_" in to_be_filtered_name:
@@ -116,7 +118,7 @@ func filter_names():
 		timer.stop()
 		spot_array[curr_spot].modulate = opaque
 		animation_player.play("bad_word")
-		curr_name = []
+		curr_name.clear()
 		warning.text = "Name cannot contain '_' !" 
 		
 		warning.show()
@@ -125,10 +127,11 @@ func filter_names():
 		timer.start()
 		
 		
+		
 		return 
 	
 	
-	if to_be_filtered_name.to_lower() in nono_words:
+	elif to_be_filtered_name.to_lower() in nono_words:
 		print("bad word")
 		animation_player.play("bad_word")
 		timer.stop()
@@ -144,11 +147,12 @@ func filter_names():
 		for i in range(len(spot_array)):
 			spot_array[i].text = '_'
 		timer.start()
-		curr_name = []
+		curr_name.clear()
 		return
 	
 
-
+	
+	
 
 
 

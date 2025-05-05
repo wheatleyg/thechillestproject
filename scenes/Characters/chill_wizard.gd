@@ -8,7 +8,7 @@ class_name player
 @export var projectile_2 : PackedScene
 var current_projectile = 0
 
-@onready var marker_2d: Marker2D = $Marker2Dz
+@onready var marker_2d: Marker2D = $Marker2D
 
 @onready var GAME_HUD = $"../../game_hud"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

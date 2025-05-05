@@ -3,7 +3,7 @@ extends Node2D
 
 
 var updated = false
-var curLevel = 1
+var curLevel = 3
 var difficulty = 1
 
 var levelres = { #dictionary for each level .tres file
