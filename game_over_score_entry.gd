@@ -5,6 +5,7 @@ extends Control
 @onready var spot_2: Label = $Panel/GridContainer/spot2
 @onready var spot_3: Label = $"Panel/GridContainer/spot 3"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var warning = $Panel/warning
 
 
 
@@ -27,7 +28,21 @@ var opaque = Color8(255,255,255,255)
 var half_opaque = Color8(255,255,255,127)
 
 
-const nono_words = ['ass', 'fuc', 'fuk', 'fuq', 'fux', 'fck', 'coc', 'cok', 'coq', 'kox', 'koc', 'kok', 'koq', 'cac', 'cak', 'caq', 'kac', 'kak', 'kaq', 'dic', 'dik', 'diq', 'dix', 'dck', 'pns', 'psy', 'fag', 'fgt', 'ngr', 'nig', 'cnt', 'knt', 'sht', 'dsh', 'twt', 'bch', 'cum', 'clt', 'kum', 'klt', 'suc', 'suk', 'suq', 'sck', 'lic', 'lik', 'liq', 'lck', 'jiz', 'jzz', 'gay', 'gey', 'gei', 'gai', 'vag', 'vgn', 'sjv', 'fap', 'prn', 'lol', 'jew', 'joo', 'gvr', 'pus', 'pis', 'pss', 'snm', 'tit', 'fku', 'fcu', 'fqu', 'hor', 'slt', 'jap', 'wop', 'kik', 'kyk', 'kyc', 'kyq', 'dyk', 'dyq', 'dyc', 'kkk', 'jyz', 'prk', 'prc', 'prq', 'mic', 'mik', 'miq', 'myc', 'myk', 'myq', 'guc', 'guk', 'guq', 'giz', 'gzz', 'sex', 'sxx', 'sxi', 'sxe', 'sxy', 'xxx', 'wac', 'wak', 'waq', 'wck', 'pot', 'thc', 'vaj', 'vjn', 'nut', 'std', 'lsd', 'poo', 'azn', 'pcp', 'dmn', 'orl', 'anl', 'ans', 'muf', 'mff', 'phk', 'phc', 'phq', 'xtc', 'tok', 'toc', 'toq', 'mlf', 'rac', 'rak', 'raq', 'rck', 'sac', 'sak', 'saq', 'pms', 'nad', 'ndz', 'nds', 'wtf', 'sol', 'sob', 'fob', 'sfu']
+const nono_words = ['ass', 'fuc', 'fuk', 'fuq', 'fux', 'fck', 'coc', 'cok', 'coq',
+ 'kox', 'koc', 'kok', 'koq', 'cac', 'cak', 'caq', 'kac', 'kak', 'kaq', 'dic', 'dik',
+ 'diq', 'dix',
+ 'dck', 'pns', 'psy', 'fag', 'fgt', 'ngr', 'nig', 'cnt', 'knt', 'sht', 'dsh', 'twt',
+ 'bch', 'cum', 'clt', 'kum', 'klt', 'suc', 'suk', 'suq', 'sck', 'lic', 'lik', 'liq',
+ 'lck', 'jiz', 'jzz', 'gay', 'gey', 'gei', 'gai', 'vag', 'vgn', 'sjv', 'fap', 'prn',
+ 'lol', 'jew', 'joo', 'gvr', 'pus', 'pis', 'pss', 'snm', 'tit', 'fku', 'fcu', 'fqu',
+ 'hor', 'slt', 'jap', 'wop', 'kik', 'kyk', 'kyc', 'kyq', 'dyk', 'dyq', 'dyc', 'kkk',
+ 'jyz', 'prk', 'prc', 'prq', 'mic', 'mik', 'miq', 'myc', 'myk', 'myq', 'guc', 'guk',
+ 'guq', 'giz', 'gzz', 'sex', 'sxx', 'sxi', 'sxe', 'sxy', 'xxx', 'wac', 'wak', 'waq',
+ 'wck', 'pot', 'thc', 'vaj', 'vjn', 'nut', 'std', 'lsd', 'poo', 'azn', 'pcp', 'dmn',
+ 'orl', 'anl', 'ans', 'muf', 'mff', 'phk', 'phc', 'phq', 'xtc', 'tok', 'toc', 'toq',
+ 'mlf', 'rac', 'rak', 'raq', 'rck', 'sac', 'sak', 'saq', 'pms', 'nad', 'ndz', 'nds',
+ 'wtf', 'sol', 'sob', 'fob', 'sfu' , 'aaa' # for testing
+]
 func _ready() -> void:
 	spot_array = [
 		spot_1,
@@ -80,7 +95,7 @@ func _one_key_keyboard():
 
 	spot_array[curr_spot].text = str(alphabet[current_letter])
 	current_letter += 1
-	print(str(current_letter))
+	#print(str(current_letter))
 	if current_letter >= max_letters:
 		current_letter = 0
 
@@ -94,22 +109,44 @@ func filter_names():
 	for i in range(len(spot_array)):
 		curr_name.append(spot_array[i].text)
 	var to_be_filtered_name  =''.join(curr_name)
-	print(to_be_filtered_name)
+	print('To be iltered name is: ' + to_be_filtered_name.to_lower())
+	
+	if "_" in to_be_filtered_name:
+		print("ERROR: text contains a underscore") 
+		timer.stop()
+		spot_array[curr_spot].modulate = opaque
+		animation_player.play("bad_word")
+		curr_name = []
+		warning.text = "Name cannot contain '_' !" 
+		
+		warning.show()
+		await animation_player.animation_finished
+		warning.hide()
+		timer.start()
+		
+		
+		return 
+	
 	
 	if to_be_filtered_name.to_lower() in nono_words:
-		print("what the sigma man")
+		print("bad word")
 		animation_player.play("bad_word")
 		timer.stop()
 		spot_array[curr_spot].modulate = opaque
 		curr_spot = 0
 		
 		curr_name_index =  [0, 0, 0]
+		current_letter = 0
+		warning.text = 'Name is invalid!'
+		warning.show()
 		await animation_player.animation_finished
+		warning.hide()
 		for i in range(len(spot_array)):
 			spot_array[i].text = '_'
 		timer.start()
-		
-	curr_name = []
+		curr_name = []
+		return
+	
 
 
 
