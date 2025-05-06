@@ -1,13 +1,8 @@
 extends CharacterBody2D
-class_name player
 
 @export var speed = 400
 @onready var main = get_tree().get_root()
-
 @export var projectile : PackedScene
-@export var projectile_2 : PackedScene
-var current_projectile = 0
-
 @onready var marker_2d: Marker2D = $Marker2D
 
 @onready var GAME_HUD = $"../../game_hud"
@@ -29,17 +24,17 @@ var is_buff_active = false
 
 
 func get_input():
-	var input_direction = Input.get_action_strength("p1_right") - Input.get_action_strength("p1_left") #left and Right movement
+	var input_direction = Input.get_action_strength("p2_right") - Input.get_action_strength("p2_left") #left and Right movement
 	velocity = Vector2(input_direction * speed,0)  # no vert movement
 
-	if Input.is_action_just_pressed("p1_a"):
+	if Input.is_action_just_pressed("p2_a"):
 		shoot(false)
-	if Input.is_action_just_pressed("p1_b"):
+	if Input.is_action_just_pressed("p2_b"):
 		rapid = true
-	if Input.is_action_just_pressed("p1_l2"):
+	if Input.is_action_just_pressed("p2_l2"):
 		buff_up()
 
-	if Input.is_action_just_pressed("p1_r2"):
+	if Input.is_action_just_pressed("p2_r2"):
 		speed_up()
 
 
@@ -88,20 +83,20 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if animation_player.is_playing():
 			pass
 		else:
-			animation_player.play("on_hit")
+			animation_player.play("On_Hit2")
 			health_manager(-1)
 		#sigma
 		area.queue_free()
 
 
 func buff_up():
-
+	
 	if is_buff_active == true:
 		pass
 	else:
 		is_buff_active = true
 		timer.wait_time = timer.wait_time / 4
-
+		
 		print(str(float(timer.wait_time)))
 
 

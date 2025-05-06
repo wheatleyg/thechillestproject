@@ -1,20 +1,20 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://b36arowifsrqg"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://b36arowifsrqg"]
 
 [ext_resource type="FontFile" uid="uid://1dp8b37lh1bt" path="res://assets/fonts/Jersey25-Regular.ttf" id="1_qkpp5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyaou"]
 bg_color = Color(0.15, 0.15, 0.25, 0.9)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 1, 1, 0.7)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 1, 1, 0.9)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-shadow_color = Color(0, 1, 1, 0.4)
-shadow_size = 6
+shadow_color = Color(0, 1, 1, 0.6)
+shadow_size = 8
 shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxw0v"]
@@ -110,6 +110,64 @@ expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slider_focus"]
+bg_color = Color(0.15, 0.15, 0.25, 0.9)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 6.0
+expand_margin_top = 8.0
+expand_margin_right = 6.0
+expand_margin_bottom = 8.0
+shadow_color = Color(0, 1, 1, 0.8)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slider_normal"]
+bg_color = Color(0.1, 0.1, 0.2, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.8, 1, 0.5)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0.8, 1, 0.3)
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grabber_highlight"]
+bg_color = Color(0, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.9)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 1, 1, 0.6)
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_label_focus"]
+bg_color = Color(0.15, 0.15, 0.25, 0)
+border_width_bottom = 2
+border_color = Color(0, 1, 1, 1)
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+shadow_color = Color(0, 1, 1, 0.4)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_confirmation"]
 bg_color = Color(0.1, 0.1, 0.2, 1)
 border_width_left = 2
@@ -124,6 +182,24 @@ corner_radius_bottom_left = 5
 shadow_color = Color(0, 0.8, 1, 0.3)
 shadow_size = 4
 shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_container_focus"]
+bg_color = Color(0, 0.4, 0.4, 0.05)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 1, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 12.0
+expand_margin_top = 8.0
+expand_margin_right = 12.0
+expand_margin_bottom = 8.0
+shadow_color = Color(0, 0.8, 1, 0.3)
+shadow_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g77sv"]
 bg_color = Color(0.05, 0.05, 0.1, 0.95)
@@ -156,11 +232,24 @@ CheckBox/styles/hover = SubResource("StyleBoxFlat_check_hover")
 CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_check_pressed")
 CheckBox/styles/normal = SubResource("StyleBoxFlat_check_normal")
 CheckBox/styles/pressed = SubResource("StyleBoxFlat_check_pressed")
+HSlider/constants/center_grabber = 1
+HSlider/constants/grabber_offset = 0
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
+HSlider/styles/focus = SubResource("StyleBoxFlat_slider_focus")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_slider_normal")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_grabber_highlight")
+HSlider/styles/slider = SubResource("StyleBoxFlat_slider_normal")
 Label/colors/font_color = Color(0, 0.8, 1, 1)
+Label/colors/font_focus_color = Color(0, 1, 1, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 0.8)
 Label/constants/outline_size = 2
 Label/fonts/font = ExtResource("1_qkpp5")
+Label/styles/focus = SubResource("StyleBoxFlat_label_focus")
+Label/styles/normal = null
 Panel/styles/confirmation = SubResource("StyleBoxFlat_confirmation")
+Panel/styles/container_focus = SubResource("StyleBoxFlat_container_focus")
 Panel/styles/panel = SubResource("StyleBoxFlat_g77sv")
 RichTextLabel/colors/default_color = Color(0, 0.8, 1, 1)
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 0.8)
