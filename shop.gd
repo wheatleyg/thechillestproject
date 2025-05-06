@@ -1,7 +1,92 @@
 extends Control
-class_name label
 
-@onready var My_label = $Label
+@onready var attack_up: TextureButton = $Items_Background/GridContainer/Attack_up
+@onready var cystems_x_2: TextureButton = $Items_Background/GridContainer/Cystems_x2
+@onready var dash: TextureButton = $Items_Background/GridContainer/Dash
+@onready var defense_up: TextureButton = $Items_Background/GridContainer/Defense_up
+@onready var health_up: TextureButton = $Items_Background/GridContainer/Health_up
+@onready var new_a_ttack: TextureButton = $Items_Background/GridContainer/NewATtack
 
 func _ready():
-	My_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	# Fix typo
+	attack_up.grab_focus()
+
+	# Get all buttons in an array for common setup
+	var buttons = [attack_up, cystems_x_2, dash, defense_up, health_up, new_a_ttack]
+
+	# Setup common functionality for all buttons
+	for button in buttons:
+		# Ensure the pivot is set to the center after the button is fully loaded
+		_ensure_centered_pivot(button)
+
+		# Connect focus signals for visual effects
+		button.focus_entered.connect(func(): _on_button_focus(button, true))
+		button.focus_exited.connect(func(): _on_button_focus(button, false))
+
+		# Visual effect on click - handled separately from functionality
+		button.pressed.connect(func(): _on_button_click_visual(button))
+
+	# Connect specific functionality to each button
+	attack_up.pressed.connect(_on_attack_up_pressed)
+	cystems_x_2.pressed.connect(_on_cystems_x_2_pressed)
+	dash.pressed.connect(_on_dash_pressed)
+	defense_up.pressed.connect(_on_defense_up_pressed)
+	health_up.pressed.connect(_on_health_up_pressed)
+	new_a_ttack.pressed.connect(_on_new_attack_pressed)
+
+# Ensure button pivot is set to center for proper scaling
+func _ensure_centered_pivot(button: TextureButton) -> void:
+	# Set initial pivot point
+	button.pivot_offset = button.size / 2
+
+	# Connect to resized signal to update pivot when size changes
+	button.resized.connect(func():
+		button.pivot_offset = button.size / 2
+	)
+
+# Handle focus changes
+func _on_button_focus(button: TextureButton, is_focused: bool) -> void:
+	button.modulate = Color(0.7, 0.9, 1.0, 1.0) if is_focused else Color(1.0, 1.0, 1.0, 1.0)
+
+# Handle button click visual effects only
+func _on_button_click_visual(button: TextureButton) -> void:
+	# Double-check that pivot is centered before animation
+	button.pivot_offset = button.size / 2
+
+	# Apply deeper tint
+	button.modulate = Color(0.4, 0.7, 1.0, 1.0)
+
+	# Simple shrink and grow animation
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(button, "scale", Vector2(0.85, 0.85), 0.15)
+	tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.2)
+
+	# Reset tint when animation completes
+	tween.tween_callback(func():
+		button.modulate = Color(0.7, 0.9, 1.0, 1.0) if button.has_focus() else Color(1.0, 1.0, 1.0, 1.0)
+	)
+
+# Individual button functionality
+func _on_attack_up_pressed() -> void:
+	print("Attack Up button pressed - implement your functionality here")
+	# Add your specific Attack Up functionality here
+
+func _on_cystems_x_2_pressed() -> void:
+	print("Crystals x2 button pressed - implement your functionality here")
+	# Add your specific Crystals x2 functionality here
+
+func _on_dash_pressed() -> void:
+	print("Dash button pressed - implement your functionality here")
+	# Add your specific Dash functionality here
+
+func _on_defense_up_pressed() -> void:
+	print("Defense Up button pressed - implement your functionality here")
+	# Add your specific Defense Up functionality here
+
+func _on_health_up_pressed() -> void:
+	print("Health Up button pressed - implement your functionality here")
+	# Add your specific Health Up functionality here
+
+func _on_new_attack_pressed() -> void:
+	print("New Attack button pressed - implement your functionality here")
+	# Add your specific New Attack functionality here
