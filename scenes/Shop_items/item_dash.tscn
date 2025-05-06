@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk3v482e0pmrb"]
+
+[ext_resource type="Texture2D" uid="uid://ftdcwcjo1qd7" path="res://assets/sprites/shop/Item-dash.png" id="1_8eeal"]
+
+[node name="item_dash" type="Node2D"]
+
+[node name="Item-dash" type="Sprite2D" parent="."]
+texture = ExtResource("1_8eeal")

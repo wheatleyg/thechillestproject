@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://50s4skaya2hc"]
+
+[ext_resource type="Texture2D" uid="uid://b3tp1is1eaxbl" path="res://assets/sprites/shop/Item-New_attack[fire blast].png" id="1_t1yox"]
+
+[node name="item_New_attack" type="Node2D"]
+
+[node name="Item-newAttack[fireBlast]" type="Sprite2D" parent="."]
+texture = ExtResource("1_t1yox")
