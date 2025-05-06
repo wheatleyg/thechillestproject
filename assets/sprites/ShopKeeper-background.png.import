@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl0of1jxgf85v"
-path="res://.godot/imported/Desk.png-1c683326b72d045059e1bc58acb6e9e7.ctex"
+uid="uid://6x4olsqcgus5"
+path="res://.godot/imported/ShopKeeper-background.png-f936c81ce75d58650d938daa72af4609.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Desk.png"
-dest_files=["res://.godot/imported/Desk.png-1c683326b72d045059e1bc58acb6e9e7.ctex"]
+source_file="res://assets/sprites/ShopKeeper-background.png"
+dest_files=["res://.godot/imported/ShopKeeper-background.png-f936c81ce75d58650d938daa72af4609.ctex"]
 
 [params]
 
