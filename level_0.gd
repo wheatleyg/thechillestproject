@@ -3,14 +3,14 @@ extends Node2D
 
 
 #TODO:  gfghdfhdfh
-#HACK 
-#FIXME 
+#HACK
+#FIXME
 
 
 
 
 var updated = false
-var curLevel = 2
+var curLevel = 3
 var difficulty = 1
 
 var levelres = { #dictionary for each level .tres file
@@ -31,42 +31,42 @@ var levelres = { #dictionary for each level .tres file
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updated = false
-	
 
-	
+
+
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	#get_input()
-	
-	
-	
-	
+
+
+
+
 	if not updated:
 		if levelres.has(curLevel):
 			var resource = levelres[curLevel]    #if statements for setting background and positions
 			background.texture = resource.background
-			
+
 			background.scale = resource.scale
 			if resource.positions.x and resource.positions.y == 0:
 				pass
 			else:
 				background.position = resource.positions
-			
+
 			if resource.foreground == null or resource.foreground is PlaceholderTexture2D: #if statement for setting foreground
 				foreground.visible = false
 			else:
 				foreground.texture = resource.foreground
 				foreground.visible = true
-			
-				
+
+
 			updated = true
 			print("this should only show up once")
 	else:
 		pass
-		
+
 """
 func get_input():
 	if Input.is_action_just_pressed("p1_a"):
@@ -80,5 +80,3 @@ func get_input():
 """
 func _on_cleanup_body_entered(body: Node2D) -> void:
 	body.queue_free()
-	
- 

@@ -3,7 +3,11 @@ class_name player
 
 @export var speed = 400
 @onready var main = get_tree().get_root()
+
 @export var projectile : PackedScene
+@export var projectile_2 : PackedScene
+var current_projectile = 0
+
 @onready var marker_2d: Marker2D = $Marker2D
 
 @onready var GAME_HUD = $"../../game_hud"
@@ -91,13 +95,13 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func buff_up():
-	
+
 	if is_buff_active == true:
 		pass
 	else:
 		is_buff_active = true
 		timer.wait_time = timer.wait_time / 4
-		
+
 		print(str(float(timer.wait_time)))
 
 

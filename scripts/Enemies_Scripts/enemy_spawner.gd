@@ -20,6 +20,7 @@ const ENEMY_POSITION_Y_INCREMENT = 20
 
 var movement_direction = 1
 
+
 var enemy_scene = preload("res://scenes/Enemies_Scenes/enemy_scene.tscn")
 
 var total_enemy_destroyed = 0
