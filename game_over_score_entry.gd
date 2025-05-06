@@ -1,12 +1,24 @@
 extends Control
 #onready
 @onready var timer: Timer = $Timer
-@onready var spot_1: Label = %spot1
-@onready var spot_2: Label = $Panel/GridContainer/spot2
-@onready var spot_3: Label = $"Panel/GridContainer/spot 3"
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var warning = $Panel/warning
+@onready var spot_1 = %spot1
+@onready var spot_2 = $ScoreEntry/GridContainer/spot2
+@onready var spot_3 = $"ScoreEntry/GridContainer/spot 3"
 
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var warning = $ScoreEntry/warning
+@onready var leaderboard = $Leaderboard
+@onready var score_entry = $ScoreEntry
+
+@onready var v_box_container = $Leaderboard/VBoxContainer
+var score = 500
+var players = [
+	{"name": "GUH", "score": 1500},
+	{"name": "DEE", "score": 1250},
+	{"name": "PRT", "score": 900},
+	{"name": "SIG", "score": 99999}
+]
 
 
 var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
@@ -44,6 +56,7 @@ const nono_words = ['ass', 'fuc', 'fuk', 'fuq', 'fux', 'fck', 'coc', 'cok', 'coq
  'wtf', 'sol', 'sob', 'fob', 'sfu' ,  # for testing
 ]
 func _ready() -> void:
+	_update_leaderboard()
 	spot_array = [
 		spot_1,
 		spot_2,
@@ -61,7 +74,10 @@ func _input(event: InputEvent) -> void:
 		_one_key_keyboard()
 	elif event.is_action_pressed("p1_r1"): # I
 		filter_names()
-
+	elif event.is_action_pressed("p1_down"):
+		leaderboard.visible = !leaderboard.visible
+		score_entry.visible = !score_entry.visible
+		_update_leaderboard()
 func spot_manager():
 
 	spot_array[curr_spot].modulate = opaque
@@ -149,11 +165,68 @@ func filter_names():
 		timer.start()
 		curr_name.clear()
 		return
+	else:
+		save_high_score(to_be_filtered_name, score)
 	
 
 	
 	
 
+
+
+
+func _update_leaderboard():
+	var total_labels = v_box_container.get_child_count()
+	var players = load_players()  # Load from file instead of a global variable
+	var total_players = players.size()
+	for i in range(total_labels):
+		var label = v_box_container.get_child(i)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		if i < total_players:
+			label.bbcode_text = "[color=yellow]%d. %s[/color] - [color=green]%s[/color]" % [
+				i + 1,
+				players[i]["name"],
+				str(players[i]["score"]).pad_zeros(5)
+			]
+		else:
+			label.bbcode_text = "[color=gray]%d. ---[/color] - [color=darkgray]00000[/color]" % (i + 1)
+
+
+
+
+func load_players() -> Array:
+	var path = "user://highscore.save"
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.READ)
+		var content = file.get_as_text()
+		file.close()
+		var parsed = JSON.parse_string(content)
+		if parsed and parsed.has("players"):
+			return parsed["players"]
+	return []  # Return empty array if file missing or invalid
+
+
+
+
+func save_high_score(name: String, score: int):
+	var save_data = {
+		"name": name,
+		"score": score
+	}
+	var file = FileAccess.open("user://highscore.save", FileAccess.WRITE)
+	file.store_string(JSON.stringify(save_data))
+	file.close()
+	
+	
+func load_high_score() -> Dictionary:
+	if FileAccess.file_exists("user://highscore.save"):
+		var file = FileAccess.open("user://highscore.save", FileAccess.READ)
+		var content = file.get_as_text()
+		file.close()
+		var data = JSON.parse_string(content)
+		if data:
+			return data
+	return {"name": "---", "score": 0}
 
 
 
