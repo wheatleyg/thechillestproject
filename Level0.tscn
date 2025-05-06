@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://ctfk2cy55npka" path="res://scenes/ui/game_hud.tscn" id="6_e6li3"]
 [ext_resource type="PackedScene" uid="uid://b5ygvkf7gbnyh" path="res://scenes/Characters/2ndchill_wizard.tscn" id="7_jooga"]
 [ext_resource type="PackedScene" uid="uid://dq533a4qahcpo" path="res://scenes/game_manager.tscn" id="8_8r63q"]
-[ext_resource type="PackedScene" uid="uid://cbqni5jfm0e1l" path="res://scripts/sheld.tscn" id="9_fnyiw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_58xi3"]
 normal = Vector2(-1, 0)
@@ -28,9 +27,6 @@ size = Vector2(2048, 64)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_c720d")
-
-[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
-visible = false
 
 [node name="Enviroment" type="Node2D" parent="."]
 
@@ -106,7 +102,8 @@ position = Vector2(673, 256)
 [node name="EnemyBullets" type="Node2D" parent="BulletManager"]
 
 [node name="game_hud" parent="." instance=ExtResource("6_e6li3")]
-visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
 
 [node name="GameManager" parent="." instance=ExtResource("8_8r63q")]
 
