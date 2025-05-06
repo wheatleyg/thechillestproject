@@ -21,7 +21,7 @@ var players = [
 ]
 
 
-var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
+var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var max_letters = len(alphabet)
 var current_letter = 0
 var curr_spot = 0
@@ -56,6 +56,14 @@ const nono_words = ['ass', 'fuc', 'fuk', 'fuq', 'fux', 'fck', 'coc', 'cok', 'coq
  'wtf', 'sol', 'sob', 'fob', 'sfu' ,  # for testing
 ]
 func _ready() -> void:
+	# Reset high score file
+	var path = "user://highscore.save"
+	print("Resetting high scores file at: ", path)
+	var save_data = {"players": []}  # Empty players array
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	file.store_string(JSON.stringify(save_data))
+	file.close()
+
 	_update_leaderboard()
 	spot_array = [
 		spot_1,
@@ -87,7 +95,7 @@ func spot_manager():
 	if curr_spot >= 3:
 		curr_spot = 0
 	current_letter = curr_name_index[curr_spot]
-	
+
 	spot_updated = false
 	spot_array[curr_spot].modulate = half_opaque
 	flash = true
@@ -118,42 +126,42 @@ func _one_key_keyboard():
 func save_name():
 	curr_name_index[curr_spot] = current_letter #saves the index of the current name to the current letter before switching
 	#curr_name[curr_spot] = alphabet[current_letter]
-	
+
 
 
 func filter_names():
 	for i in range(len(spot_array)):
 		curr_name.append(spot_array[i].text)
 		to_be_filtered_name  =''.join(curr_name)
-		
+
 	curr_name.clear()
 	print('To be iltered name is: ' + to_be_filtered_name.to_lower())
-	
+
 	if "_" in to_be_filtered_name:
-		print("ERROR: text contains a underscore") 
+		print("ERROR: text contains a underscore")
 		timer.stop()
 		spot_array[curr_spot].modulate = opaque
 		animation_player.play("bad_word")
 		curr_name.clear()
-		warning.text = "Name cannot contain '_' !" 
-		
+		warning.text = "Name cannot contain '_' !"
+
 		warning.show()
 		await animation_player.animation_finished
 		warning.hide()
 		timer.start()
-		
-		
-		
-		return 
-	
-	
+
+
+
+		return
+
+
 	elif to_be_filtered_name.to_lower() in nono_words:
 		print("bad word")
 		animation_player.play("bad_word")
 		timer.stop()
 		spot_array[curr_spot].modulate = opaque
 		curr_spot = 0
-		
+
 		curr_name_index =  [0, 0, 0]
 		current_letter = 0
 		warning.text = 'Name is invalid!'
@@ -167,10 +175,10 @@ func filter_names():
 		return
 	else:
 		save_high_score(to_be_filtered_name, score)
-	
 
-	
-	
+
+
+
 
 
 
@@ -183,10 +191,12 @@ func _update_leaderboard():
 		var label = v_box_container.get_child(i)
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		if i < total_players:
+			var score_str = str(int(players[i]["score"]))
+			score_str = score_str.pad_zeros(5)
 			label.bbcode_text = "[color=yellow]%d. %s[/color] - [color=green]%s[/color]" % [
 				i + 1,
 				players[i]["name"],
-				str(players[i]["score"]).pad_zeros(5)
+				score_str
 			]
 		else:
 			label.bbcode_text = "[color=gray]%d. ---[/color] - [color=darkgray]00000[/color]" % (i + 1)
@@ -196,6 +206,7 @@ func _update_leaderboard():
 
 func load_players() -> Array:
 	var path = "user://highscore.save"
+	print("Loading high scores from: ", path)
 	if FileAccess.file_exists(path):
 		var file = FileAccess.open(path, FileAccess.READ)
 		var content = file.get_as_text()
@@ -209,15 +220,24 @@ func load_players() -> Array:
 
 
 func save_high_score(name: String, score: int):
-	var save_data = {
-		"name": name,
-		"score": score
-	}
-	var file = FileAccess.open("user://highscore.save", FileAccess.WRITE)
+	var path = "user://highscore.save"
+	print("Saving high scores to: ", path)
+	var players = load_players()  # Load existing scores
+	players.append({"name": name, "score": score})  # Add new score
+
+	# Sort players by score in descending order
+	players.sort_custom(func(a, b): return a["score"] > b["score"])
+
+	# Keep only top 10 scores
+	if players.size() > 10:
+		players = players.slice(0, 9)
+
+	var save_data = {"players": players}
+	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(save_data))
 	file.close()
-	
-	
+
+
 func load_high_score() -> Dictionary:
 	if FileAccess.file_exists("user://highscore.save"):
 		var file = FileAccess.open("user://highscore.save", FileAccess.READ)
