@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqwu5jd22nvi1"]
 
-[ext_resource type="Texture2D" uid="uid://bqr5cm21n1y27" path="res://assets/sprites/shop/Item-Attack_up.png" id="1_tae7q"]
+[ext_resource type="Texture2D" uid="uid://bqr5cm21n1y27" path="res://assets/sprites/shop/Item-Attack_up.png" id="1_kl34k"]
 
 [node name="Item-attackUp" type="Node2D"]
 
 [node name="Item-attackUp" type="Sprite2D" parent="."]
-texture = ExtResource("1_tae7q")
+texture = ExtResource("1_kl34k")

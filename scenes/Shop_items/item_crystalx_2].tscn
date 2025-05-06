@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://bt0futw67t7hl"]
 
-[ext_resource type="Texture2D" uid="uid://bormduoc0mku8" path="res://assets/sprites/shop/Item-Crystalx2.png" id="1_tgexq"]
+[ext_resource type="Texture2D" uid="uid://bormduoc0mku8" path="res://assets/sprites/shop/Item-Crystalx2.png" id="1_yd6h4"]
 
 [node name="item-crystalx2]" type="Node2D"]
 
 [node name="Item-crystalx2" type="Sprite2D" parent="."]
-texture = ExtResource("1_tgexq")
+texture = ExtResource("1_yd6h4")
