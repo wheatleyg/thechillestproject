@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgwcvvk1ql283"]
+[gd_scene load_steps=16 format=3 uid="uid://bgwcvvk1ql283"]
 
 [ext_resource type="Script" uid="uid://cfahrhhsj62bf" path="res://shop.gd" id="1_k8keq"]
 [ext_resource type="Texture2D" uid="uid://b7vmx8iewcrqw" path="res://assets/sprites/Shop-background.png" id="2_24vte"]
 [ext_resource type="Texture2D" uid="uid://bqr5cm21n1y27" path="res://assets/sprites/shop/Item-Attack_up.png" id="3_8r1wq"]
 [ext_resource type="Texture2D" uid="uid://dlh1wkfe0355h" path="res://assets/sprites/ShopKeeper.png" id="3_aarii"]
 [ext_resource type="Texture2D" uid="uid://bormduoc0mku8" path="res://assets/sprites/shop/Item-Crystalx2.png" id="4_1v8qu"]
+[ext_resource type="Theme" uid="uid://b36arowifsrqg" path="res://scenes/themes_and_stuff/menu_theme.tres" id="4_44xle"]
 [ext_resource type="Texture2D" uid="uid://dl0of1jxgf85v" path="res://assets/sprites/shop/Desk.png" id="4_hmcdy"]
 [ext_resource type="Texture2D" uid="uid://6x4olsqcgus5" path="res://assets/sprites/ShopKeeper-background.png" id="5_24vte"]
 [ext_resource type="Texture2D" uid="uid://ftdcwcjo1qd7" path="res://assets/sprites/shop/Item-dash.png" id="5_44xle"]
@@ -74,6 +75,18 @@ focus_neighbor_bottom = NodePath("../Defense_up")
 texture_normal = ExtResource("3_8r1wq")
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Items_Background/GridContainer/Attack_up"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 45.9996
+offset_right = 286.0
+offset_bottom = 167.0
+theme = ExtResource("4_44xle")
+theme_override_font_sizes/font_size = 66
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Cystems_x2" type="TextureButton" parent="Items_Background/GridContainer"]
 editor_description = "This boosts your cystals earned by 2!"
 layout_mode = 2
@@ -85,6 +98,17 @@ focus_neighbor_bottom = NodePath("../Health_up")
 texture_normal = ExtResource("4_1v8qu")
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Items_Background/GridContainer/Cystems_x2"]
+offset_left = 171.0
+offset_top = 45.9996
+offset_right = 286.0
+offset_bottom = 167.0
+theme = ExtResource("4_44xle")
+theme_override_font_sizes/font_size = 66
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Dash" type="TextureButton" parent="Items_Background/GridContainer"]
 editor_description = "This lets you dash!"
 layout_mode = 2
@@ -95,6 +119,17 @@ focus_neighbor_bottom = NodePath("../NewATtack")
 texture_normal = ExtResource("5_44xle")
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Items_Background/GridContainer/Dash"]
+offset_left = 171.0
+offset_top = 45.9996
+offset_right = 286.0
+offset_bottom = 167.0
+theme = ExtResource("4_44xle")
+theme_override_font_sizes/font_size = 66
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Defense_up" type="TextureButton" parent="Items_Background/GridContainer"]
 editor_description = "This boosts your defense!"
 layout_mode = 2
@@ -104,6 +139,17 @@ focus_neighbor_top = NodePath("../Attack_up")
 focus_neighbor_right = NodePath("../Health_up")
 texture_normal = ExtResource("6_24it5")
 stretch_mode = 0
+
+[node name="Label" type="Label" parent="Items_Background/GridContainer/Defense_up"]
+offset_left = 171.0
+offset_top = 45.9996
+offset_right = 286.0
+offset_bottom = 167.0
+theme = ExtResource("4_44xle")
+theme_override_font_sizes/font_size = 66
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Health_up" type="TextureButton" parent="Items_Background/GridContainer"]
 editor_description = "This boosts your health!"
@@ -116,6 +162,17 @@ focus_neighbor_right = NodePath("../NewATtack")
 texture_normal = ExtResource("7_7mqwv")
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Items_Background/GridContainer/Health_up"]
+offset_left = 171.0
+offset_top = 45.9996
+offset_right = 286.0
+offset_bottom = 167.0
+theme = ExtResource("4_44xle")
+theme_override_font_sizes/font_size = 66
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="NewATtack" type="TextureButton" parent="Items_Background/GridContainer"]
 editor_description = "This unlocks a new attack!"
 layout_mode = 2
@@ -125,6 +182,17 @@ focus_neighbor_left = NodePath("../Health_up")
 focus_neighbor_top = NodePath("../Dash")
 texture_normal = ExtResource("8_gobkm")
 stretch_mode = 0
+
+[node name="Label" type="Label" parent="Items_Background/GridContainer/NewATtack"]
+offset_left = 171.0
+offset_top = 45.9996
+offset_right = 286.0
+offset_bottom = 167.0
+theme = ExtResource("4_44xle")
+theme_override_font_sizes/font_size = 66
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Shopkeeper_background" type="Panel" parent="."]
 layout_mode = 0

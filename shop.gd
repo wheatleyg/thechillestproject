@@ -11,8 +11,7 @@ extends Control
 func _ready():
 	# Fix typo
 	attack_up.grab_focus()
-
-	# Get all buttons in an array for common setup
+	#to save and keep code more organized, i'll assign all connections inside code
 	var buttons = [attack_up, cystems_x_2, dash, defense_up, health_up, new_a_ttack]
 
 	# Setup common functionality for all buttons
@@ -48,7 +47,7 @@ func _ensure_centered_pivot(button: TextureButton) -> void:
 # Handle focus changes
 func _on_button_focus(button: TextureButton, is_focused: bool) -> void:
 	button.modulate = Color(0.7, 0.9, 1.0, 1.0) if is_focused else Color(1.0, 1.0, 1.0, 1.0)
-	shopkeeper_speech.text = button.editor_description
+	_update_text(button.editor_description)
 
 # Handle button click visual effects only
 func _on_button_click_visual(button: TextureButton) -> void:
@@ -92,3 +91,13 @@ func _on_health_up_pressed() -> void:
 func _on_new_attack_pressed() -> void:
 	print("New Attack button pressed - implement your functionality here")
 	# Add your specific New Attack functionality here
+
+
+func _update_text(text: String):
+	
+	var print_text = ""
+	for i in text.length():
+		print_text = print_text + text[i]
+		shopkeeper_speech.text = print_text
+		await get_tree().create_timer(0.005).timeout
+		
