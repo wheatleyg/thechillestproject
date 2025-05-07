@@ -6,6 +6,7 @@ extends Control
 @onready var defense_up: TextureButton = $Items_Background/GridContainer/Defense_up
 @onready var health_up: TextureButton = $Items_Background/GridContainer/Health_up
 @onready var new_a_ttack: TextureButton = $Items_Background/GridContainer/NewATtack
+@onready var shopkeeper_speech: Label = $Shopkeeper_background/Shopkeeper_speech
 
 func _ready():
 	# Fix typo
@@ -47,6 +48,7 @@ func _ensure_centered_pivot(button: TextureButton) -> void:
 # Handle focus changes
 func _on_button_focus(button: TextureButton, is_focused: bool) -> void:
 	button.modulate = Color(0.7, 0.9, 1.0, 1.0) if is_focused else Color(1.0, 1.0, 1.0, 1.0)
+	shopkeeper_speech.text = button.editor_description
 
 # Handle button click visual effects only
 func _on_button_click_visual(button: TextureButton) -> void:

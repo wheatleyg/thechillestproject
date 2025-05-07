@@ -65,6 +65,7 @@ columns = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Attack_up" type="TextureButton" parent="Items_Background/GridContainer"]
+editor_description = "This is attack up!"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -74,6 +75,7 @@ texture_normal = ExtResource("3_8r1wq")
 stretch_mode = 0
 
 [node name="Cystems_x2" type="TextureButton" parent="Items_Background/GridContainer"]
+editor_description = "This boosts your cystals earned by 2!"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -84,6 +86,7 @@ texture_normal = ExtResource("4_1v8qu")
 stretch_mode = 0
 
 [node name="Dash" type="TextureButton" parent="Items_Background/GridContainer"]
+editor_description = "This lets you dash!"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -93,6 +96,7 @@ texture_normal = ExtResource("5_44xle")
 stretch_mode = 0
 
 [node name="Defense_up" type="TextureButton" parent="Items_Background/GridContainer"]
+editor_description = "This boosts your defense!"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -102,6 +106,7 @@ texture_normal = ExtResource("6_24it5")
 stretch_mode = 0
 
 [node name="Health_up" type="TextureButton" parent="Items_Background/GridContainer"]
+editor_description = "This boosts your health!"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -112,6 +117,7 @@ texture_normal = ExtResource("7_7mqwv")
 stretch_mode = 0
 
 [node name="NewATtack" type="TextureButton" parent="Items_Background/GridContainer"]
+editor_description = "This unlocks a new attack!"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
