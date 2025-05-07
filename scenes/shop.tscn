@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bgwcvvk1ql283"]
+[gd_scene load_steps=17 format=3 uid="uid://bgwcvvk1ql283"]
 
 [ext_resource type="Script" uid="uid://cfahrhhsj62bf" path="res://shop.gd" id="1_k8keq"]
 [ext_resource type="Texture2D" uid="uid://b7vmx8iewcrqw" path="res://assets/sprites/Shop-background.png" id="2_24vte"]
@@ -19,6 +19,9 @@ expand_margin_left = 54.0
 expand_margin_top = 48.0
 expand_margin_right = 62.0
 expand_margin_bottom = 48.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_44xle"]
+font_size = 46
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y6sft"]
 texture = ExtResource("5_24vte")
@@ -70,10 +73,11 @@ editor_description = "This is attack up!"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-focus_neighbor_right = NodePath("../Cystems_x2")
+focus_neighbor_right = NodePath("../Crystals_x2")
 focus_neighbor_bottom = NodePath("../Defense_up")
 texture_normal = ExtResource("3_8r1wq")
 stretch_mode = 0
+metadata/value = 1
 
 [node name="Label" type="Label" parent="Items_Background/GridContainer/Attack_up"]
 layout_mode = 0
@@ -87,7 +91,7 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Cystems_x2" type="TextureButton" parent="Items_Background/GridContainer"]
+[node name="Crystals_x2" type="TextureButton" parent="Items_Background/GridContainer"]
 editor_description = "This boosts your cystals earned by 2!"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -97,8 +101,10 @@ focus_neighbor_right = NodePath("../Dash")
 focus_neighbor_bottom = NodePath("../Health_up")
 texture_normal = ExtResource("4_1v8qu")
 stretch_mode = 0
+metadata/value = 2
 
-[node name="Label" type="Label" parent="Items_Background/GridContainer/Cystems_x2"]
+[node name="Label" type="Label" parent="Items_Background/GridContainer/Crystals_x2"]
+layout_mode = 0
 offset_left = 171.0
 offset_top = 45.9996
 offset_right = 286.0
@@ -114,12 +120,14 @@ editor_description = "This lets you dash!"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-focus_neighbor_left = NodePath("../Cystems_x2")
-focus_neighbor_bottom = NodePath("../NewATtack")
+focus_neighbor_left = NodePath("../Crystals_x2")
+focus_neighbor_bottom = NodePath("../New_attack")
 texture_normal = ExtResource("5_44xle")
 stretch_mode = 0
+metadata/value = 3
 
 [node name="Label" type="Label" parent="Items_Background/GridContainer/Dash"]
+layout_mode = 0
 offset_left = 171.0
 offset_top = 45.9996
 offset_right = 286.0
@@ -139,8 +147,10 @@ focus_neighbor_top = NodePath("../Attack_up")
 focus_neighbor_right = NodePath("../Health_up")
 texture_normal = ExtResource("6_24it5")
 stretch_mode = 0
+metadata/value = 4
 
 [node name="Label" type="Label" parent="Items_Background/GridContainer/Defense_up"]
+layout_mode = 0
 offset_left = 171.0
 offset_top = 45.9996
 offset_right = 286.0
@@ -157,12 +167,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../Defense_up")
-focus_neighbor_top = NodePath("../Cystems_x2")
-focus_neighbor_right = NodePath("../NewATtack")
+focus_neighbor_top = NodePath("../Crystals_x2")
+focus_neighbor_right = NodePath("../New_attack")
 texture_normal = ExtResource("7_7mqwv")
 stretch_mode = 0
+metadata/value = 5
 
 [node name="Label" type="Label" parent="Items_Background/GridContainer/Health_up"]
+layout_mode = 0
 offset_left = 171.0
 offset_top = 45.9996
 offset_right = 286.0
@@ -173,7 +185,7 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NewATtack" type="TextureButton" parent="Items_Background/GridContainer"]
+[node name="New_attack" type="TextureButton" parent="Items_Background/GridContainer"]
 editor_description = "This unlocks a new attack!"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -182,15 +194,18 @@ focus_neighbor_left = NodePath("../Health_up")
 focus_neighbor_top = NodePath("../Dash")
 texture_normal = ExtResource("8_gobkm")
 stretch_mode = 0
+metadata/value = 6
 
-[node name="Label" type="Label" parent="Items_Background/GridContainer/NewATtack"]
-offset_left = 171.0
-offset_top = 45.9996
-offset_right = 286.0
-offset_bottom = 167.0
+[node name="Label" type="Label" parent="Items_Background/GridContainer/New_attack"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 144.0
+offset_right = 201.0
+offset_bottom = 211.0
 theme = ExtResource("4_44xle")
 theme_override_font_sizes/font_size = 66
 text = "1"
+label_settings = SubResource("LabelSettings_44xle")
 horizontal_alignment = 1
 vertical_alignment = 1
 

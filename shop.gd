@@ -1,12 +1,23 @@
 extends Control
 
 @onready var attack_up: TextureButton = $Items_Background/GridContainer/Attack_up
-@onready var cystems_x_2: TextureButton = $Items_Background/GridContainer/Cystems_x2
+@onready var cystems_x_2: TextureButton = $Items_Background/GridContainer/Crystals_x2
+
 @onready var dash: TextureButton = $Items_Background/GridContainer/Dash
 @onready var defense_up: TextureButton = $Items_Background/GridContainer/Defense_up
 @onready var health_up: TextureButton = $Items_Background/GridContainer/Health_up
-@onready var new_a_ttack: TextureButton = $Items_Background/GridContainer/NewATtack
+@onready var new_a_ttack = $Items_Background/GridContainer/New_attack
+
 @onready var shopkeeper_speech: Label = $Shopkeeper_background/Shopkeeper_speech
+
+@export var current_purchases = {
+	"Attack_up": 0,
+	"Crystals_x2": 0,
+	"Dash": 0,
+	"Defense_up": 0,
+	"Health_up": 0,
+	"New_attack": '✅' #❎
+}
 
 func _ready():
 	# Fix typo
@@ -25,6 +36,9 @@ func _ready():
 
 		# Visual effect on click - handled separately from functionality
 		button.pressed.connect(func(): _on_button_click_visual(button))
+		
+		button.get_node("Label").text = str(current_purchases[button.name])
+		
 
 	# Connect specific functionality to each button
 	attack_up.pressed.connect(_on_attack_up_pressed)
@@ -47,6 +61,7 @@ func _ensure_centered_pivot(button: TextureButton) -> void:
 # Handle focus changes
 func _on_button_focus(button: TextureButton, is_focused: bool) -> void:
 	button.modulate = Color(0.7, 0.9, 1.0, 1.0) if is_focused else Color(1.0, 1.0, 1.0, 1.0)
+	
 	_update_text(button.editor_description)
 
 # Handle button click visual effects only
@@ -94,10 +109,9 @@ func _on_new_attack_pressed() -> void:
 
 
 func _update_text(text: String):
-	
+
 	var print_text = ""
 	for i in text.length():
 		print_text = print_text + text[i]
 		shopkeeper_speech.text = print_text
 		await get_tree().create_timer(0.005).timeout
-		
