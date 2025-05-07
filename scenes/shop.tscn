@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bgwcvvk1ql283"]
+[gd_scene load_steps=18 format=3 uid="uid://bgwcvvk1ql283"]
 
 [ext_resource type="Script" uid="uid://cfahrhhsj62bf" path="res://shop.gd" id="1_k8keq"]
 [ext_resource type="Texture2D" uid="uid://b7vmx8iewcrqw" path="res://assets/sprites/Shop-background.png" id="2_24vte"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dtbs86yphqyhq" path="res://assets/sprites/shop/Item-Defence_up.png" id="6_24it5"]
 [ext_resource type="Texture2D" uid="uid://cu7pxh740hx3c" path="res://assets/sprites/shop/Item-Health_up.png" id="7_7mqwv"]
 [ext_resource type="Texture2D" uid="uid://b3tp1is1eaxbl" path="res://assets/sprites/shop/Item-New_attack[fire blast].png" id="8_gobkm"]
+[ext_resource type="Texture2D" uid="uid://ct2b15amwjiuy" path="res://assets/sprites/Coin-counter.png" id="13_24it5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ajxib"]
 texture = ExtResource("2_24vte")
@@ -19,9 +20,6 @@ expand_margin_left = 54.0
 expand_margin_top = 48.0
 expand_margin_right = 62.0
 expand_margin_bottom = 48.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_44xle"]
-font_size = 46
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y6sft"]
 texture = ExtResource("5_24vte")
@@ -31,6 +29,14 @@ line_spacing = 1.0
 font_size = 50
 shadow_size = 10
 shadow_color = Color(0.670308, 0.158384, 0.859242, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mqwv"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -80,14 +86,13 @@ stretch_mode = 0
 metadata/value = 1
 
 [node name="Label" type="Label" parent="Items_Background/GridContainer/Attack_up"]
-layout_mode = 0
-offset_left = 171.0
-offset_top = 45.9996
-offset_right = 286.0
-offset_bottom = 167.0
+offset_left = 133.0
+offset_top = 144.0
+offset_right = 196.0
+offset_bottom = 211.0
 theme = ExtResource("4_44xle")
 theme_override_font_sizes/font_size = 66
-text = "1"
+text = "111"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -104,14 +109,13 @@ stretch_mode = 0
 metadata/value = 2
 
 [node name="Label" type="Label" parent="Items_Background/GridContainer/Crystals_x2"]
-layout_mode = 0
-offset_left = 171.0
-offset_top = 45.9996
-offset_right = 286.0
-offset_bottom = 167.0
+offset_left = 133.0
+offset_top = 144.0
+offset_right = 196.0
+offset_bottom = 211.0
 theme = ExtResource("4_44xle")
 theme_override_font_sizes/font_size = 66
-text = "1"
+text = "111"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -127,14 +131,13 @@ stretch_mode = 0
 metadata/value = 3
 
 [node name="Label" type="Label" parent="Items_Background/GridContainer/Dash"]
-layout_mode = 0
-offset_left = 171.0
-offset_top = 45.9996
-offset_right = 286.0
-offset_bottom = 167.0
+offset_left = 133.0
+offset_top = 144.0
+offset_right = 196.0
+offset_bottom = 211.0
 theme = ExtResource("4_44xle")
 theme_override_font_sizes/font_size = 66
-text = "1"
+text = "111"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -150,14 +153,13 @@ stretch_mode = 0
 metadata/value = 4
 
 [node name="Label" type="Label" parent="Items_Background/GridContainer/Defense_up"]
-layout_mode = 0
-offset_left = 171.0
-offset_top = 45.9996
-offset_right = 286.0
-offset_bottom = 167.0
+offset_left = 133.0
+offset_top = 156.0
+offset_right = 196.0
+offset_bottom = 223.0
 theme = ExtResource("4_44xle")
 theme_override_font_sizes/font_size = 66
-text = "1"
+text = "111"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -174,14 +176,13 @@ stretch_mode = 0
 metadata/value = 5
 
 [node name="Label" type="Label" parent="Items_Background/GridContainer/Health_up"]
-layout_mode = 0
-offset_left = 171.0
-offset_top = 45.9996
-offset_right = 286.0
-offset_bottom = 167.0
+offset_left = 131.0
+offset_top = 156.0
+offset_right = 194.0
+offset_bottom = 223.0
 theme = ExtResource("4_44xle")
 theme_override_font_sizes/font_size = 66
-text = "1"
+text = "111"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -197,15 +198,13 @@ stretch_mode = 0
 metadata/value = 6
 
 [node name="Label" type="Label" parent="Items_Background/GridContainer/New_attack"]
-layout_mode = 0
-offset_left = 130.0
+offset_left = 135.0
 offset_top = 144.0
-offset_right = 201.0
+offset_right = 198.0
 offset_bottom = 211.0
 theme = ExtResource("4_44xle")
 theme_override_font_sizes/font_size = 66
-text = "1"
-label_settings = SubResource("LabelSettings_44xle")
+text = "111"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -229,11 +228,12 @@ texture = ExtResource("3_aarii")
 metadata/_edit_use_anchors_ = true
 
 [node name="shopkeeper_desk" type="TextureRect" parent="Shopkeeper_background"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = -0.03125
 anchor_top = 0.509091
-anchor_right = 1.03196
-anchor_bottom = 1.20909
+anchor_right = 1.03125
+anchor_bottom = 1.24773
 texture = ExtResource("4_hmcdy")
 metadata/_edit_use_anchors_ = true
 
@@ -247,4 +247,58 @@ label_settings = SubResource("LabelSettings_k8keq")
 horizontal_alignment = 1
 autowrap_mode = 2
 metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Score" type="Control" parent="Shopkeeper_background"]
+layout_mode = 1
+anchor_left = 0.0625
+anchor_right = 0.0833333
+anchor_bottom = 0.037037
+offset_left = -354.0
+offset_top = 888.0
+offset_right = -354.0
+offset_bottom = 888.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Shopkeeper_background/Score"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 42.7502
+anchor_top = 0.736364
+anchor_right = 69.7503
+anchor_bottom = 4.05
+theme_override_styles/panel = SubResource("StyleBoxFlat_7mqwv")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Shopkeeper_background/Score/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 39.8449
+anchor_top = 0.975995
+anchor_right = 43.5899
+anchor_bottom = 2.59438
+offset_left = -11349.3
+offset_top = -75.4075
+offset_right = -11111.3
+offset_bottom = -7.15462
+scale = Vector2(0.535, 0.535)
+theme = ExtResource("4_44xle")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "00000"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Shopkeeper_background/Score/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 35.6147
+anchor_top = -4.0091
+anchor_right = 37.2554
+anchor_bottom = 0.439986
+offset_left = -10431.0
+offset_top = 240.982
+offset_right = -10803.5
+offset_bottom = -131.519
+scale = Vector2(4.725, 4.725)
+texture = ExtResource("13_24it5")
 metadata/_edit_use_anchors_ = true
