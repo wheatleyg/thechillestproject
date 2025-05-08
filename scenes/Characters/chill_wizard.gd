@@ -26,7 +26,7 @@ var health = 3
 var is_speedup_active = false
 
 var is_buff_active = false
-
+var DEBUG_SHOOT = true #TURN OFF WHEN TURNING IN
 
 func get_input():
 	var input_direction = Input.get_action_strength("p1_right") - Input.get_action_strength("p1_left") #left and Right movement
@@ -36,7 +36,7 @@ func get_input():
 		shoot(false)
 	if Input.is_action_just_pressed("p1_b"):
 		rapid = true
-	if Input.is_action_just_pressed("p1_l2"):
+	if Input.is_action_just_pressed("p1_l2"): # J 
 		buff_up()
 
 	if Input.is_action_just_pressed("p1_r2"):
@@ -44,6 +44,8 @@ func get_input():
 
 
 func _physics_process(_delta):
+	if DEBUG_SHOOT:
+		shoot(true)
 	move_and_slide()
 	if rapid == true:
 		shoot(true)
@@ -100,9 +102,10 @@ func buff_up():
 		pass
 	else:
 		is_buff_active = true
-		timer.wait_time = timer.wait_time / 4
-
+		timer.wait_time = timer.wait_time / 9999
+	
 		print(str(float(timer.wait_time)))
+		
 
 
 func speed_up():

@@ -25,24 +25,38 @@ var enemy_scene = preload("res://scenes/Enemies_Scenes/enemy_scene.tscn")
 
 var total_enemy_destroyed = 0
 var enemy_total_count = ROWS * COLUMNS
-
+var spawned_enemies = []  # Track spawned enemies to prevent double counting
 
 #node stuffs
 @onready var movement_timer: Timer = $MovementTimer
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var enemy_bullets: Node2D = $"../BulletManager/EnemyBullets"
 
-
-
-
-
+var count = 0
 
 #node enters the scene tree for the first time.
 func _ready() -> void:
+	# Connect to the GameManager autoload
+	"""
+	var GameManager #= get_node("/root/GameManager")
+	if GameManager:
+		self.enemy_destroyed.connect(GameManager.increase_crystals)
+	else:
+		push_error("GameManager autoload not found!")
+	"""
+	
+	self.enemy_destroyed.connect(GameManager.increase_crystals)
+	
 	movement_timer.timeout.connect(move_enemies)
 	shoot_timer.timeout.connect(on_enemy_shoot)
 
+	# Reset counters
+	total_enemy_destroyed = 0
+	spawned_enemies.clear()
 
+	spawn_enemies()
+
+func spawn_enemies():
 	var enemy_1_res = preload("uid://eswdgxaofm4g")
 	var enemy_2_res = preload("uid://cvb1x5l5grhq7")
 	var enemy_3_res = preload("uid://b7tjv2ly54mcr")
@@ -57,7 +71,6 @@ func _ready() -> void:
 		elif row == 3 || row == 4:
 			enemy_config = enemy_1_res
 
-
 		var row_width = (COLUMNS * enemy_config.width * 3) + ((COLUMNS -1) * HORIZONTAL_SPACING)
 		var start_x = (position.x - row_width) / 2
 
@@ -68,15 +81,14 @@ func _ready() -> void:
 
 			spawn_enemy(enemy_config, spawn_position)
 
-
-
-
 func spawn_enemy(enemy_config, spawn_position: Vector2):
 	var enemy = enemy_scene.instantiate() as Enemy
 	enemy.config = enemy_config
 	enemy.global_position = spawn_position
 	enemy.enemy_destroyed.connect(on_enemy_destroyed)
 	add_child(enemy)
+	spawned_enemies.append(enemy)
+	print("Spawning enemy. Total spawned: " + str(spawned_enemies.size()))
 
 func move_enemies():
 	position.x += ENEMY_POSITION_X_INCREMENT * movement_direction
@@ -111,18 +123,21 @@ func on_enemy_shoot():
 
 		if weighted_enemies.size() > 0:
 			var selected_enemy = weighted_enemies.pick_random()
-			#print("Selected enemy type: ", selected_enemy.config.animation_name)
 			var enemy_shoot = selected_enemy.config.attack_scene.instantiate()
 			if enemy_shoot is Enemy_attack:
 				enemy_bullets.add_child(enemy_shoot)
 				enemy_shoot.global_position = selected_enemy.global_position
-				#print("Spawned attack from: ", selected_enemy.config.animation_name)
-
-
-
-
-
 
 func on_enemy_destroyed(crystalsvalue: int):
-	enemy_destroyed.emit(crystalsvalue)
-	total_enemy_destroyed += 1
+	# Find and remove the enemy from our tracking list
+	var enemy = get_node_or_null(".")  # Get the enemy that emitted the signal
+	if enemy in spawned_enemies:
+		spawned_enemies.erase(enemy)
+		total_enemy_destroyed += 1
+		enemy_destroyed.emit(crystalsvalue)
+		print("Enemy destroyed. Remaining: " + str(spawned_enemies.size()) + "/" + str(enemy_total_count))
+
+		if total_enemy_destroyed >= enemy_total_count:
+			print("All enemies destroyed!")
+			level_complete.emit()
+			get_tree().paused = true

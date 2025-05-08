@@ -9,7 +9,7 @@ extends Control
 @onready var health_up: TextureButton = $Items_Background/GridContainer/Health_up
 @onready var new_a_ttack = $Items_Background/GridContainer/New_attack
 @onready var score_counter: Label = $Shopkeeper_background/Score/Panel/Label
-
+#@onready var game_manaer = "uid://dq533a4qahcpo"
 @onready var shopkeeper_speech: Label = $Shopkeeper_background/Shopkeeper_speech
 
 #TODO Connect this to game mamanger, devise a way to maybe show purchased things on leaderboard?
@@ -24,7 +24,8 @@ var current_text_request_id = 0
 var current_focused_button
 var score = 50000
 
-
+@onready var current_purchases = GameManager.power_ups
+"""
 @export var current_purchases = {
 	"Attack_up": 0,
 	"Crystals_x2": 0,
@@ -33,7 +34,7 @@ var score = 50000
 	"Health_up": 0,
 	"New_attack": false #❎✅
 }
-
+"""
 func _ready():
 	randomize()
 	# Fix typo
@@ -218,4 +219,4 @@ func update_buttons(): #and score
 
 
 func _on_back_button_pressed() -> void:
-	pass # Replace with function body.
+	GameManager.power_ups = current_purchases

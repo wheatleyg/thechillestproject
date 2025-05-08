@@ -24,7 +24,7 @@ func _ready() -> void:
 	var viewport_size = get_viewport().get_visible_rect().size
 	set_deferred("size", viewport_size)
 
-	game_manager.on_crystals_increased.connect(update_score)
+	GameManager.on_crystals_increased.connect(update_score)
 
 func update_hearts():
 	# Update each heart based on current health
