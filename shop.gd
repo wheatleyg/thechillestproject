@@ -2,6 +2,7 @@ extends Control
 
 @onready var attack_up: TextureButton = $Items_Background/GridContainer/Attack_up
 @onready var cystems_x_2: TextureButton = $Items_Background/GridContainer/Crystals_x2
+@onready var back_button: Button = $Items_Background/Back_button
 
 @onready var dash: TextureButton = $Items_Background/GridContainer/Dash
 @onready var defense_up: TextureButton = $Items_Background/GridContainer/Defense_up
@@ -11,12 +12,17 @@ extends Control
 
 @onready var shopkeeper_speech: Label = $Shopkeeper_background/Shopkeeper_speech
 
+#TODO Connect this to game mamanger, devise a way to maybe show purchased things on leaderboard?
+#TODO Add a exit button to the shop and make it work - hal
+#TODO Make the intermission UI so that the shop can be used
+#TODO Sound effects, fix the current button not being selected when we load the scene.
+
 var cancel_loop = false
 var is_loop_running = false
 var current_text_request_id = 0
 
 var current_focused_button
-var score = 1000
+var score = 50000
 
 
 @export var current_purchases = {
@@ -25,12 +31,13 @@ var score = 1000
 	"Dash": 0,
 	"Defense_up": 0,
 	"Health_up": 0,
-	"New_attack": 1000 #❎✅
+	"New_attack": false #❎✅
 }
 
 func _ready():
+	randomize()
 	# Fix typo
-	attack_up.grab_focus()
+	back_button.grab_focus()
 	#to save and keep code more organized, i'll assign all connections inside code
 	update_buttons()
 
@@ -79,38 +86,74 @@ func _on_button_click_visual(button: TextureButton) -> void:
 
 # Individual button functionality
 func _on_attack_up_pressed() -> void:
-	
+	if current_purchases[current_focused_button.name] >= 3:
+		_update_text("rand")
+		return
 	current_purchases[current_focused_button.name] += 1
 	score -= 1000
 	update_buttons()
 	
 
 func _on_cystems_x_2_pressed() -> void:
+	if current_purchases[current_focused_button.name] >= 3:
+		_update_text("rand")
+		return
 	current_purchases[current_focused_button.name] += 1
 	score -= 1000
 	update_buttons()
-
+	
 func _on_dash_pressed() -> void:
+	if current_purchases[current_focused_button.name] >= 3:
+		_update_text("rand")
+		return
 	current_purchases[current_focused_button.name] += 1
 	score -= 1000
 	update_buttons()
 
 func _on_defense_up_pressed() -> void:
+	if current_purchases[current_focused_button.name] >= 3:
+		_update_text("rand")
+		return
 	current_purchases[current_focused_button.name] += 1
 	score -= 1000
 	update_buttons()
 
 func _on_health_up_pressed() -> void:
+	if current_purchases[current_focused_button.name] >= 3:
+		_update_text("rand")
+		return
 	current_purchases[current_focused_button.name] += 1
 	score -= 1000
 	update_buttons()
 
 func _on_new_attack_pressed() -> void:
-	current_purchases[current_focused_button.name] += 1
+	if current_purchases[current_focused_button.name] == true:
+		_update_text("rand_1")
+		return
+	current_purchases[current_focused_button.name] = true
 	score -= 1000
 	update_buttons()
 
 func _update_text(text: String):
+	if text == "rand":
+		var random_end_text = {
+			1: "Can't buy anymore of that! Max is three!",
+			2: "Slow down, chill guy! Max is three!",
+			3: "Too much of that chill guy! You can only buy three.",
+			4: "I can't let you buy anymore. The max is three.",
+			5: "Chill Chill guy, you can't buy more than three."
+		}
+		text = random_end_text[randi_range(1, len(random_end_text))]
+	elif text == "rand_1":
+		var random_end_text_1 = {
+			1: "You can't have more than two weapons!",
+			2: "I can't let you buy any more than two.",
+			3: "Too many weapons, Chill guy."
+		}
+		text = random_end_text_1[randi_range(1, len(random_end_text_1))]
+		
+		
+		
 	# Increment request ID for this update
 	current_text_request_id += 1
 	var this_request_id = current_text_request_id
@@ -165,4 +208,14 @@ func update_buttons(): #and score
 		# Visual effect on click - handled separately from functionality
 		button.pressed.connect(func(): _on_button_click_visual(button))
 
-		button.get_node("Label").text = str(current_purchases[button.name])
+		if current_purchases[button.name] is bool:
+			if current_purchases[button.name] == false:
+				pass
+			else:
+				button.get_node("Label").text = "✅" 
+		else:
+			button.get_node("Label").text = str(current_purchases[button.name])
+
+
+func _on_back_button_pressed() -> void:
+	pass # Replace with function body.
