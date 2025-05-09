@@ -13,6 +13,7 @@ func _ready():
 
 func _on_start_button_pressed() -> void:
 	click_effect.play()
+	get_tree().change_scene_to_file("uid://dhgahvrnloiyl")
 
 
 func _on_setttings_button_pressed() -> void:

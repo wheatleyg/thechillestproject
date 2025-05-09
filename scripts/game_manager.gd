@@ -14,7 +14,7 @@ signal on_crystals_increased(crystal_count: int)
 	"Crystals_x2": 2,
 	"Dash": 0,
 	"Defense_up": 0,
-	"Health_up": 0,
+	"Health_up": 2,
 	"New_attack": false #❎✅
 
 }

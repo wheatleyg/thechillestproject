@@ -54,7 +54,7 @@ func _process(delta):
 	flashing_labels.modulate.a = alpha
 
 	if game_over == false:
-		if Input.is_action_just_pressed("quit"):
+		if Input.is_action_just_pressed("escape"):
 			toggle_transition(false)
 			return_button.grab_focus()
 	else:

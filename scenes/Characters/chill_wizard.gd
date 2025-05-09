@@ -26,20 +26,21 @@ var health = 3
 var is_speedup_active = false
 
 var is_buff_active = false
-var DEBUG_SHOOT = true #TURN OFF WHEN TURNING IN
+var DEBUG_SHOOT = false #TURN OFF WHEN TURNING IN
 
 func get_input():
-	var input_direction = Input.get_action_strength("p1_right") - Input.get_action_strength("p1_left") #left and Right movement
+	var input_direction = Input.get_action_strength("p1_move_right") - Input.get_action_strength("p1_move_left") #left and Right movement
 	velocity = Vector2(input_direction * speed,0)  # no vert movement
 
-	if Input.is_action_just_pressed("p1_a"):
+	if Input.is_action_just_pressed("p1_shoot"):
 		shoot(false)
-	if Input.is_action_just_pressed("p1_b"):
-		rapid = true
-	if Input.is_action_just_pressed("p1_l2"): # J 
+		
+	#if Input.is_action_just_pressed("p1_shoot_up"):
+		#rapid = true
+	if Input.is_action_just_pressed("p1_special"): # J 
 		buff_up()
 
-	if Input.is_action_just_pressed("p1_r2"):
+	if Input.is_action_just_pressed("p1_shoot_up"):
 		speed_up()
 
 
