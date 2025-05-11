@@ -21,6 +21,7 @@ shadow_offset = Vector2(2, 2)
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,6 +149,7 @@ theme_override_font_sizes/font_size = 24
 text = "No"
 
 [node name="GameOver" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

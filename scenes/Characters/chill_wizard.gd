@@ -21,7 +21,7 @@ signal player1_died
 var shoot_effect_one = preload("uid://lq088uvjrlrj")
 
 var rapid = false
-var health = 3
+var health = GameManager.lifes
 
 var speedup_charges = GameManager.power_ups["Dash"]
 var is_speedup_active = false
@@ -80,6 +80,7 @@ func health_manager(change: int):
 	health = health + change
 	health = max(0, health)
 	GAME_HUD.set_health(health)
+	GameManager.lifes = health
 	if health <= 0:
 		print("player died")
 		player1_died.emit()

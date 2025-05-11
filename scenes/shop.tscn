@@ -170,7 +170,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Health_up" type="TextureButton" parent="Items_Background/GridContainer"]
-editor_description = "This boosts your health!"
+editor_description = "This heals you! (2000 crystals)"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

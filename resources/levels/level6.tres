@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="level_resource" load_steps=3 format=3 uid="uid://cmoj884n60m36"]
+[gd_resource type="Resource" script_class="level_resource" load_steps=4 format=3 uid="uid://cmoj884n60m36"]
 
 [ext_resource type="Script" uid="uid://h7fem4r1axt2" path="res://resources/levels/level_config.gd" id="1_6d81f"]
 [ext_resource type="Texture2D" uid="uid://b845whfqxbjhl" path="res://assets/sprites/Level_6.png" id="1_j8g1w"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_j8g1w"]
+
 [resource]
 script = ExtResource("1_6d81f")
 background = ExtResource("1_j8g1w")
+foreground = SubResource("PlaceholderTexture2D_j8g1w")
 positions = Vector2(960, 572)
 scale = Vector2(19.2, 11.44)

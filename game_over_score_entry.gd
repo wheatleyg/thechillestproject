@@ -174,6 +174,9 @@ func filter_names():
 		return
 	else:
 		save_high_score(to_be_filtered_name, score)
+		GameManager._reset()
+		leaderboard.show()
+		score_entry.hide()
 
 
 

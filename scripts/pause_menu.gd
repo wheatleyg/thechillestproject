@@ -36,8 +36,8 @@ var revives_left = 0  # Starting number of revives
 func _ready():
 	chill_wizard.player1_died.connect(game_over_moment)
 
-	if visible == false:
-		show()
+	#if# visible == false:
+		#show()
 
 
 
@@ -81,7 +81,7 @@ func toggle_transition(game_over: bool):
 
 
 func fade_in():
-
+	show()
 	is_showing = true
 	transitioning = true
 	visible = true
@@ -97,6 +97,8 @@ func fade_out():
 	tween.tween_property(self, "modulate:a", 0.0, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	tween.tween_callback(Callable(self, "hide"))
 	tween.tween_callback(Callable(self, "_on_fade_complete"))
+	await tween.finished
+	hide()
 
 
 func _on_fade_complete():

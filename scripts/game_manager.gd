@@ -11,10 +11,10 @@ class_name game_manager
 signal on_crystals_increased(crystal_count: int)
 @export var power_ups = {
 	"Attack_up": 0,
-	"Crystals_x2": 2,
+	"Crystals_x2": 0,
 	"Dash": 0,
 	"Defense_up": 0,
-	"Health_up": 2,
+	"Health_up": 0,
 	"New_attack": false #❎✅
 
 }
@@ -42,7 +42,7 @@ func _switch_levels():
 	if current_level >= 6:
 		current_level = 0
 	else:
-		current_level + 1
+		current_level += 1
 
 func increase_crystals(crystals_to_add: int):
 	print("enemy destroyed, detected by gamemanager.")
