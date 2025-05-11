@@ -44,9 +44,11 @@ func _ready() -> void:
 	else:
 		push_error("GameManager autoload not found!")
 	"""
-	
+
 	self.enemy_destroyed.connect(GameManager.increase_crystals)
 	
+	self.level_complete.connect(GameManager._switch_levels)
+
 	movement_timer.timeout.connect(move_enemies)
 	shoot_timer.timeout.connect(on_enemy_shoot)
 
@@ -128,9 +130,8 @@ func on_enemy_shoot():
 				enemy_bullets.add_child(enemy_shoot)
 				enemy_shoot.global_position = selected_enemy.global_position
 
-func on_enemy_destroyed(crystalsvalue: int):
-	# Find and remove the enemy from our tracking list
-	var enemy = get_node_or_null(".")  # Get the enemy that emitted the signal
+func on_enemy_destroyed(crystalsvalue: int, enemy: Enemy):
+	# Remove the enemy from our tracking list
 	if enemy in spawned_enemies:
 		spawned_enemies.erase(enemy)
 		total_enemy_destroyed += 1
@@ -140,4 +141,6 @@ func on_enemy_destroyed(crystalsvalue: int):
 		if total_enemy_destroyed >= enemy_total_count:
 			print("All enemies destroyed!")
 			level_complete.emit()
-			get_tree().paused = true
+			await get_tree().create_timer(3.00).timeout
+			get_tree().change_scene_to_file("res://scenes/ui/intermission_menu.tscn")
+			

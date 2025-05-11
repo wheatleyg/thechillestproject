@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://vg6e7c4dynf0"]
+
+[ext_resource type="Script" uid="uid://b567n7utg63fv" path="res://scripts/intermission_menu.gd" id="1_g5jr1"]
+[ext_resource type="Theme" uid="uid://b36arowifsrqg" path="res://scenes/themes_and_stuff/menu_theme.tres" id="2_lrfhj"]
+
+[node name="Intermission_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g5jr1")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lrfhj")
+
+[node name="ContinueButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -519.0
+offset_top = -125.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_neighbor_left = NodePath("../ShopButton")
+text = "CONTINUE?"
+
+[node name="ShopButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_right = 247.0
+grow_vertical = 0
+focus_neighbor_right = NodePath("../ContinueButton")
+text = "SHOP"
+
+[node name="ScoreLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -317.5
+offset_right = 317.5
+offset_bottom = 121.0
+grow_horizontal = 2
+text = "SCORE: 00000"
+
+[node name="LevelLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 643.0
+offset_top = 122.0
+offset_right = 1041.0
+offset_bottom = 243.0
+text = "LEVEL: N"
+
+[connection signal="pressed" from="Panel/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Panel/ShopButton" to="." method="_on_shop_button_pressed"]

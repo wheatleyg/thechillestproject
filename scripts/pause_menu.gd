@@ -5,6 +5,7 @@ extends Control
 @onready var settings_menu = preload("uid://c423n2bdel6cx")
 @onready var quit_confirmation: Panel = $QuitConfirmation
 @onready var chill_wizard: player = $"../PlayerManager/ChillWizard"
+
 @onready var pause_panel: Panel = $Panel
 @onready var game_over_panel: Panel = $GameOver
 @onready var revive_button: Button = $GameOver/VBoxContainer/ButtonsContainer/retry_button
@@ -15,6 +16,12 @@ extends Control
 @onready var quit_button = $Panel/VBoxContainer2/quit_button
 
 @onready var quit_cancel = $QuitConfirmation/VBoxContainer/HBoxContainer/quit_cancel
+@onready var score_label: Label = $GameOver/VBoxContainer/StatsContainer/ScoreLabel
+@onready var levels_label: Label = $GameOver/VBoxContainer/StatsContainer/LevelsLabel
+
+
+
+
 
 var time := 0.0
 var speed := 0.7 # Controls how fast the fade happens
@@ -127,7 +134,11 @@ func game_over_moment():
 	toggle_transition(true)
 	pause_panel.visible = false
 	game_over_panel.visible = true
-
+	score_label.text = "SCORE: " +  str(GameManager.crystals)
+	levels_label.text = "LEVELS CLEARED " + str(GameManager.levels_passed)
+	
+	
+"""
 	# Update revive button state
 	if revives_left <= 0:
 		revive_button.disabled = true
@@ -135,6 +146,7 @@ func game_over_moment():
 	else:
 		revive_button.disabled = false
 		revive_button.text = "REVIVE (%d LEFT)" % revives_left
+
 
 func _on_revive_button_pressed() -> void:
 	if revives_left > 0:
@@ -146,3 +158,17 @@ func _on_revive_button_pressed() -> void:
 		pause_panel.visible = true
 		toggle_transition(false)
 		revive_button.text = "REVIVE (%d LEFT)" % revives_left
+"""
+
+
+func _on_submit_score_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/ui/game_over_score_entry.tscn")
+
+
+func _on_retry_button_pressed() -> void: #actually main menu
+	GameManager._reset()
+	get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu.tscn")
+
+ 
+func _on_main_menu_button_pressed() -> void: #actually quit
+	get_tree().quit()

@@ -10,14 +10,12 @@ extends Control
 @onready var warning = $ScoreEntry/warning
 @onready var leaderboard = $Leaderboard
 @onready var score_entry = $ScoreEntry
+@onready var score_earned: Label = $ScoreEntry/Label2
 
 @onready var v_box_container = $Leaderboard/VBoxContainer
-var score = 500
+var score = GameManager.total_crystals
 var players = [
-	{"name": "GUH", "score": 1500},
-	{"name": "DEE", "score": 1250},
-	{"name": "PRT", "score": 900},
-	{"name": "SIG", "score": 99999}
+	{"name": "TEST", "score": 999999999}
 ]
 
 
@@ -56,6 +54,7 @@ const nono_words = ['ass', 'fuc', 'fuk', 'fuq', 'fux', 'fck', 'coc', 'cok', 'coq
  'wtf', 'sol', 'sob', 'fob', 'sfu' ,  # for testing
 ]
 func _ready() -> void:
+	score_earned.text = str(score)
 	# Reset high score file
 	var path = "user://highscore.save"
 	print("Resetting high scores file at: ", path)
@@ -76,13 +75,13 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("p1_l1"): # U
+	if event.is_action_pressed("p1_move_up"): # or event.is_action_pressed("p1_move_down"): # SW
 		spot_manager()
-	elif event.is_action_pressed("p1_a"): # H
+	elif event.is_action_pressed("p1_shoot"): # H
 		_one_key_keyboard()
-	elif event.is_action_pressed("p1_r1"): # I
+	elif event.is_action_pressed("p1_select"): # A
 		filter_names()
-	elif event.is_action_pressed("p1_down"):
+	elif event.is_action_pressed("p1_move_down"): # REMOVE FOR TURN IN
 		leaderboard.visible = !leaderboard.visible
 		score_entry.visible = !score_entry.visible
 		_update_leaderboard()
