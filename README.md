@@ -42,16 +42,16 @@ Canvas item, Node
   -**Scripts**: the script is called shop.gd
 
 ### OOP
-Inheatance- This can be shown in the player_attack.gd
-Abstartion- This can be found in many scripts in the project with the "_" one of them being the player_attack_2.gd
-Polymorphism- The 2_ndchill_wizard.gd scene has a lot of Is things in it and along with the just normal chillwizard.gd
-Encasplation- This can be shown with pass in the player_attack.gd
+- Inheatance- This can be shown in the player_attack.gd
+- Abstartion- This can be found in many scripts in the project with the "_" one of them being the player_attack_2.gd
+- Polymorphism- The 2_ndchill_wizard.gd scene has a lot of Is things in it and along with the just normal chillwizard.gd
+- Encasplation- This can be shown with pass in the player_attack.gd
 
 ### Roles of each member and mvp
-Grason- Fixed and made a ton of the game along with dealing with the hard UI, taught eveyrone how to code a lot of diffnent code as well
-Eli- Made most of the assets and made te enimes shoot along with the player and did other small task and he started on the shop as well
-Sol- Made sound affects and along with that he help Josh and other people with their own stuff also made the project marleting and also made the muliplayer aspect as well
-Josh- Made the enime at first and helped fix a branch that was really messed up along with also helping code a second attack and helping poeple out as wel
+- Grason- Fixed and made a ton of the game along with dealing with the hard UI, taught eveyrone how to code a lot of diffnent code as well
+- Eli- Made most of the assets and made te enimes shoot along with the player and did other small task and he started on the shop as well
+- Sol- Made sound affects and along with that he help Josh and other people with their own stuff also made the project marleting and also made the muliplayer aspect as well
+- Josh- Made the enime at first and helped fix a branch that was really messed up along with also helping code a second attack and helping poeple out as wel
 
 ### link to drive
 https://drive.google.com/drive/folders/1gmPMYepMH3sKO3VGezkVOZdUi7o7Whhi 
