@@ -14,6 +14,7 @@ var current_projectile = 0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var bullet_sound_effect_player: AudioStreamPlayer = $BulletSoundEffectPlayer
 @onready var player_bullets: Node2D = $"../../BulletManager/PlayerBullets"
+
 @onready var timer: Timer = $Timer
 
 signal player1_died

@@ -19,7 +19,7 @@ var current_projectile = 0
 @onready var timer: Timer = $Timer
 
 signal player1_died
-
+var x = 1
 var shoot_effect_one = preload("uid://lq088uvjrlrj")
 
 var rapid = false
@@ -38,10 +38,10 @@ func get_input():
 
 	if Input.is_action_just_pressed("p2_shoot"):
 		shoot(false)
-		
+
 	#if Input.is_action_just_pressed("p1_shoot_up"):
 		#rapid = true
-	elif Input.is_action_just_pressed("p2_special"): # J 
+	elif Input.is_action_just_pressed("p2_special"): # J
 		buff_up()
 
 	elif Input.is_action_just_pressed("p2_shoot_up"):
@@ -52,14 +52,13 @@ func _physics_process(_delta):
 	if DEBUG:
 		shoot(true)
 	move_and_slide()
-	if rapid == true:
-		shoot(true)
 	get_input()
 
 
-func shoot(bypass: bool):
+func shoot():
 	#health_manager(-1)
-	if timer.is_stopped() and not bypass:
+	print("lifeAl")
+	if timer.is_stopped():
 		timer.start()
 		var bullet = projectile.instantiate()
 		bullet.global_position = marker_2d.global_position
@@ -68,16 +67,9 @@ func shoot(bypass: bool):
 
 		bullet_sound_effect_player.stream = shoot_effect_one
 		bullet_sound_effect_player.play()
-	elif bypass:
-		var bullet = projectile.instantiate()
-		bullet.global_position = marker_2d.global_position
-		bullet.rotation = global_rotation
-		player_bullets.add_child(bullet)
 
-		bullet_sound_effect_player.stream = shoot_effect_one
-		bullet_sound_effect_player.play()
 	else:
-		pass
+		return
 func health_manager(change: int):
 	health = GameManager.lifes
 	health = health + change
@@ -105,7 +97,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func buff_up():
 	buff_charages = GameManager.power_ups["Attack_up"]
-	
+
 	if is_buff_active == true:
 		pass
 	else:
@@ -119,9 +111,9 @@ func buff_up():
 			await get_tree().create_timer(8.00).timeout
 			timer.wait_time = timer.wait_time * 2
 			is_buff_active = false
-			
-			
-		
+
+
+
 
 
 func speed_up():
