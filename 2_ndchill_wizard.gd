@@ -1,8 +1,13 @@
 extends CharacterBody2D
+class_name player2
 
 @export var speed = 400
 @onready var main = get_tree().get_root()
+
 @export var projectile : PackedScene
+@export var projectile_2 : PackedScene
+var current_projectile = 0
+
 @onready var marker_2d: Marker2D = $Marker2D
 
 @onready var GAME_HUD = $"../../game_hud"
@@ -16,29 +21,34 @@ signal player1_died
 var shoot_effect_one = preload("uid://lq088uvjrlrj")
 
 var rapid = false
-var health = 3
+var health = GameManager.lifes
 
+var speedup_charges = GameManager.power_ups["Dash"]
 var is_speedup_active = false
 
+var buff_charages = GameManager.power_ups["Attack_up"]
 var is_buff_active = false
-
+var DEBUG = GameManager.DEBUGMODE #TURN OFF WHEN TURNING IN
 
 func get_input():
-	var input_direction = Input.get_action_strength("p2_right") - Input.get_action_strength("p2_left") #left and Right movement
+	var input_direction = Input.get_action_strength("p2_move_right") - Input.get_action_strength("p2_move_left") #left and Right movement
 	velocity = Vector2(input_direction * speed,0)  # no vert movement
 
-	if Input.is_action_just_pressed("p2_a"):
+	if Input.is_action_just_pressed("p2_shoot"):
 		shoot(false)
-	if Input.is_action_just_pressed("p2_b"):
-		rapid = true
-	if Input.is_action_just_pressed("p2_l2"):
+		
+	#if Input.is_action_just_pressed("p1_shoot_up"):
+		#rapid = true
+	elif Input.is_action_just_pressed("p2_special"): # J 
 		buff_up()
 
-	if Input.is_action_just_pressed("p2_r2"):
+	elif Input.is_action_just_pressed("p2_shoot_up"):
 		speed_up()
 
 
 func _physics_process(_delta):
+	if DEBUG:
+		shoot(true)
 	move_and_slide()
 	if rapid == true:
 		shoot(true)
@@ -70,6 +80,7 @@ func health_manager(change: int):
 	health = health + change
 	health = max(0, health)
 	GAME_HUD.set_health(health)
+	GameManager.lifes = health
 	if health <= 0:
 		print("player died")
 		player1_died.emit()
@@ -83,27 +94,46 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if animation_player.is_playing():
 			pass
 		else:
-			animation_player.play("On_Hit2")
+			animation_player.play("on_hit")
 			health_manager(-1)
 		#sigma
 		area.queue_free()
 
 
 func buff_up():
+	buff_charages = GameManager.power_ups["Attack_up"]
 	
 	if is_buff_active == true:
 		pass
 	else:
-		is_buff_active = true
-		timer.wait_time = timer.wait_time / 4
+		if buff_charages <= 0:
+			return
+		else:
+			buff_charages -= 1
+			GameManager.power_ups["Attack_up"] = buff_charages
+			is_buff_active = true
+			timer.wait_time = timer.wait_time / 2
+			await get_tree().create_timer(8.00).timeout
+			timer.wait_time = timer.wait_time * 2
+			is_buff_active = false
+			
+			
 		
-		print(str(float(timer.wait_time)))
 
 
 func speed_up():
+	speedup_charges = GameManager.power_ups["Dash"]
 	if is_speedup_active == true:
 		print(" speedup is already active, skipping.")
-		pass
+		return
 	else:
-		is_speedup_active = true
-		speed = speed * 2
+		if speedup_charges <= 0:
+			return
+		else:
+			speedup_charges -= 1
+			GameManager.power_ups["Dash"] = speedup_charges
+			is_speedup_active = true
+			speed = speed * 2
+			await get_tree().create_timer(10.00).timeout
+			speed = speed / 2
+			is_speedup_active = false

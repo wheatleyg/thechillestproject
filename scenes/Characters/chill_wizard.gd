@@ -28,7 +28,7 @@ var is_speedup_active = false
 
 var buff_charages = GameManager.power_ups["Attack_up"]
 var is_buff_active = false
-var DEBUG = true #TURN OFF WHEN TURNING IN
+var DEBUG = GameManager.DEBUGMODE #TURN OFF WHEN TURNING IN
 
 func get_input():
 	var input_direction = Input.get_action_strength("p1_move_right") - Input.get_action_strength("p1_move_left") #left and Right movement
@@ -101,6 +101,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func buff_up():
+	buff_charages = GameManager.power_ups["Attack_up"]
 	
 	if is_buff_active == true:
 		pass
@@ -121,6 +122,7 @@ func buff_up():
 
 
 func speed_up():
+	speedup_charges = GameManager.power_ups["Dash"]
 	if is_speedup_active == true:
 		print(" speedup is already active, skipping.")
 		return

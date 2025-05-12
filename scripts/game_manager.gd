@@ -25,6 +25,9 @@ var levels_passed = 0
 var current_level = 1
 
 
+var DEBUGMODE = false
+
+
 
 var player1_scene = preload("res://scenes/Characters/chill_wizard.tscn")
 
