@@ -13,18 +13,21 @@ extends Control
 const HEALTH_EMPTY = preload("res://assets/sprites/health_empty.png")
 const HEALTH_FULL = preload("res://assets/sprites/health_full.png")
 var counter = 1
-var health = 3  # Current health value
+var health = GameManager.lifes  # Current health value
 
 func _ready() -> void:
 	if visible == false:
 		show()
-	
+
 	set_anchors_preset(Control.LayoutPreset.PRESET_TOP_LEFT) #this line is only to stop 1 warning
 
 	var viewport_size = get_viewport().get_visible_rect().size
 	set_deferred("size", viewport_size)
 
-	game_manager.on_crystals_increased.connect(update_score)
+	GameManager.on_crystals_increased.connect(update_score)
+
+	update_hearts()
+	update_score(GameManager.crystals)
 
 func update_hearts():
 	# Update each heart based on current health
@@ -43,5 +46,6 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func update_score(new_score: int):
+
 	var padded_score = str(new_score).pad_zeros(5)
 	label.text = padded_score

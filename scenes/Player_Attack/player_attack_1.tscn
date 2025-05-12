@@ -6,7 +6,7 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_46hnk"]
 radius = 8.0
 
-[node name="Player_attack_1" type="CharacterBody2D"]
+[node name="Player_attack_1" type="CharacterBody2D" groups=["player_attacks"]]
 collision_mask = 2
 script = ExtResource("1_ouor6")
 

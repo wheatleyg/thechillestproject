@@ -5,6 +5,7 @@ extends Control
 @onready var settings_menu = preload("uid://c423n2bdel6cx")
 @onready var quit_confirmation: Panel = $QuitConfirmation
 @onready var chill_wizard: player = $"../PlayerManager/ChillWizard"
+
 @onready var pause_panel: Panel = $Panel
 @onready var game_over_panel: Panel = $GameOver
 @onready var revive_button: Button = $GameOver/VBoxContainer/ButtonsContainer/retry_button
@@ -15,6 +16,12 @@ extends Control
 @onready var quit_button = $Panel/VBoxContainer2/quit_button
 
 @onready var quit_cancel = $QuitConfirmation/VBoxContainer/HBoxContainer/quit_cancel
+@onready var score_label: Label = $GameOver/VBoxContainer/StatsContainer/ScoreLabel
+@onready var levels_label: Label = $GameOver/VBoxContainer/StatsContainer/LevelsLabel
+
+
+
+
 
 var time := 0.0
 var speed := 0.7 # Controls how fast the fade happens
@@ -29,11 +36,6 @@ var revives_left = 0  # Starting number of revives
 func _ready():
 	chill_wizard.player1_died.connect(game_over_moment)
 
-	if visible == false:
-		show()
-
-
-
 	set_anchors_preset(Control.LayoutPreset.PRESET_TOP_LEFT) #this line is only to stop 1 warning
 
 	var viewport_size = get_viewport().get_visible_rect().size
@@ -44,9 +46,6 @@ func _ready():
 	if quit_confirmation.visible == true:
 		quit_confirmation.hide()
 
-	# Update revive button text
-	revive_button.text = "REVIVE (%d LEFT)" % revives_left
-
 func _process(delta):
 	time += delta * speed
 	# Sine wave goes from 0 to 1 smoothly
@@ -54,7 +53,7 @@ func _process(delta):
 	flashing_labels.modulate.a = alpha
 
 	if game_over == false:
-		if Input.is_action_just_pressed("quit"):
+		if Input.is_action_just_pressed("escape"):
 			toggle_transition(false)
 			return_button.grab_focus()
 	else:
@@ -74,7 +73,7 @@ func toggle_transition(game_over: bool):
 
 
 func fade_in():
-
+	show()
 	is_showing = true
 	transitioning = true
 	visible = true
@@ -90,6 +89,8 @@ func fade_out():
 	tween.tween_property(self, "modulate:a", 0.0, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	tween.tween_callback(Callable(self, "hide"))
 	tween.tween_callback(Callable(self, "_on_fade_complete"))
+	await tween.finished
+	hide()
 
 
 func _on_fade_complete():
@@ -127,7 +128,11 @@ func game_over_moment():
 	toggle_transition(true)
 	pause_panel.visible = false
 	game_over_panel.visible = true
+	score_label.text = "SCORE: " +  str(GameManager.crystals)
+	levels_label.text = "LEVELS CLEARED " + str(GameManager.levels_passed)
 
+
+"""
 	# Update revive button state
 	if revives_left <= 0:
 		revive_button.disabled = true
@@ -135,6 +140,7 @@ func game_over_moment():
 	else:
 		revive_button.disabled = false
 		revive_button.text = "REVIVE (%d LEFT)" % revives_left
+
 
 func _on_revive_button_pressed() -> void:
 	if revives_left > 0:
@@ -146,3 +152,17 @@ func _on_revive_button_pressed() -> void:
 		pause_panel.visible = true
 		toggle_transition(false)
 		revive_button.text = "REVIVE (%d LEFT)" % revives_left
+"""
+
+
+func _on_submit_score_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/ui/game_over_score_entry.tscn")
+
+
+func _on_retry_button_pressed() -> void: #actually main menu
+	GameManager._reset()
+	get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu.tscn")
+
+
+func _on_main_menu_button_pressed() -> void: #actually quit
+	get_tree().quit()

@@ -148,7 +148,6 @@ theme_override_font_sizes/font_size = 24
 text = "No"
 
 [node name="GameOver" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -217,20 +216,24 @@ theme_override_constants/separation = 20
 [node name="submit_score_button" type="Button" parent="GameOver/VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../retry_button")
 theme_override_font_sizes/font_size = 32
 text = "SUBMIT SCORE"
 
 [node name="retry_button" type="Button" parent="GameOver/VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
+focus_neighbor_top = NodePath("../submit_score_button")
+focus_neighbor_bottom = NodePath("../main_menu_button")
 theme_override_font_sizes/font_size = 32
-text = "REVIVE (3 LEFT)"
+text = "MAIN MENU"
 
 [node name="main_menu_button" type="Button" parent="GameOver/VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
+focus_neighbor_top = NodePath("../retry_button")
 theme_override_font_sizes/font_size = 32
-text = "MAIN MENU"
+text = "QUIT"
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
@@ -240,4 +243,7 @@ autostart = true
 [connection signal="pressed" from="Panel/VBoxContainer2/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="QuitConfirmation/VBoxContainer/HBoxContainer/quit_confirm" to="." method="_on_quit_confirm_pressed"]
 [connection signal="pressed" from="QuitConfirmation/VBoxContainer/HBoxContainer/quit_cancel" to="." method="_on_quit_cancel_pressed"]
+[connection signal="pressed" from="GameOver/VBoxContainer/ButtonsContainer/submit_score_button" to="." method="_on_submit_score_button_pressed"]
+[connection signal="pressed" from="GameOver/VBoxContainer/ButtonsContainer/retry_button" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/ButtonsContainer/retry_button" to="." method="_on_revive_button_pressed"]
+[connection signal="pressed" from="GameOver/VBoxContainer/ButtonsContainer/main_menu_button" to="." method="_on_main_menu_button_pressed"]
