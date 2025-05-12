@@ -18,14 +18,14 @@ var health = GameManager.lifes  # Current health value
 func _ready() -> void:
 	if visible == false:
 		show()
-	
+
 	set_anchors_preset(Control.LayoutPreset.PRESET_TOP_LEFT) #this line is only to stop 1 warning
 
 	var viewport_size = get_viewport().get_visible_rect().size
 	set_deferred("size", viewport_size)
 
 	GameManager.on_crystals_increased.connect(update_score)
-	
+
 	update_hearts()
 	update_score(GameManager.crystals)
 
@@ -46,6 +46,6 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func update_score(new_score: int):
-	
+
 	var padded_score = str(new_score).pad_zeros(5)
 	label.text = padded_score

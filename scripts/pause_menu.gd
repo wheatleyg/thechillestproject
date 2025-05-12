@@ -36,11 +36,6 @@ var revives_left = 0  # Starting number of revives
 func _ready():
 	chill_wizard.player1_died.connect(game_over_moment)
 
-	#if# visible == false:
-		#show()
-
-
-
 	set_anchors_preset(Control.LayoutPreset.PRESET_TOP_LEFT) #this line is only to stop 1 warning
 
 	var viewport_size = get_viewport().get_visible_rect().size
@@ -50,9 +45,6 @@ func _ready():
 	# Hide confirmation dialog initially
 	if quit_confirmation.visible == true:
 		quit_confirmation.hide()
-
-	# Update revive button text
-	revive_button.text = "REVIVE (%d LEFT)" % revives_left
 
 func _process(delta):
 	time += delta * speed
@@ -138,8 +130,8 @@ func game_over_moment():
 	game_over_panel.visible = true
 	score_label.text = "SCORE: " +  str(GameManager.crystals)
 	levels_label.text = "LEVELS CLEARED " + str(GameManager.levels_passed)
-	
-	
+
+
 """
 	# Update revive button state
 	if revives_left <= 0:
@@ -171,6 +163,6 @@ func _on_retry_button_pressed() -> void: #actually main menu
 	GameManager._reset()
 	get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu.tscn")
 
- 
+
 func _on_main_menu_button_pressed() -> void: #actually quit
 	get_tree().quit()

@@ -12,6 +12,8 @@ var current_projectile = 0
 
 @onready var GAME_HUD = $"../../game_hud"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
 @onready var bullet_sound_effect_player: AudioStreamPlayer = $BulletSoundEffectPlayer
 @onready var player_bullets: Node2D = $"../../BulletManager/PlayerBullets"
 @onready var timer: Timer = $Timer
@@ -77,6 +79,7 @@ func shoot(bypass: bool):
 	else:
 		pass
 func health_manager(change: int):
+	health = GameManager.lifes
 	health = health + change
 	health = max(0, health)
 	GAME_HUD.set_health(health)
@@ -94,7 +97,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if animation_player.is_playing():
 			pass
 		else:
-			animation_player.play("on_hit")
+			animation_player.play("On_Hit2")
 			health_manager(-1)
 		#sigma
 		area.queue_free()

@@ -55,14 +55,6 @@ const nono_words = ['ass', 'fuc', 'fuk', 'fuq', 'fux', 'fck', 'coc', 'cok', 'coq
 ]
 func _ready() -> void:
 	score_earned.text = str(score)
-	# Reset high score file
-	var path = "user://highscore.save"
-	print("Resetting high scores file at: ", path)
-	var save_data = {"players": []}  # Empty players array
-	var file = FileAccess.open(path, FileAccess.WRITE)
-	file.store_string(JSON.stringify(save_data))
-	file.close()
-
 	_update_leaderboard()
 	spot_array = [
 		spot_1,

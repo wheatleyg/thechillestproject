@@ -36,10 +36,10 @@ func get_input():
 
 	if Input.is_action_just_pressed("p1_shoot"):
 		shoot(false)
-		
-	#if Input.is_action_just_pressed("p1_shoot_up"):
+
+	#if Input.is_a`tion_just_pressed("p1_shoot_up"):
 		#rapid = true
-	if Input.is_action_just_pressed("p1_special"): # J 
+	if Input.is_action_just_pressed("p1_special"): # J
 		buff_up()
 
 	if Input.is_action_just_pressed("p1_shoot_up"):
@@ -77,6 +77,7 @@ func shoot(bypass: bool):
 	else:
 		pass
 func health_manager(change: int):
+	health = GameManager.lifes  # Get current health from GameManager
 	health = health + change
 	health = max(0, health)
 	GAME_HUD.set_health(health)
@@ -102,7 +103,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func buff_up():
 	buff_charages = GameManager.power_ups["Attack_up"]
-	
+
 	if is_buff_active == true:
 		pass
 	else:
@@ -116,9 +117,9 @@ func buff_up():
 			await get_tree().create_timer(8.00).timeout
 			timer.wait_time = timer.wait_time * 2
 			is_buff_active = false
-			
-			
-		
+
+
+
 
 
 func speed_up():
