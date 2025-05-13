@@ -13,7 +13,7 @@ extends Control
 const HEALTH_EMPTY = preload("res://assets/sprites/health_empty.png")
 const HEALTH_FULL = preload("res://assets/sprites/health_full.png")
 var counter = 1
-var health = GameManager.lifes  # Current health value
+var health = GameManager.power_ups["Health_up"]  # Current health value
 
 func _ready() -> void:
 	if visible == false:

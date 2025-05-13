@@ -1,15 +1,15 @@
 [gd_scene load_steps=16 format=3 uid="uid://bajvfne4dc6aj"]
 
-[ext_resource type="Script" uid="uid://p4vtwfppakvn" path="res://level_0.gd" id="1_c720d"]
-[ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/level_1.png" id="1_m047c"]
-[ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="2_i1edy"]
-[ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="4_ifqki"]
-[ext_resource type="PackedScene" uid="uid://ug0jvf711563" path="res://scenes/Enemies_Scenes/enemy_spawner.tscn" id="5_8wp3h"]
-[ext_resource type="PackedScene" uid="uid://cbqni5jfm0e1l" path="res://scenes/sheld.tscn" id="5_qmbyq"]
-[ext_resource type="PackedScene" uid="uid://b0fu38y8bfp40" path="res://scenes/ui/menus/pause_menu.tscn" id="6_5j4ii"]
-[ext_resource type="PackedScene" uid="uid://ctfk2cy55npka" path="res://scenes/ui/game_hud.tscn" id="6_e6li3"]
-[ext_resource type="PackedScene" uid="uid://b5ygvkf7gbnyh" path="res://scenes/Characters/2ndchill_wizard.tscn" id="6_jooga"]
-[ext_resource type="PackedScene" uid="uid://dq533a4qahcpo" path="res://scenes/game_manager.tscn" id="8_8r63q"]
+[ext_resource type="Script" uid="uid://p4vtwfppakvn" path="res://level_0.gd" id="1_uxrqx"]
+[ext_resource type="Texture2D" uid="uid://45k8eiam1aa8" path="res://assets/sprites/level_1.png" id="2_dpr5n"]
+[ext_resource type="Texture2D" uid="uid://cwpumw38bbqsp" path="res://assets/sprites/Base-ground.png" id="3_oxm3q"]
+[ext_resource type="PackedScene" uid="uid://bm34pb8r8frsm" path="res://scenes/Characters/chill_wizard.tscn" id="4_bbv6a"]
+[ext_resource type="PackedScene" uid="uid://cbqni5jfm0e1l" path="res://scenes/sheld.tscn" id="5_pjxhx"]
+[ext_resource type="PackedScene" uid="uid://b5ygvkf7gbnyh" path="res://scenes/Characters/2ndchill_wizard.tscn" id="6_045en"]
+[ext_resource type="PackedScene" uid="uid://ug0jvf711563" path="res://scenes/Enemies_Scenes/enemy_spawner.tscn" id="7_wq5kw"]
+[ext_resource type="PackedScene" uid="uid://ctfk2cy55npka" path="res://scenes/ui/game_hud.tscn" id="8_e3ham"]
+[ext_resource type="PackedScene" uid="uid://b0fu38y8bfp40" path="res://scenes/ui/menus/pause_menu.tscn" id="9_rn4u1"]
+[ext_resource type="PackedScene" uid="uid://dq533a4qahcpo" path="res://scenes/game_manager.tscn" id="10_p4rjb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_58xi3"]
 normal = Vector2(-1, 0)
@@ -27,7 +27,7 @@ size = Vector2(32, 1080)
 size = Vector2(2048, 64)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_c720d")
+script = ExtResource("1_uxrqx")
 
 [node name="Enviroment" type="Node2D" parent="."]
 
@@ -35,13 +35,13 @@ script = ExtResource("1_c720d")
 texture_filter = 1
 position = Vector2(961, 540)
 scale = Vector2(19.2, 10.8)
-texture = ExtResource("1_m047c")
+texture = ExtResource("2_dpr5n")
 
 [node name="Foreground" type="Sprite2D" parent="Enviroment"]
 texture_filter = 1
 position = Vector2(959.105, 539.543)
 scale = Vector2(19.2179, 10.8091)
-texture = ExtResource("2_i1edy")
+texture = ExtResource("3_oxm3q")
 
 [node name="Walls" type="Node2D" parent="Enviroment"]
 
@@ -82,20 +82,20 @@ shape = SubResource("RectangleShape2D_ryggg")
 
 [node name="PlayerManager" type="Node2D" parent="."]
 
-[node name="ChillWizard" parent="PlayerManager" instance=ExtResource("4_ifqki")]
+[node name="ChillWizard" parent="PlayerManager" instance=ExtResource("4_bbv6a")]
 position = Vector2(1040, 944)
 
-[node name="Sheld" parent="PlayerManager/ChillWizard" instance=ExtResource("5_qmbyq")]
+[node name="Sheld" parent="PlayerManager/ChillWizard" instance=ExtResource("5_pjxhx")]
 scale = Vector2(0.19, 0.19)
 
-[node name="2ndchill_wizard" parent="PlayerManager" instance=ExtResource("6_jooga")]
+[node name="2ndchill_wizard" parent="PlayerManager" instance=ExtResource("6_045en")]
 position = Vector2(1296, 936)
 scale = Vector2(1.75, 1.75)
 
-[node name="Sheld" parent="PlayerManager/2ndchill_wizard" instance=ExtResource("5_qmbyq")]
+[node name="Sheld" parent="PlayerManager/2ndchill_wizard" instance=ExtResource("5_pjxhx")]
 scale = Vector2(0.59, 0.59)
 
-[node name="enemy_spawner" parent="." instance=ExtResource("5_8wp3h")]
+[node name="enemy_spawner" parent="." instance=ExtResource("7_wq5kw")]
 position = Vector2(673, 256)
 
 [node name="BulletManager" type="Node2D" parent="."]
@@ -104,11 +104,11 @@ position = Vector2(673, 256)
 
 [node name="EnemyBullets" type="Node2D" parent="BulletManager"]
 
-[node name="game_hud" parent="." instance=ExtResource("6_e6li3")]
+[node name="game_hud" parent="." instance=ExtResource("8_e3ham")]
 
-[node name="PauseMenu" parent="." instance=ExtResource("6_5j4ii")]
+[node name="PauseMenu" parent="." instance=ExtResource("9_rn4u1")]
 
-[node name="GameManager" parent="." instance=ExtResource("8_8r63q")]
+[node name="GameManager" parent="." instance=ExtResource("10_p4rjb")]
 
 [connection signal="area_entered" from="Enviroment/Walls/RightWall" to="enemy_spawner" method="_on_right_wall_area_entered"]
 [connection signal="area_entered" from="Enviroment/Walls/LeftWall" to="enemy_spawner" method="_on_left_wall_area_entered"]

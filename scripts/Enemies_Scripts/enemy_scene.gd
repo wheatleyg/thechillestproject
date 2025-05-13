@@ -30,9 +30,20 @@ func _process(_delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player_attacks"):
-		animation_player.play("explosion")
-		print("enemy died, detected by scene")
-		enemy_destroyed.emit(config.crystals_worth, self)
-		body.queue_free()
-		await animation_player.animation_finished
-		queue_free()
+		if "Player_attack_1" in body.name:
+			animation_player.play("explosion")
+			print("enemy died, detected by scene")
+			enemy_destroyed.emit(config.crystals_worth, self)
+			body.queue_free()
+			await animation_player.animation_finished
+			queue_free()
+		elif "Player_attack_2" in body.name:
+			body._shoot_thing()
+			animation_player.play("explosion")
+			print("enemy died, detected by scene")
+			enemy_destroyed.emit(config.crystals_worth, self)
+			#body.queue_free()
+			await animation_player.animation_finished
+			queue_free()
+			
+		

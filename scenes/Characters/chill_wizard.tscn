@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bm34pb8r8frsm"]
+[gd_scene load_steps=11 format=3 uid="uid://bm34pb8r8frsm"]
 
 [ext_resource type="Script" uid="uid://51jj212us6vk" path="res://scenes/Characters/chill_wizard.gd" id="1_6i2s2"]
+[ext_resource type="PackedScene" uid="uid://b2usixcdimpd3" path="res://scenes/Player_Attack/player_attack_2.tscn" id="2_2gijv"]
 [ext_resource type="PackedScene" uid="uid://canis8lb32gex" path="res://scenes/Player_Attack/player_attack_1.tscn" id="2_jpo3v"]
 [ext_resource type="Texture2D" uid="uid://b54g648603bjy" path="res://assets/sprites/player (1).png" id="2_qfc1j"]
 [ext_resource type="AudioStream" uid="uid://lq088uvjrlrj" path="res://assets/audio/SFX/mixkit-game-gun-shot-1662.mp3" id="4_2gijv"]
@@ -56,6 +57,7 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_6i2s2")
 projectile = ExtResource("2_jpo3v")
+projectile_2 = ExtResource("2_2gijv")
 
 [node name="Player(1)" type="Sprite2D" parent="."]
 position = Vector2(-7.74558e-07, -4.8731)
