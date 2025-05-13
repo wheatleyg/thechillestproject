@@ -18,28 +18,28 @@ There wasn't really any nodes used for this beisdes the ones of the character
 2. **UI**
 The games UI including all of the menus
 Node, and canvasitems
-  -**Testing**: locate the main scene and press play and click through the diffrent scenes
-  -**Scenes**:Any of the scenes in the scenes folder under the UI folder in it
-  -**Scripts**: Any of them can be found in the scripts folder under under the UI folder thats in tehre
+  - **Testing**: locate the main scene and press play and click through the diffrent scenes
+  - **Scenes**:Any of the scenes in the scenes folder under the UI folder in it
+  - **Scripts**: Any of them can be found in the scripts folder under under the UI folder thats in tehre
 3. **Score**
 This is where you can gain score by killing eneimes
 Node
-  -**Testing**: Locate the level zero scene and press play on that scene and ass you kill eneimes the score goes up
-  -**Scenes**: Under scenes then enemie scenes you can find the gem.tscn and any of the ones in the ui scenes folder
-  -**Scripts**: Game over scripts for the score can also be found with teh names game_over_score_entry.gd
+  - **Testing**: Locate the level zero scene and press play on that scene and ass you kill eneimes the score goes up
+  - **Scenes**: Under scenes then enemie scenes you can find the gem.tscn and any of the ones in the ui scenes folder
+  - **Scripts**: Game over scripts for the score can also be found with teh names game_over_score_entry.gd
 4. **Multiplayer**
 Play with other 
 friends if you have them
 Node
-  -**Testing**: Go to level zero and press play
-  -**Scenes**: Under scenes and in the charters folder find the 2ndchillwidard.tscn
-  -**Scripts**: its called 2_ndchill_wizard
+  - **Testing**: Go to level zero and press play
+  - **Scenes**: Under scenes and in the charters folder find the 2ndchillwidard.tscn
+  - **Scripts**: its called 2_ndchill_wizard
 5. **Shop**
 This you will be able to buy things
 Canvas item, Node
-  -**Testing**: Go to the shop scene and press play and look at how it goes and runs
-  -**Scenes**: shop items scene is under sceens and is call shop_items.gd
-  -**Scripts**: the script is called shop.gd
+  - **Testing**: Go to the shop scene and press play and look at how it goes and runs
+  - **Scenes**: shop items scene is under sceens and is call shop_items.gd
+  - **Scripts**: the script is called shop.gd
 
 ### OOP
 - Inheatance- This can be shown in the player_attack.gd
