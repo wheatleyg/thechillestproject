@@ -7,6 +7,8 @@ extends Control
 @onready var texture_rect_3: TextureRect = $HeartContainer/TextureRect3
 
 @onready var game_manager = $"../GameManager"
+@onready var bullets_left: Control = $BulletsLeft
+@onready var bullets_left_label: Label = $BulletsLeft/GridContainer/Label
 
 
 
@@ -16,6 +18,15 @@ var counter = 1
 var health = GameManager.power_ups["Health_up"]  # Current health value
 
 func _ready() -> void:
+	
+	
+	var is_second_attack = GameManager.power_ups["New_attack"]
+	if is_second_attack == false:
+		bullets_left.hide()
+	else:
+		pass
+	
+		
 	if visible == false:
 		show()
 
@@ -25,6 +36,7 @@ func _ready() -> void:
 	set_deferred("size", viewport_size)
 
 	GameManager.on_crystals_increased.connect(update_score)
+	
 
 	update_hearts()
 	update_score(GameManager.crystals)
@@ -49,3 +61,8 @@ func update_score(new_score: int):
 
 	var padded_score = str(new_score).pad_zeros(5)
 	label.text = padded_score
+
+
+
+func update_bullets(remaining: int):
+	bullets_left_label.text = "x " + str(remaining)

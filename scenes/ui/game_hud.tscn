@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctfk2cy55npka"]
+[gd_scene load_steps=6 format=3 uid="uid://ctfk2cy55npka"]
 
 [ext_resource type="Script" uid="uid://dufwd5sthrcq6" path="res://scenes/ui/game_hud.gd" id="1_el006"]
 [ext_resource type="Theme" uid="uid://b36arowifsrqg" path="res://scenes/themes_and_stuff/menu_theme.tres" id="1_fnxle"]
 [ext_resource type="Texture2D" uid="uid://ct2b15amwjiuy" path="res://assets/sprites/Coin-counter.png" id="2_el006"]
 [ext_resource type="Texture2D" uid="uid://o8goqwo7l6dv" path="res://assets/sprites/health_full.png" id="4_8n052"]
+[ext_resource type="Texture2D" uid="uid://b7nomvhgib38r" path="res://assets/PNG images/Player-attack_2.png" id="5_acb04"]
 
 [node name="game_hud" type="Control"]
 layout_mode = 3
@@ -72,4 +73,36 @@ metadata/_edit_lock_ = true
 [node name="TextureRect3" type="TextureRect" parent="HeartContainer"]
 layout_mode = 2
 texture = ExtResource("4_8n052")
+metadata/_edit_lock_ = true
+
+[node name="BulletsLeft" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_fnxle")
+
+[node name="GridContainer" type="GridContainer" parent="BulletsLeft"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 3.6
+anchor_top = 2.7
+anchor_right = 13.1
+anchor_bottom = 5.725
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="BulletsLeft/GridContainer"]
+layout_mode = 2
+text = "x 3"
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="BulletsLeft/GridContainer/Label"]
+layout_mode = 2
+offset_left = -572.0
+offset_top = -432.0
+offset_right = -472.0
+offset_bottom = -332.0
+scale = Vector2(10.065, 10.065)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_acb04")
 metadata/_edit_lock_ = true

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5ygvkf7gbnyh"]
+[gd_scene load_steps=11 format=3 uid="uid://b5ygvkf7gbnyh"]
 
 [ext_resource type="Script" uid="uid://chy0xu1v4tnhd" path="res://2_ndchill_wizard.gd" id="1_d7y2x"]
 [ext_resource type="PackedScene" uid="uid://canis8lb32gex" path="res://scenes/Player_Attack/player_attack_1.tscn" id="2_kep6k"]
 [ext_resource type="Texture2D" uid="uid://blco7jnp86eh7" path="res://assets/sprites/Player_2.png" id="2_wejso"]
+[ext_resource type="PackedScene" uid="uid://b2usixcdimpd3" path="res://scenes/Player_Attack/player_attack_2.tscn" id="3_503bk"]
 [ext_resource type="AudioStream" uid="uid://lq088uvjrlrj" path="res://assets/audio/SFX/mixkit-game-gun-shot-1662.mp3" id="3_kep6k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_503bk"]
@@ -53,6 +54,7 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_d7y2x")
 projectile = ExtResource("2_kep6k")
+projectile_2 = ExtResource("3_503bk")
 
 [node name="Player2" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
