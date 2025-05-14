@@ -25,6 +25,7 @@ var current_focused_button
 var score = GameManager.crystals
 
 @onready var current_purchases = GameManager.power_ups
+
 """
 @export var current_purchases = {
 	"Attack_up": 0,
