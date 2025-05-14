@@ -17,7 +17,7 @@ var current_projectile = true #false for projectile 1, true for projectile 2
 
 @onready var timer: Timer = $Timer
 
-signal player1_died
+signal player_died
 var shots_left = 3
 var shoot_effect_one = preload("uid://lq088uvjrlrj")
 
@@ -45,7 +45,7 @@ func get_input():
 
 	elif Input.is_action_just_pressed("p1_shoot_up"):
 		speed_up()
-	
+
 	elif GameManager.power_ups["New_attack"] == true:
 		if Input.is_action_just_pressed("p1_switch_weapon"):
 			current_projectile = !current_projectile
@@ -65,9 +65,9 @@ func _physics_process(_delta):
 
 func shoot():
 	#health_manager(-1)
-	
-	
-	
+
+
+
 	if timer.is_stopped():
 		shots_left = GameManager.shots_left_for_each
 		timer.start()
@@ -86,7 +86,7 @@ func shoot():
 				GameManager.shots_left_for_each = shots_left
 				GAME_HUD.update_bullets(shots_left)
 			print(str(shots_left))
-			
+
 			var bullet = projectile_2.instantiate()
 			bullet.global_position = marker_2d.global_position
 			bullet.rotation = global_rotation
@@ -97,13 +97,14 @@ func shoot():
 		pass
 func health_manager(change: int):
 	health = GameManager.power_ups["Health_up"]  # Get current health from GameManager
-	health = health + change
+	health += change
 	health = max(0, health)
 	GAME_HUD.set_health(health)
 	GameManager.power_ups["Health_up"] = health
+	print(str(health))
 	if health <= 0:
 		print("player died")
-		player1_died.emit()
+		player_died.emit()
 
 
 
@@ -115,6 +116,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			pass
 		else:
 			animation_player.play("on_hit")
+			if GameManager.power_ups["Health_up"] <= 0:
+				player_died.emit()
+				print("DIED")
+				return
 			health_manager(-1)
 		#sigma
 		area.queue_free()

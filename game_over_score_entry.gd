@@ -11,9 +11,13 @@ extends Control
 @onready var leaderboard = $Leaderboard
 @onready var score_entry = $ScoreEntry
 @onready var score_earned: Label = $ScoreEntry/Label2
+@onready var leaderboard_place_label = $Leaderboard/LeaderboardPlaceLabel
+
 
 @onready var v_box_container = $Leaderboard/VBoxContainer
-var score = GameManager.total_crystals
+@onready var return_button = $Leaderboard/return_button
+
+var score = 14 #GameManager.total_crystals
 var players = [
 	{"name": "TEST", "score": 999999999}
 ]
@@ -37,7 +41,7 @@ var spot_updated = false
 var opaque = Color8(255,255,255,255)
 var half_opaque = Color8(255,255,255,127)
 
-
+var block_inputs = false
 const nono_words = ['ass', 'fuc', 'fuk', 'fuq', 'fux', 'fck', 'coc', 'cok', 'coq',
  'kox', 'koc', 'kok', 'koq', 'cac', 'cak', 'caq', 'kac', 'kak', 'kaq', 'dic', 'dik',
  'diq', 'dix',
@@ -53,27 +57,33 @@ const nono_words = ['ass', 'fuc', 'fuk', 'fuq', 'fux', 'fck', 'coc', 'cok', 'coq
  'mlf', 'rac', 'rak', 'raq', 'rck', 'sac', 'sak', 'saq', 'pms', 'nad', 'ndz', 'nds',
  'wtf', 'sol', 'sob', 'fob', 'sfu' ,  # for testing
 ]
+
+var DEBUG_RESET_SCORES = false  # Debug flag to reset scores
+
 func _ready() -> void:
-	score_earned.text = str(score)
+	score_earned.text = "YOUR SCORE IS: " + str(score)
+	if DEBUG_RESET_SCORES:
+		reset_scores()  # Call function to reset scores if debug flag is true
 	_update_leaderboard()
 	spot_array = [
 		spot_1,
 		spot_2,
 		spot_3
 	]
+	_update_leaderboard_place()  # Call new function to update place label
 
 
 
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("p1_move_up"): # or event.is_action_pressed("p1_move_down"): # SW
+	if event.is_action_pressed("p1_move_up") and block_inputs == false: # or event.is_action_pressed("p1_move_down"): # SW
 		spot_manager()
-	elif event.is_action_pressed("p1_shoot"): # H
+	elif event.is_action_pressed("p1_shoot") and block_inputs == false: # H
 		_one_key_keyboard()
-	elif event.is_action_pressed("p1_select"): # A
+	elif event.is_action_pressed("p1_select") and block_inputs == false: # A
 		filter_names()
-	elif event.is_action_pressed("p1_move_down"): # REMOVE FOR TURN IN
+	elif event.is_action_pressed("p1_move_down") and block_inputs == false: # REMOVE FOR TURN IN
 		leaderboard.visible = !leaderboard.visible
 		score_entry.visible = !score_entry.visible
 		_update_leaderboard()
@@ -123,10 +133,10 @@ func save_name():
 func filter_names():
 	for i in range(len(spot_array)):
 		curr_name.append(spot_array[i].text)
-		to_be_filtered_name  =''.join(curr_name)
+		to_be_filtered_name = ''.join(curr_name)
 
 	curr_name.clear()
-	print('To be iltered name is: ' + to_be_filtered_name.to_lower())
+	print('To be filtered name is: ' + to_be_filtered_name.to_lower())
 
 	if "_" in to_be_filtered_name:
 		print("ERROR: text contains a underscore")
@@ -135,16 +145,11 @@ func filter_names():
 		animation_player.play("bad_word")
 		curr_name.clear()
 		warning.text = "Name cannot contain '_' !"
-
 		warning.show()
 		await animation_player.animation_finished
 		warning.hide()
 		timer.start()
-
-
-
 		return
-
 
 	elif to_be_filtered_name.to_lower() in nono_words:
 		print("bad word")
@@ -152,8 +157,7 @@ func filter_names():
 		timer.stop()
 		spot_array[curr_spot].modulate = opaque
 		curr_spot = 0
-
-		curr_name_index =  [0, 0, 0]
+		curr_name_index = [0, 0, 0]
 		current_letter = 0
 		warning.text = 'Name is invalid!'
 		warning.show()
@@ -164,11 +168,36 @@ func filter_names():
 		timer.start()
 		curr_name.clear()
 		return
-	else:
-		save_high_score(to_be_filtered_name, score)
-		GameManager._reset()
-		leaderboard.show()
-		score_entry.hide()
+
+	# Check if the name is already in the leaderboard
+	var players = load_players()
+	for player in players:
+		if player["name"] == to_be_filtered_name:
+			print("Name already exists in the leaderboard")
+			animation_player.play("bad_word")
+			timer.stop()
+			spot_array[curr_spot].modulate = opaque
+			curr_spot = 0
+			curr_name_index = [0, 0, 0]
+			current_letter = 0
+			warning.text = 'Name already exists!'
+			warning.show()
+			await animation_player.animation_finished
+			warning.hide()
+			for i in range(len(spot_array)):
+				spot_array[i].text = '_'
+			timer.start()
+			curr_name.clear()
+			return
+
+	save_high_score(to_be_filtered_name, score)
+	_update_leaderboard()
+	GameManager._reset()
+	block_inputs = true
+	return_button.grab_focus()
+	leaderboard.show()
+	score_entry.hide()
+
 
 
 
@@ -246,3 +275,40 @@ func load_high_score() -> Dictionary:
 
 func _process(_delta: float) -> void:
 	pass
+
+func _update_leaderboard_place():
+	var players = load_players()
+	var player_place = 0
+	var found = false
+
+	for i in range(players.size()):
+		if players[i]["score"] == score:
+			player_place = i + 1
+			found = true
+			break
+
+	if not found:
+		if players.size() == 0:
+			player_place = 1  # If no scores exist, the player is first
+		else:
+			for i in range(players.size()):
+				if score > players[i]["score"]:
+					player_place = i + 1
+					break
+				else:
+					player_place = players.size() + 1
+
+	leaderboard_place_label.text = "Your place: " + str(player_place)
+
+func reset_scores():
+	var path = "user://highscore.save"
+	var empty_data = {"players": []}
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	file.store_string(JSON.stringify(empty_data))
+	file.close()
+	print("Scores have been reset.")
+
+
+func _on_return_button_pressed():
+	GameManager._reset()
+	get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu.tscn")

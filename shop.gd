@@ -22,7 +22,7 @@ var is_loop_running = false
 var current_text_request_id = 0
 
 var current_focused_button
-var score = 50000
+var score = GameManager.crystals
 
 @onready var current_purchases = GameManager.power_ups
 """
@@ -219,5 +219,6 @@ func update_buttons(): #and score
 
 
 func _on_back_button_pressed() -> void:
+	GameManager.crystals = score
 	GameManager.power_ups = current_purchases
 	get_tree().change_scene_to_file("res://scenes/ui/intermission_menu.tscn")

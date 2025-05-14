@@ -306,4 +306,41 @@ bbcode_enabled = true
 text = "[color=red]Red Text[/color] and [color=green]Green Text[/color]"
 fit_content = true
 
+[node name="return_button" type="Button" parent="Leaderboard"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -364.0
+offset_top = -125.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "RETURN"
+
+[node name="Label" type="Label" parent="Leaderboard"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 121.0
+text = "TOP 10
+"
+
+[node name="LeaderboardPlaceLabel" type="Label" parent="Leaderboard"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = 417.0
+offset_right = 462.0
+offset_bottom = 538.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.8, 1, 0.490196)
+text = "Your place: "
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Leaderboard/return_button" to="." method="_on_return_button_pressed"]
