@@ -9,6 +9,32 @@ func _ready() -> void:
 	visible = false
 func _physics_process(delta: float) -> void:
 	
+	
+	if get_parent().name == "ChillWizard":
+		visible = Input.is_action_pressed("p1_shield")
+		if Input.is_action_just_pressed("p1_shield"):
+			fading_out = true
+		if Input.is_action_just_released("p1_shield"):
+			fading_out = false
+		if visible :
+				if fading_out and modulate.a > 0:
+					modulate.a -= fade_speed * delta
+					if modulate.a <= 0:
+						visible = false
+						fading_out = false
+	elif get_parent().name == "2ndchill_wizard":
+		visible = Input.is_action_pressed("p2_shield")
+		if Input.is_action_just_pressed("p2_shield"):
+			fading_out = true
+		if Input.is_action_just_released("p2_shield"):
+			fading_out = false
+		if visible :
+				if fading_out and modulate.a > 0:
+					modulate.a -= fade_speed * delta
+					if modulate.a <= 0:
+						visible = false
+						fading_out = false
+	"""
 	visible = Input.is_action_pressed("p1_shield")
 	if Input.is_action_just_pressed("p1_shield"):
 		fading_out = true
@@ -20,7 +46,7 @@ func _physics_process(delta: float) -> void:
 				if modulate.a <= 0:
 					visible = false
 					fading_out = false
-
+"""
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if visible:
 		if modulate.a >= 0:

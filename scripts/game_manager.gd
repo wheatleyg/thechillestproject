@@ -7,15 +7,15 @@ class_name game_manager
 
 @onready var ENEMY_SPAWNER = preload("uid://ug0jvf711563")
 @onready var player1 = preload("uid://bm34pb8r8frsm")
-
+var shots_left_for_each = 3
 signal on_crystals_increased(crystal_count: int)
 @export var power_ups = {
 	"Attack_up": 0,
 	"Crystals_x2": 0,
 	"Dash": 0,
 	"Defense_up": 0,
-	"Health_up": 0,
-	"New_attack": false #❎✅
+	"Health_up": 3,
+	"New_attack": true #❎✅
 
 }
 
@@ -69,3 +69,10 @@ func _reset():
 	"Health_up": 0,
 	"New_attack": false #❎✅
 	}
+	
+	
+func _update_bullets():
+	pass
+	
+func _reset_shots_left():
+	shots_left_for_each = 3

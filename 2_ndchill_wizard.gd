@@ -6,24 +6,23 @@ class_name player2
 
 @export var projectile : PackedScene
 @export var projectile_2 : PackedScene
-var current_projectile = 0
+var current_projectile = true #false for projectile 1, true for projectile 2
 
 @onready var marker_2d: Marker2D = $Marker2D
 
-@onready var GAME_HUD = $"../../game_hud"
+@onready var GAME_HUD: Control = $"../../game_hud"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
-
 @onready var bullet_sound_effect_player: AudioStreamPlayer = $BulletSoundEffectPlayer
 @onready var player_bullets: Node2D = $"../../BulletManager/PlayerBullets"
+
 @onready var timer: Timer = $Timer
 
-signal player1_died
-var x = 1
+signal player_died
+var shots_left = 3
 var shoot_effect_one = preload("uid://lq088uvjrlrj")
 
 var rapid = false
-var health = GameManager.lifes
+var health = GameManager.power_ups["Health_up"]
 
 var speedup_charges = GameManager.power_ups["Dash"]
 var is_speedup_active = false
@@ -37,9 +36,9 @@ func get_input():
 	velocity = Vector2(input_direction * speed,0)  # no vert movement
 
 	if Input.is_action_just_pressed("p2_shoot"):
-		shoot(false)
+		shoot()
 
-	#if Input.is_action_just_pressed("p1_shoot_up"):
+	#if Input.is_a`tion_just_pressed("p1_shoot_up"):
 		#rapid = true
 	elif Input.is_action_just_pressed("p2_special"): # J
 		buff_up()
@@ -47,38 +46,63 @@ func get_input():
 	elif Input.is_action_just_pressed("p2_shoot_up"):
 		speed_up()
 
+	elif GameManager.power_ups["New_attack"] == true:
+		if Input.is_action_just_pressed("p2_switch_weapon"):
+			current_projectile = !current_projectile
+
+
 
 func _physics_process(_delta):
 	if DEBUG:
-		shoot(true)
+		shoot()
 	move_and_slide()
+	if rapid == true:
+		shoot()
 	get_input()
-
 
 func shoot():
 	#health_manager(-1)
-	print("lifeAl")
+
+
+
 	if timer.is_stopped():
+		shots_left = GameManager.shots_left_for_each
 		timer.start()
-		var bullet = projectile.instantiate()
-		bullet.global_position = marker_2d.global_position
-		bullet.rotation = global_rotation
-		player_bullets.add_child(bullet)
+		if current_projectile == false: #projectile 1
+			var bullet = projectile.instantiate()
+			bullet.global_position = marker_2d.global_position
+			bullet.rotation = global_rotation
+			player_bullets.add_child(bullet)
+			bullet_sound_effect_player.stream = shoot_effect_one
+			bullet_sound_effect_player.play()
+		elif current_projectile == true: #projectile 2
+			if shots_left <= 0:
+				return
+			else:
+				shots_left = shots_left - 1
+				GameManager.shots_left_for_each = shots_left
+				GAME_HUD.update_bullets(shots_left)
+			print(str(shots_left))
 
-		bullet_sound_effect_player.stream = shoot_effect_one
-		bullet_sound_effect_player.play()
-
+			var bullet = projectile_2.instantiate()
+			bullet.global_position = marker_2d.global_position
+			bullet.rotation = global_rotation
+			player_bullets.add_child(bullet)
+			bullet_sound_effect_player.stream = shoot_effect_one
+			bullet_sound_effect_player.play()
 	else:
-		return
+		pass
+
 func health_manager(change: int):
-	health = GameManager.lifes
-	health = health + change
+	health = GameManager.power_ups["Health_up"]  # Get current health from GameManager
+	health += change
 	health = max(0, health)
 	GAME_HUD.set_health(health)
-	GameManager.lifes = health
+	GameManager.power_ups["Health_up"] = health
+	print(str(health))
 	if health <= 0:
 		print("player died")
-		player1_died.emit()
+		player_died.emit()
 
 
 
@@ -90,7 +114,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			pass
 		else:
 			animation_player.play("On_Hit2")
+			if GameManager.power_ups["Health_up"] <= 0:
+				player_died.emit()
+				print("DIED")
+				return
 			health_manager(-1)
+
 		#sigma
 		area.queue_free()
 

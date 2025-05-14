@@ -4,7 +4,10 @@ extends Control
 @onready var flashing_labels: Control = $Panel/FlashingLabels
 @onready var settings_menu = preload("uid://c423n2bdel6cx")
 @onready var quit_confirmation: Panel = $QuitConfirmation
-@onready var chill_wizard: player = $"../PlayerManager/ChillWizard"
+@onready var chill_wizard = $"../PlayerManager/ChillWizard"
+@onready var _2_ndchill_wizard = $"../PlayerManager/2ndchill_wizard"
+
+
 
 @onready var pause_panel: Panel = $Panel
 @onready var game_over_panel: Panel = $GameOver
@@ -14,6 +17,7 @@ extends Control
 @onready var return_button: Button = $Panel/VBoxContainer2/return_button
 @onready var settings_button = $Panel/VBoxContainer2/settings_button
 @onready var quit_button = $Panel/VBoxContainer2/quit_button
+@onready var submit_score_button = $GameOver/VBoxContainer/ButtonsContainer/submit_score_button
 
 @onready var quit_cancel = $QuitConfirmation/VBoxContainer/HBoxContainer/quit_cancel
 @onready var score_label: Label = $GameOver/VBoxContainer/StatsContainer/ScoreLabel
@@ -34,7 +38,8 @@ var revives_left = 0  # Starting number of revives
 #signal opened_through_pause # for settings menu to disable it's transition and panel.
 
 func _ready():
-	chill_wizard.player1_died.connect(game_over_moment)
+	chill_wizard.player_died.connect(game_over_moment)
+	_2_ndchill_wizard.player_died.connect(game_over_moment)
 
 	set_anchors_preset(Control.LayoutPreset.PRESET_TOP_LEFT) #this line is only to stop 1 warning
 
@@ -124,10 +129,14 @@ func switch_focus_when_settings_closed():
 	settings_button.grab_focus()
 
 func game_over_moment():
+	if game_over:  # Prevent multiple calls
+		return
+
 	game_over = true
 	toggle_transition(true)
 	pause_panel.visible = false
 	game_over_panel.visible = true
+	submit_score_button.grab_focus()
 	score_label.text = "SCORE: " +  str(GameManager.crystals)
 	levels_label.text = "LEVELS CLEARED " + str(GameManager.levels_passed)
 
@@ -156,13 +165,16 @@ func _on_revive_button_pressed() -> void:
 
 
 func _on_submit_score_button_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/ui/game_over_score_entry.tscn")
 
 
 func _on_retry_button_pressed() -> void: #actually main menu
+	get_tree().paused = false
 	GameManager._reset()
 	get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu.tscn")
 
 
 func _on_main_menu_button_pressed() -> void: #actually quit
+	get_tree().paused = false #i dont know if this is needed,  but just incase godot pulls a silly, keep it.
 	get_tree().quit()

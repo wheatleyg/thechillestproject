@@ -6,7 +6,7 @@ extends Node2D
 #HACK
 #FIXME
 
-
+signal GAME_OVER_WHATHAE
 
 
 var updated = false
@@ -80,3 +80,8 @@ func get_input():
 """
 func _on_cleanup_body_entered(body: Node2D) -> void:
 	body.queue_free()
+
+
+func _on_area_2d_2_area_entered(area: Area2D) -> void:
+	if "enemy" in area.name:
+		GAME_OVER_WHATHAE.emit()

@@ -98,7 +98,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Crystals_x2" type="TextureButton" parent="Items_Background/GridContainer"]
-editor_description = "This boosts your cystals earned by 2!"
+editor_description = "This boosts your cystals earned by 2! (Sorry, doesn't do anything.)"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -145,7 +145,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Defense_up" type="TextureButton" parent="Items_Background/GridContainer"]
-editor_description = "This boosts your defense!"
+editor_description = "This boosts your defense!
+(Sorry, doesn't do anything.)"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
