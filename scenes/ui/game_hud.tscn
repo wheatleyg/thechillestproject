@@ -92,7 +92,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="BulletsLeft/GridContainer"]
 layout_mode = 2
-text = "x 3"
+text = "x 3 "
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="BulletsLeft/GridContainer/Label"]

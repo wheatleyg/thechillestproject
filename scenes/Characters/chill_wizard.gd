@@ -70,6 +70,7 @@ func shoot():
 
 	if timer.is_stopped():
 		shots_left = GameManager.shots_left_for_each
+		GAME_HUD.update_bullets(shots_left, current_projectile)
 		timer.start()
 		if current_projectile == false: #projectile 1
 			var bullet = projectile.instantiate()
@@ -84,7 +85,7 @@ func shoot():
 			else:
 				shots_left = shots_left - 1
 				GameManager.shots_left_for_each = shots_left
-				GAME_HUD.update_bullets(shots_left)
+				GAME_HUD.update_bullets(shots_left, current_projectile)
 			print(str(shots_left))
 
 			var bullet = projectile_2.instantiate()

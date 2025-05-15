@@ -9,8 +9,10 @@ extends Control
 @onready var game_manager = $"../GameManager"
 @onready var bullets_left: Control = $BulletsLeft
 @onready var bullets_left_label: Label = $BulletsLeft/GridContainer/Label
+@onready var bullet_texturerect = $BulletsLeft/GridContainer/Label/TextureRect
 
-
+const PLAYER_ATTACK_2 = preload("res://assets/PNG images/Player-attack_2.png")
+const PLAYER_ATTACK_1 = preload("res://scenes/Player_Attack/Player_Attack_Sprites/Player-attack_1.png")
 
 const HEALTH_EMPTY = preload("res://assets/sprites/health_empty.png")
 const HEALTH_FULL = preload("res://assets/sprites/health_full.png")
@@ -64,5 +66,13 @@ func update_score(new_score: int):
 
 
 
-func update_bullets(remaining: int):
-	bullets_left_label.text = "x " + str(remaining)
+func update_bullets(remaining: int, bulletype: bool):
+	if bulletype == false: #normal attack
+		bullets_left_label.text = "∞"
+		bullet_texturerect.texture = PLAYER_ATTACK_1
+	elif bulletype == true:
+		bullets_left_label.text = "x " + str(remaining)
+		bullet_texturerect.texture = PLAYER_ATTACK_2
+	else:
+		push_error("you broke the game, stop messing with my code")
+	
