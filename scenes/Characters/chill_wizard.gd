@@ -6,7 +6,7 @@ class_name player
 
 @export var projectile : PackedScene
 @export var projectile_2 : PackedScene
-var current_projectile = true #false for projectile 1, true for projectile 2
+var current_projectile = false #false for projectile 1, true for projectile 2
 
 @onready var marker_2d: Marker2D = $Marker2D
 
@@ -46,8 +46,9 @@ func get_input():
 	elif Input.is_action_just_pressed("p1_shoot_up"):
 		speed_up()
 
-	elif GameManager.power_ups["New_attack"] == true:
+	elif GameManager.power_ups["New_attack"] == true and shots_left >= 0:
 		if Input.is_action_just_pressed("p1_switch_weapon"):
+			GAME_HUD.update_bullets(shots_left, current_projectile)
 			current_projectile = !current_projectile
 	else:
 		pass

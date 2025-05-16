@@ -245,6 +245,6 @@ autostart = true
 [connection signal="pressed" from="QuitConfirmation/VBoxContainer/HBoxContainer/quit_confirm" to="." method="_on_quit_confirm_pressed"]
 [connection signal="pressed" from="QuitConfirmation/VBoxContainer/HBoxContainer/quit_cancel" to="." method="_on_quit_cancel_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/ButtonsContainer/submit_score_button" to="." method="_on_submit_score_button_pressed"]
-[connection signal="pressed" from="GameOver/VBoxContainer/ButtonsContainer/retry_button" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/ButtonsContainer/retry_button" to="." method="_on_revive_button_pressed"]
+[connection signal="pressed" from="GameOver/VBoxContainer/ButtonsContainer/retry_button" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/ButtonsContainer/main_menu_button" to="." method="_on_main_menu_button_pressed"]
