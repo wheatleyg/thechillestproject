@@ -75,7 +75,7 @@ columns = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Attack_up" type="TextureButton" parent="Items_Background/GridContainer"]
-editor_description = "This is attack up!"
+editor_description = "This lets you boost your attack speed! (5000 crystals.)"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -98,7 +98,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Crystals_x2" type="TextureButton" parent="Items_Background/GridContainer"]
-editor_description = "This boosts your cystals earned by 2! (Sorry, doesn't do anything.)"
+editor_description = "This boosts your cystals earned by 2! (5000 crystals)(Sorry, doesn't do anything.)"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -122,7 +122,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Dash" type="TextureButton" parent="Items_Background/GridContainer"]
-editor_description = "This lets you dash!"
+editor_description = "This lets you dash! (5000 crystals.)"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -145,7 +145,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Defense_up" type="TextureButton" parent="Items_Background/GridContainer"]
-editor_description = "This boosts your defense!
+editor_description = "This boosts your defense! (5000 crystals.)
 (Sorry, doesn't do anything.)"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -171,7 +171,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Health_up" type="TextureButton" parent="Items_Background/GridContainer"]
-editor_description = "This heals you! (2000 crystals)"
+editor_description = "This heals you! (5000 crystals)"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -195,7 +195,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="New_attack" type="TextureButton" parent="Items_Background/GridContainer"]
-editor_description = "This unlocks a new attack!"
+editor_description = "This unlocks a new attack! (5000 crystals.)"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
