@@ -15,7 +15,7 @@ signal on_crystals_increased(crystal_count: int)
 	"Dash": 0,
 	"Defense_up": 0,
 	"Health_up": 3,
-	"New_attack": true #❎✅
+	"New_attack": false #❎✅
 
 }
 
@@ -38,7 +38,7 @@ var player1_scene = preload("res://scenes/Characters/chill_wizard.tscn")
 
 func _ready():
 	# No need to connect here since enemy_spawner connects to us
-	pass
+	randomize()
 
 func _switch_levels():
 	levels_passed += 1

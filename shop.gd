@@ -1,30 +1,31 @@
 extends Control
 
+#Node references
 @onready var attack_up: TextureButton = $Items_Background/GridContainer/Attack_up
 @onready var cystems_x_2: TextureButton = $Items_Background/GridContainer/Crystals_x2
 @onready var back_button: Button = $Items_Background/Back_button
-
 @onready var dash: TextureButton = $Items_Background/GridContainer/Dash
 @onready var defense_up: TextureButton = $Items_Background/GridContainer/Defense_up
 @onready var health_up: TextureButton = $Items_Background/GridContainer/Health_up
 @onready var new_a_ttack = $Items_Background/GridContainer/New_attack
 @onready var score_counter: Label = $Shopkeeper_background/Score/Panel/Label
-#@onready var game_manaer = "uid://dq533a4qahcpo"
 @onready var shopkeeper_speech: Label = $Shopkeeper_background/Shopkeeper_speech
+@onready var current_purchases = GameManager.power_ups
 
-#TODO Connect this to game mamanger, devise a way to maybe show purchased things on leaderboard?
-#TODO Add a exit button to the shop and make it work - hal
-#TODO Make the intermission UI so that the shop can be used
-#TODO Sound effects, fix the current button not being selected when we load the scene.
+#Prices
+const ATTACK_UP_PRICE = 5000
+const CRYSTALS_TIMES_2_PRICE = 5000
+const DASH_PRICE = 5000
+const DEFENSE_UP_PRICE = 5000
+const HEALTH_UP_PRICE = 5000
+const NEW_ATTACK_PRICE = 5000
 
 var cancel_loop = false
 var is_loop_running = false
 var current_text_request_id = 0
-
 var current_focused_button
 var score = GameManager.crystals
 
-@onready var current_purchases = GameManager.power_ups
 
 """
 @export var current_purchases = {
@@ -66,7 +67,7 @@ func _on_button_focus(button: TextureButton, is_focused: bool) -> void:
 	button.modulate = Color(0.7, 0.9, 1.0, 1.0) if is_focused else Color(1.0, 1.0, 1.0, 1.0)
 	current_focused_button = button
 
-	_update_text(button.editor_description)
+	_update_text(button.editor_description, 0)
 
 # Handle button click visual effects only
 func _on_button_click_visual(button: TextureButton) -> void:
@@ -89,7 +90,10 @@ func _on_button_click_visual(button: TextureButton) -> void:
 # Individual button functionality
 func _on_attack_up_pressed() -> void:
 	if current_purchases[current_focused_button.name] >= 3:
-		_update_text("rand")
+		_update_text("rand", 0)
+		return
+	elif score < ATTACK_UP_PRICE:
+		_update_text("rand3", ATTACK_UP_PRICE)
 		return
 	current_purchases[current_focused_button.name] += 1
 	score -= 1000
@@ -98,7 +102,10 @@ func _on_attack_up_pressed() -> void:
 
 func _on_cystems_x_2_pressed() -> void:
 	if current_purchases[current_focused_button.name] >= 3:
-		_update_text("rand")
+		_update_text("rand", 0)
+		return
+	elif score < CRYSTALS_TIMES_2_PRICE:
+		_update_text("rand3", CRYSTALS_TIMES_2_PRICE)
 		return
 	current_purchases[current_focused_button.name] += 1
 	score -= 1000
@@ -106,15 +113,22 @@ func _on_cystems_x_2_pressed() -> void:
 	
 func _on_dash_pressed() -> void:
 	if current_purchases[current_focused_button.name] >= 3:
-		_update_text("rand")
+		_update_text("rand", 0)
 		return
+	elif score < DASH_PRICE:
+		_update_text("rand3", DASH_PRICE)
+		return
+		
 	current_purchases[current_focused_button.name] += 1
 	score -= 1000
 	update_buttons()
 
 func _on_defense_up_pressed() -> void:
 	if current_purchases[current_focused_button.name] >= 3:
-		_update_text("rand")
+		_update_text("rand", 0)
+		return
+	elif score < DEFENSE_UP_PRICE:
+		_update_text("rand3", DEFENSE_UP_PRICE)
 		return
 	current_purchases[current_focused_button.name] += 1
 	score -= 1000
@@ -122,7 +136,10 @@ func _on_defense_up_pressed() -> void:
 
 func _on_health_up_pressed() -> void:
 	if current_purchases[current_focused_button.name] >= 3:
-		_update_text("rand")
+		_update_text("rand", 0)
+		return
+	elif score < HEALTH_UP_PRICE:
+		_update_text("rand3", HEALTH_UP_PRICE)
 		return
 	current_purchases[current_focused_button.name] += 1
 	score -= 1000
@@ -130,13 +147,16 @@ func _on_health_up_pressed() -> void:
 
 func _on_new_attack_pressed() -> void:
 	if current_purchases[current_focused_button.name] == true:
-		_update_text("rand_1")
+		_update_text("rand_1", 0)
+		return
+	elif score < NEW_ATTACK_PRICE:
+		_update_text("rand3", NEW_ATTACK_PRICE)
 		return
 	current_purchases[current_focused_button.name] = true
 	score -= 1000
 	update_buttons()
 
-func _update_text(text: String):
+func _update_text(text: String, current_price: int):
 	if text == "rand":
 		var random_end_text = {
 			1: "Can't buy anymore of that! Max is three!",
@@ -153,7 +173,13 @@ func _update_text(text: String):
 			3: "Too many weapons, Chill guy."
 		}
 		text = random_end_text_1[randi_range(1, len(random_end_text_1))]
-		
+	elif text == "rand3":
+		var random_end_text_2 = {
+			1: "Sorry Chill guy, you're too poor for that. (" + str(current_price) + ")",
+			2: "You're too broke, Chill guy. (" + str(current_price) + ")",
+			3: "You don't have enough crystals. (" + str(current_price) + ")"
+		}
+		text = random_end_text_2[randi_range(1, len(random_end_text_2))]
 		
 		
 	# Increment request ID for this update
