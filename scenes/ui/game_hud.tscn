@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctfk2cy55npka"]
+[gd_scene load_steps=7 format=3 uid="uid://ctfk2cy55npka"]
 
 [ext_resource type="Script" uid="uid://dufwd5sthrcq6" path="res://scenes/ui/game_hud.gd" id="1_el006"]
 [ext_resource type="Theme" uid="uid://b36arowifsrqg" path="res://scenes/themes_and_stuff/menu_theme.tres" id="1_fnxle"]
 [ext_resource type="Texture2D" uid="uid://ct2b15amwjiuy" path="res://assets/sprites/Coin-counter.png" id="2_el006"]
 [ext_resource type="Texture2D" uid="uid://o8goqwo7l6dv" path="res://assets/sprites/health_full.png" id="4_8n052"]
 [ext_resource type="Texture2D" uid="uid://b7nomvhgib38r" path="res://assets/PNG images/Player-attack_2.png" id="5_acb04"]
+[ext_resource type="Texture2D" uid="uid://5v6o14dvhr8c" path="res://scenes/Player_Attack/Player_Attack_Sprites/Player-attack_1.png" id="6_20ki6"]
 
 [node name="game_hud" type="Control"]
 layout_mode = 3
@@ -92,10 +93,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="BulletsLeft/GridContainer"]
 layout_mode = 2
-text = "x 3"
+text = "x 3 "
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="BulletsLeft/GridContainer/Label"]
+visible = false
 layout_mode = 2
 offset_left = -572.0
 offset_top = -432.0
@@ -105,4 +107,15 @@ scale = Vector2(10.065, 10.065)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("5_acb04")
+metadata/_edit_lock_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="BulletsLeft/GridContainer/Label"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -244.0
+offset_top = -88.0
+offset_right = -144.0
+offset_bottom = 12.0
+scale = Vector2(3.89, 3.89)
+texture = ExtResource("6_20ki6")
 metadata/_edit_lock_ = true

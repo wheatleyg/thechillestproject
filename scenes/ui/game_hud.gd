@@ -9,11 +9,14 @@ extends Control
 @onready var game_manager = $"../GameManager"
 @onready var bullets_left: Control = $BulletsLeft
 @onready var bullets_left_label: Label = $BulletsLeft/GridContainer/Label
-
+@onready var special_attack_texture = $BulletsLeft/GridContainer/Label/TextureRect
+@onready var normal_attack_texture: TextureRect = $BulletsLeft/GridContainer/Label/TextureRect2
 
 
 const HEALTH_EMPTY = preload("res://assets/sprites/health_empty.png")
 const HEALTH_FULL = preload("res://assets/sprites/health_full.png")
+
+
 var counter = 1
 var health = GameManager.power_ups["Health_up"]  # Current health value
 
@@ -64,5 +67,16 @@ func update_score(new_score: int):
 
 
 
-func update_bullets(remaining: int):
-	bullets_left_label.text = "x " + str(remaining)
+func update_bullets(remaining: int, bulletype: bool):
+	print("updating bullets!")
+	if bulletype == false: #normal attack
+		bullets_left_label.text = "∞"
+		special_attack_texture.visible = false
+		normal_attack_texture.visible = true
+	elif bulletype == true:
+		bullets_left_label.text = "x " + str(remaining)
+		special_attack_texture.visible = true
+		normal_attack_texture.visible = false
+	else:
+		push_error("you broke the game, stop messing with my code")
+	
