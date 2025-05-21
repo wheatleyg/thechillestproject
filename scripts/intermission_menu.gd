@@ -7,6 +7,10 @@ extends Control
 @onready var score_label: Label = $Panel/ScoreLabel
 @onready var level_label: Label = $Panel/LevelLabel
 
+#Scene references
+const LEVEL0 = "uid://bajvfne4dc6aj"
+const SHOP = "uid://bgwcvvk1ql283"
+
 
 
 func _ready() -> void:
@@ -17,8 +21,9 @@ func _ready() -> void:
 
 
 func _on_continue_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Level0.tscn")
+	
+	get_tree().change_scene_to_file(LEVEL0)
 
 
 func _on_shop_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/shop.tscn")
+	get_tree().change_scene_to_file(SHOP)
