@@ -1,34 +1,33 @@
 extends CharacterBody2D
 class_name player
+#Signals
+signal player_died
 
-@export var speed = 400
-@onready var main = get_tree().get_root()
-
-@export var projectile : PackedScene
-@export var projectile_2 : PackedScene
-var current_projectile = false #false for projectile 1, true for projectile 2
-
-@onready var marker_2d: Marker2D = $Marker2D
-
+#Node References
 @onready var GAME_HUD = $"../../game_hud"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var bullet_sound_effect_player: AudioStreamPlayer = $BulletSoundEffectPlayer
 @onready var player_bullets: Node2D = $"../../BulletManager/PlayerBullets"
-
 @onready var timer: Timer = $Timer
+@onready var main = get_tree().get_root()
+@onready var marker_2d: Marker2D = $Marker2D
 
-signal player_died
+#Exports
+@export var speed = 400
+@export var projectile : PackedScene
+@export var projectile_2 : PackedScene
+
+#Variables
+var current_projectile = false #false for projectile 1, true for projectile 2
 var shots_left = 3
 var shoot_effect_one = preload("uid://lq088uvjrlrj")
-
 var rapid = false
 var health = GameManager.power_ups["Health_up"]
-
 var speedup_charges = GameManager.power_ups["Dash"]
 var is_speedup_active = false
-
 var buff_charages = GameManager.power_ups["Attack_up"]
 var is_buff_active = false
+var is_able_to_shoot = true
 var DEBUG = GameManager.DEBUGMODE #TURN OFF WHEN TURNING IN
 
 func get_input():
@@ -68,35 +67,37 @@ func shoot():
 	#health_manager(-1)
 
 
-
-	if timer.is_stopped():
-		shots_left = GameManager.shots_left_for_each
-		GAME_HUD.update_bullets(shots_left, current_projectile)
-		timer.start()
-		if current_projectile == false: #projectile 1
-			var bullet = projectile.instantiate()
-			bullet.global_position = marker_2d.global_position
-			bullet.rotation = global_rotation
-			player_bullets.add_child(bullet)
-			bullet_sound_effect_player.stream = shoot_effect_one
-			bullet_sound_effect_player.play()
-		elif current_projectile == true: #projectile 2
-			if shots_left <= 0:
-				return
-			else:
-				shots_left = shots_left - 1
-				GameManager.shots_left_for_each = shots_left
-				GAME_HUD.update_bullets(shots_left, current_projectile)
-			print(str(shots_left))
-
-			var bullet = projectile_2.instantiate()
-			bullet.global_position = marker_2d.global_position
-			bullet.rotation = global_rotation
-			player_bullets.add_child(bullet)
-			bullet_sound_effect_player.stream = shoot_effect_one
-			bullet_sound_effect_player.play()
+	if is_able_to_shoot == false:
+		return
 	else:
-		pass
+		if timer.is_stopped():
+			shots_left = GameManager.shots_left_for_each
+			GAME_HUD.update_bullets(shots_left, current_projectile)
+			timer.start()
+			if current_projectile == false: #projectile 1
+				var bullet = projectile.instantiate()
+				bullet.global_position = marker_2d.global_position
+				bullet.rotation = global_rotation
+				player_bullets.add_child(bullet)
+				bullet_sound_effect_player.stream = shoot_effect_one
+				bullet_sound_effect_player.play()
+			elif current_projectile == true: #projectile 2
+				if shots_left <= 0:
+					return
+				else:
+					shots_left = shots_left - 1
+					GameManager.shots_left_for_each = shots_left
+					GAME_HUD.update_bullets(shots_left, current_projectile)
+				print(str(shots_left))
+
+				var bullet = projectile_2.instantiate()
+				bullet.global_position = marker_2d.global_position
+				bullet.rotation = global_rotation
+				player_bullets.add_child(bullet)
+				bullet_sound_effect_player.stream = shoot_effect_one
+				bullet_sound_effect_player.play()
+		else:
+			pass
 func health_manager(change: int):
 	health = GameManager.power_ups["Health_up"]  # Get current health from GameManager
 	health += change
@@ -164,3 +165,7 @@ func speed_up():
 			await get_tree().create_timer(10.00).timeout
 			speed = speed / 2
 			is_speedup_active = false
+
+
+func _on_sheld_shield_active(active: bool) -> void:
+	is_able_to_shoot = active
