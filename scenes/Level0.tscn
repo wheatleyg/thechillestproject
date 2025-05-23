@@ -113,3 +113,5 @@ position = Vector2(673, 256)
 [connection signal="area_entered" from="Enviroment/Walls/RightWall" to="enemy_spawner" method="_on_right_wall_area_entered"]
 [connection signal="area_entered" from="Enviroment/Walls/LeftWall" to="enemy_spawner" method="_on_left_wall_area_entered"]
 [connection signal="body_entered" from="cleanup" to="." method="_on_cleanup_body_entered"]
+[connection signal="shield_active" from="PlayerManager/ChillWizard/Sheld" to="PlayerManager/ChillWizard" method="_on_sheld_shield_active"]
+[connection signal="shield_active" from="PlayerManager/2ndchill_wizard/Sheld" to="PlayerManager/2ndchill_wizard" method="_on_sheld_shield_active"]

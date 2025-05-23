@@ -30,7 +30,7 @@ var is_speedup_active = false
 var buff_charages = GameManager.power_ups["Attack_up"]
 var is_buff_active = false
 var DEBUG = GameManager.DEBUGMODE #TURN OFF WHEN TURNING IN
-
+var is_able_to_shoot = true
 func get_input():
 	var input_direction = Input.get_action_strength("p2_move_right") - Input.get_action_strength("p2_move_left") #left and Right movement
 	velocity = Vector2(input_direction * speed,0)  # no vert movement
@@ -64,34 +64,36 @@ func shoot():
 	#health_manager(-1)
 
 
-
-	if timer.is_stopped():
-		shots_left = GameManager.shots_left_for_each
-		timer.start()
-		if current_projectile == false: #projectile 1
-			var bullet = projectile.instantiate()
-			bullet.global_position = marker_2d.global_position
-			bullet.rotation = global_rotation
-			player_bullets.add_child(bullet)
-			bullet_sound_effect_player.stream = shoot_effect_one
-			bullet_sound_effect_player.play()
-		elif current_projectile == true: #projectile 2
-			if shots_left <= 0:
-				return
-			else:
-				shots_left = shots_left - 1
-				GameManager.shots_left_for_each = shots_left
-				GAME_HUD.update_bullets(shots_left)
-			print(str(shots_left))
-
-			var bullet = projectile_2.instantiate()
-			bullet.global_position = marker_2d.global_position
-			bullet.rotation = global_rotation
-			player_bullets.add_child(bullet)
-			bullet_sound_effect_player.stream = shoot_effect_one
-			bullet_sound_effect_player.play()
+	if is_able_to_shoot == false:
+		return
 	else:
-		pass
+		if timer.is_stopped():
+			shots_left = GameManager.shots_left_for_each
+			timer.start()
+			if current_projectile == false: #projectile 1
+				var bullet = projectile.instantiate()
+				bullet.global_position = marker_2d.global_position
+				bullet.rotation = global_rotation
+				player_bullets.add_child(bullet)
+				bullet_sound_effect_player.stream = shoot_effect_one
+				bullet_sound_effect_player.play()
+			elif current_projectile == true: #projectile 2
+				if shots_left <= 0:
+					return
+				else:
+					shots_left = shots_left - 1
+					GameManager.shots_left_for_each = shots_left
+					GAME_HUD.update_bullets(shots_left)
+				print(str(shots_left))
+
+				var bullet = projectile_2.instantiate()
+				bullet.global_position = marker_2d.global_position
+				bullet.rotation = global_rotation
+				player_bullets.add_child(bullet)
+				bullet_sound_effect_player.stream = shoot_effect_one
+				bullet_sound_effect_player.play()
+		else:
+			pass
 
 func health_manager(change: int):
 	health = GameManager.power_ups["Health_up"]  # Get current health from GameManager
@@ -161,3 +163,7 @@ func speed_up():
 			await get_tree().create_timer(10.00).timeout
 			speed = speed / 2
 			is_speedup_active = false
+
+
+func _on_sheld_shield_active(active: bool) -> void:
+	is_able_to_shoot = active
