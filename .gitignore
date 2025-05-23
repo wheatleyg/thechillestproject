@@ -32,3 +32,9 @@ logs/
 .DS_Store
 *~
 *.blend1
+
+# My Own ignores, since these don't seem to work.
+*.import/
+*.tmp
+*.temp
+*.bak
